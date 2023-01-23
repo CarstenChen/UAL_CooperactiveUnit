@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     protected Animator animator;
     protected PlayerInput playerInput;
     protected CharacterController playerController;
-    
 
     protected float maxSpeedRef = 1f;  //虚拟运动进程区间最大值
     protected float targetSpeedRef;  //实际运动进程区间（需要插值到的）值
@@ -46,22 +45,23 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        //初始化
         playerInput = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
         playerController = GetComponent<CharacterController>();
         animatorCache = new AnimatorInfo(animator);
     }
 
-    private void OnEnable()
-    {
-
-    }
     // Update is called once per frame
     void FixedUpdate()
     {
+        //存储动画状态
         CacheAnimatorState();
+        //播放标签为“BlockInput”的动画时，禁止输入
         UpdateInputBlock();
-        DealWithMeleeAttackAnimation();
+        
+        //后续尖叫可能用得上
+        //DealWithScreamAttackAnimation();
 
 
         CalculateHorizontalMovement();
@@ -87,12 +87,14 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
             {
-                //用动画计算移动距离的一种方式
-                movement = Vector3.ProjectOnPlane(animator.deltaPosition, hit.normal);
+                ////用动画计算移动距离的一种方式
+                //movement = Vector3.ProjectOnPlane(animator.deltaPosition, hit.normal);
+                movement = 8 * curSpeedRef * transform.forward * Time.deltaTime;
             }
             else
             {
-                movement = animator.deltaPosition;
+                movement = 8 * curSpeedRef * transform.forward * Time.deltaTime;
+                //movement = animator.deltaPosition;
             }
         }
         else
@@ -108,13 +110,14 @@ public class PlayerController : MonoBehaviour
 
         //移动
         playerController.Move(movement);
+        Debug.Log(movement);
 
         //注意使用这种方法判断是否在地面必须要先Move()
         isGrounded = playerController.isGrounded;
 
-        //设置条约动画
+        //设置跳跃动画
         if (isGrounded)
-            Debug.Log("ad");
+            Debug.Log("isGrounded");
         else
         {
             animator.SetFloat("VerticalSpeed", curVerticalSpeed);
@@ -175,8 +178,7 @@ public class PlayerController : MonoBehaviour
 
     void SetMoveAnimation()
     {
-        //用动画驱动移动
-        animator.SetFloat("ForwardSpeed", curSpeedRef);
+        animator.SetFloat("ForwardSpeed", curSpeedRef);   
     }
 
     void CalculateRotation()
@@ -260,6 +262,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateInputBlock()
     {
+        //播放标签为“BlockInput”的动画时，禁止输入
         bool currentInputBlock = !animatorCache.isAnimatorTransitioning && animatorCache.currentStateInfo.tagHash == Animator.StringToHash("BlockInput");
 
         currentInputBlock |= animatorCache.nextStateInfo.tagHash == Animator.StringToHash("BlockInput");
@@ -268,7 +271,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void DealWithMeleeAttackAnimation()
+    void DealWithScreamAttackAnimation()
     {
         //动画归一化时间（0-1），在（0-1）上的repeat
         animator.SetFloat("MeleeStateTime", Mathf.Repeat(animatorCache.currentStateInfo.normalizedTime, 1f));

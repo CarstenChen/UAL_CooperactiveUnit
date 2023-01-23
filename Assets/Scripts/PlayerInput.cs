@@ -55,7 +55,7 @@ public class PlayerInput : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        pl_Jump = value.isPressed;
+        //pl_Jump = value.isPressed;
     }
 
     void OnFire(InputValue value)
