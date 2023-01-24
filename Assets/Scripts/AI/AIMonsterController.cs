@@ -19,10 +19,11 @@ public class AIMonsterController : MonoBehaviour
     public Parameter param;
     public LayerMask adjustNormalLayer;
     public Transform body;
-
-    [NonSerialized]
-    public NavMeshAgent agent;
-    public bool readyToChase;
+    public Waypoints[] routes;
+    
+    [NonSerialized] public NavMeshAgent agent;
+    [NonSerialized] public bool readyToChase;
+    [NonSerialized] public Waypoints currentPatrolRoute;
 
     protected Dictionary<StateType, State> states = new Dictionary<StateType, State>();
 
@@ -63,6 +64,8 @@ public class AIMonsterController : MonoBehaviour
         {
             SwitchToState(StateType.Chase);
         }
+
+        
     }
     private void RegisterState()
     {
@@ -112,5 +115,24 @@ public class AIMonsterController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         agent.enabled = true;
         readyToChase = true;
+    }
+
+    public void AdjustPatrolRoutes()
+    {
+        int pickRoute = 0;
+
+        for(int i = 0;i< routes.Length-1; i++)
+        {
+            if(Vector3.Distance(param.chaseTarget.position,routes[i].root.position)> Vector3.Distance(param.chaseTarget.position, routes[i + 1].root.position))
+            {
+                pickRoute = i + 1;
+            }
+        }
+
+        if(currentPatrolRoute != routes[pickRoute])
+        {
+            currentPatrolRoute = routes[pickRoute];
+            SwitchToState(StateType.Chase);
+        }
     }
 }
