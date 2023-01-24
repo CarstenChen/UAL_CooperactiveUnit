@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] protected  CinemachineFreeLook TPSCamera;
 
+    [SerializeField] protected float moveSpeed;  //旋转的最大速度
     [SerializeField] protected float maxRotateSpeed;  //旋转的最大速度
     [SerializeField] protected float gravity = 10f;  //重力
     [SerializeField] protected float initialJumpSpeed = 0f;  //起跳初速度
@@ -89,17 +90,17 @@ public class PlayerController : MonoBehaviour
             {
                 ////用动画计算移动距离的一种方式
                 //movement = Vector3.ProjectOnPlane(animator.deltaPosition, hit.normal);
-                movement = 8 * curSpeedRef * transform.forward * Time.deltaTime;
+                movement = moveSpeed * curSpeedRef * transform.forward * Time.deltaTime;
             }
             else
             {
-                movement = 8 * curSpeedRef * transform.forward * Time.deltaTime;
+                movement = moveSpeed * curSpeedRef * transform.forward * Time.deltaTime;
                 //movement = animator.deltaPosition;
             }
         }
         else
         {
-            movement = 8 * curSpeedRef * transform.forward * Time.deltaTime;
+            movement = moveSpeed * curSpeedRef * transform.forward * Time.deltaTime;
         }
 
         //四元数相乘为叠加
@@ -110,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
         //移动
         playerController.Move(movement);
-        Debug.Log(movement);
+        //Debug.Log(movement);
 
         //注意使用这种方法判断是否在地面必须要先Move()
         isGrounded = playerController.isGrounded;
