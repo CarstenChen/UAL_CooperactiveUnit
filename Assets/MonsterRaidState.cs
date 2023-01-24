@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class MonsterRaidState : MonoBehaviour,State
+public class MonsterRaidState : State
 {
     private AIMonsterController monster;
     private NavMeshAgent agent;
@@ -19,7 +19,6 @@ public class MonsterRaidState : MonoBehaviour,State
         monster.readyToChase = false;
         monster.transform.position = GetPointBehindPlayer();
         Debug.Log("Raid");
-        StartCoroutine(SpawnBehindPlayer());
     }
     public void OnStateStay()
     {
@@ -49,11 +48,5 @@ public class MonsterRaidState : MonoBehaviour,State
         return position;
     }
 
-    private IEnumerator SpawnBehindPlayer()
-    {
-        agent.isStopped = true;
-        yield return new WaitForSeconds(2f);
-        agent.isStopped = false;
-        monster.readyToChase = true;
-    }
+
 }

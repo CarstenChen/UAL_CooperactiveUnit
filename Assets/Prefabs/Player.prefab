@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 5757089391302172477}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e0fb870769c1b4cadcecd80c90a8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetAngle: 0
   TPSCamera: {fileID: 0}
   moveSpeed: 10
   maxRotateSpeed: 500

@@ -10,7 +10,7 @@ public class Parameter
     public Transform chaseTarget;
     public Animator animator;
     public float raidDistanceBehindPlayer;
-    public float raidAngleBehindPlayer=60f;
+    public float raidAngleBehindPlayer = 60f;
 }
 
 public class AIMonsterController : MonoBehaviour
@@ -36,7 +36,7 @@ public class AIMonsterController : MonoBehaviour
 
     public void Awake()
     {
-        agent = GetComponent<NavMeshAgent>(); 
+        agent = GetComponent<NavMeshAgent>();
         param.animator = GetComponent<Animator>();
     }
 
@@ -48,13 +48,15 @@ public class AIMonsterController : MonoBehaviour
 
     private void Update()
     {
-        agent.SetDestination(param.chaseTarget.position);
+        if (agent.enabled == true)
+            agent.SetDestination(param.chaseTarget.position);
 
         UpdateBodyYAxis();
 
         if (PlayerInput.pi_Instance.TestInput1)
         {
             SwitchToState(StateType.Raid);
+            StartCoroutine(SpawnBehindPlayer());
         }
 
         if (readyToChase)
@@ -102,5 +104,13 @@ public class AIMonsterController : MonoBehaviour
             Quaternion groundRotation = Quaternion.LookRotation(Vector3.Cross(hit.normal, Vector3.Cross(body.forward, hit.normal)), hit.normal);
             body.rotation = Quaternion.Lerp(body.rotation, groundRotation, 0.1f);
         }
+    }
+
+    IEnumerator SpawnBehindPlayer()
+    {
+        agent.enabled = false;
+        yield return new WaitForSeconds(2f);
+        agent.enabled = true;
+        readyToChase = true;
     }
 }
