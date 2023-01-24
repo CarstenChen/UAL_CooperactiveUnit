@@ -21,6 +21,7 @@ public class PlayerInput : MonoBehaviour
     protected Vector2 pl_MoveInput;
     protected bool pl_Jump;
     protected bool pl_Attack;
+    protected bool pl_Test1;
 
 
     public Vector2 MoveInput
@@ -33,6 +34,8 @@ public class PlayerInput : MonoBehaviour
     }
     public bool JumpInput { get { return pl_Jump && !inputBlock; } }
     public bool AttackInput { get { return pl_Attack && !inputBlock; } }
+
+    public bool TestInput1 { get { return pl_Test1; } }
 
     protected const float attackInputInterval = 0.03f;
     protected Coroutine currentCoroutine;
@@ -69,10 +72,22 @@ public class PlayerInput : MonoBehaviour
         currentCoroutine = StartCoroutine(SetAttackParameter());
     }
 
+    void OnTestKey1 (InputValue value)
+    {
+        StartCoroutine(ResetTestButton());
+    }
+
     IEnumerator SetAttackParameter()
     {
         pl_Attack = true;
         yield return new WaitForSeconds(attackInputInterval);
         pl_Attack = false;
+    }
+
+    IEnumerator ResetTestButton()
+    {
+        pl_Test1 = true;
+        yield return new WaitForEndOfFrame();
+        pl_Test1 = false;
     }
 }

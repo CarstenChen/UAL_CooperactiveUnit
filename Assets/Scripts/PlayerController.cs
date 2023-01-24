@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float targetAngle;
 
     [SerializeField] protected  CinemachineFreeLook TPSCamera;
 
@@ -211,7 +212,7 @@ public class PlayerController : MonoBehaviour
         //计算当前转角和目标转角提供delta角
         Vector3 desiredDir = targetRotation * Vector3.forward;
         float currentAngle = Mathf.Atan2(transform.forward.x, transform.forward.z) * Mathf.Rad2Deg;
-        float targetAngle = Mathf.Atan2(desiredDir.x, desiredDir.z) * Mathf.Rad2Deg;
+        targetAngle = Mathf.Atan2(desiredDir.x, desiredDir.z) * Mathf.Rad2Deg;
         shortestDeltaRotDegree = Mathf.DeltaAngle(currentAngle, targetAngle);
     }
 

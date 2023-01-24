@@ -9,6 +9,8 @@ public class Parameter
 {
     public Transform chaseTarget;
     public Animator animator;
+    public float raidDistanceBehindPlayer;
+    public float raidAngleBehindPlayer=60f;
 }
 
 public class AIMonsterController : MonoBehaviour
@@ -18,12 +20,16 @@ public class AIMonsterController : MonoBehaviour
     public LayerMask adjustNormalLayer;
     public Transform body;
 
+    [NonSerialized]
+    public NavMeshAgent agent;
+    public bool readyToChase;
+
     protected Dictionary<StateType, State> states = new Dictionary<StateType, State>();
 
-    protected NavMeshAgent agent;
+
     public enum StateType
     {
-        Idle, Chase, Attack, Patrol
+        Idle, Chase, Attack, Patrol, Raid
     }
 
     protected State currentState;
@@ -37,6 +43,7 @@ public class AIMonsterController : MonoBehaviour
     private void Start()
     {
         RegisterState();
+        SwitchToState(StateType.Idle);
     }
 
     private void Update()
@@ -44,6 +51,16 @@ public class AIMonsterController : MonoBehaviour
         agent.SetDestination(param.chaseTarget.position);
 
         UpdateBodyYAxis();
+
+        if (PlayerInput.pi_Instance.TestInput1)
+        {
+            SwitchToState(StateType.Raid);
+        }
+
+        if (readyToChase)
+        {
+            SwitchToState(StateType.Chase);
+        }
     }
     private void RegisterState()
     {
@@ -51,9 +68,10 @@ public class AIMonsterController : MonoBehaviour
         states.Add(StateType.Chase, new MonsterChaseState(this));
         states.Add(StateType.Attack, new MonsterAttackState(this));
         states.Add(StateType.Patrol, new MonsterPatrolState(this));
+        states.Add(StateType.Raid, new MonsterRaidState(this));
     }
 
-    private void SwitchToState(StateType type)
+    public void SwitchToState(StateType type)
     {
         if (currentState != null) currentState.OnStateExit();
         currentState = states[type];
