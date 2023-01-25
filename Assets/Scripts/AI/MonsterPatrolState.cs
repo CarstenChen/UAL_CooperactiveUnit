@@ -22,12 +22,12 @@ public class MonsterPatrolState : State
         destPointIndex = 0;
         patrolRoute = monster.currentPatrolRoute;
 
-        ////闪现到第一个点
-        //if (patrolRoute.wayPoints.Length != 0)
-        //{
-        //    monster.transform.position = patrolRoute.wayPoints[0].position;
-        //    agent.SetDestination(patrolRoute.wayPoints[0].position);
-        //}
+        //闪现到第一个点
+        if (patrolRoute.wayPoints.Length != 0)
+        {
+            monster.transform.position = patrolRoute.wayPoints[0].position;
+            agent.SetDestination(patrolRoute.wayPoints[0].position);
+        }
 
 
         agent.autoBraking = false;
@@ -35,6 +35,8 @@ public class MonsterPatrolState : State
     }
     public void OnStateStay()
     {
+        Debug.Log(agent.hasPath);
+        
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
             GoToNextPoint();
     }

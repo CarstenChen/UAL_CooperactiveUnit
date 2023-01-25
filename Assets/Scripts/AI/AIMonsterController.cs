@@ -83,10 +83,6 @@ public class AIMonsterController : MonoBehaviour
         routeChanged = false;
     }
 
-    private void FixedUpdate()
-    {
-
-    }
     private void RegisterState()
     {
         states.Add(StateType.Idle, new MonsterIdleState(this));
