@@ -23,8 +23,11 @@ public class AIMonsterController : MonoBehaviour
 
     [NonSerialized] public NavMeshAgent agent;
     [NonSerialized] public bool readyToChase;
-    [NonSerialized] public Waypoints previousPatrolRoute;
+    [NonSerialized] public bool routeChanged;
+
     [NonSerialized] public Waypoints currentPatrolRoute;
+    protected Waypoints previousPatrolRoute;
+
 
     protected Dictionary<StateType, State> states = new Dictionary<StateType, State>();
 
@@ -40,6 +43,9 @@ public class AIMonsterController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         param.animator = GetComponent<Animator>();
+
+        currentPatrolRoute = routes[0];
+        previousPatrolRoute = routes[0];
     }
 
     private void Start()
@@ -67,17 +73,19 @@ public class AIMonsterController : MonoBehaviour
         }
 
 
-        if (currentPatrolRoute != previousPatrolRoute && (currentState.GetType()!= typeof(MonsterIdleState) || currentState.GetType() != typeof(MonsterPatrolState)))
+        if (routeChanged && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Patrol);
         }
 
         currentState.OnStateStay();
+
+        routeChanged = false;
     }
 
     private void FixedUpdate()
     {
-        
+
     }
     private void RegisterState()
     {
@@ -131,6 +139,8 @@ public class AIMonsterController : MonoBehaviour
 
     public void AdjustPatrolRoutes()
     {
+        previousPatrolRoute = currentPatrolRoute;
+
         int pickRoute = 0;
 
         for (int i = 0; i < routes.Length - 1; i++)
@@ -142,5 +152,10 @@ public class AIMonsterController : MonoBehaviour
         }
 
         currentPatrolRoute = routes[pickRoute];
+
+        if (currentPatrolRoute!=previousPatrolRoute)
+        {
+            routeChanged = true;
+        }
     }
 }

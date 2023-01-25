@@ -1462,7 +1462,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513796754}
-  m_LocalRotation: {x: 0.30937693, y: 0.000000028340207, z: -0.000000009220151, w: 0.95093954}
+  m_LocalRotation: {x: 0.30937696, y: -3.204118e-15, z: 1.3100771e-15, w: 0.95093954}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1853,6 +1853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f49a0251b13d346a60e3f9651ef6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  root: {fileID: 0}
   wayPoints: []
 --- !u!1 &770397024
 GameObject:
@@ -2515,6 +2516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f49a0251b13d346a60e3f9651ef6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  root: {fileID: 0}
   wayPoints: []
 --- !u!1 &1074331669
 GameObject:
@@ -5902,5 +5904,9 @@ PrefabInstance:
       propertyPath: routes.Array.data[1]
       value: 
       objectReference: {fileID: 983350234}
+    - target: {fileID: 7073430668112378447, guid: b5fea04b6544e794da5824dc16459657, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5fea04b6544e794da5824dc16459657, type: 3}
