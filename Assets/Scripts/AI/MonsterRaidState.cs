@@ -22,10 +22,10 @@ public class MonsterRaidState : State
     }
     public void OnStateStay()
     {
-        if (!agent.hasPath)
-        {
-            monster.transform.position = GetPointBehindPlayer();
-        }
+        //if (!agent.hasPath)
+        //{
+        //    monster.transform.position = GetPointBehindPlayer();
+        //}
     }
 
     public void OnStateExit()
@@ -44,7 +44,6 @@ public class MonsterRaidState : State
 
         position = NavMesh.SamplePosition(position, out NavMeshHit hit, 5f, 1) ? hit.position : monster.transform.position;
 
-        Debug.Log(new Vector3(offsetX, 0, offsetZ));
         return position;
     }
 

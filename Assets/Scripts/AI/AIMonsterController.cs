@@ -156,6 +156,7 @@ public class AIMonsterController : MonoBehaviour
         if (currentPatrolRoute!=previousPatrolRoute)
         {
             routeChanged = true;
+            Debug.Log("ChangeRoute");
         }
     }
 }
