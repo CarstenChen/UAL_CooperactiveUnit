@@ -19,8 +19,8 @@ public class MonsterPatrolState : State
 
     public void OnStateEnter()
     {
-        destPointIndex = 0;
         patrolRoute = monster.currentPatrolRoute;
+<<<<<<< HEAD
 
         //闪现到第一个点
         if (patrolRoute.wayPoints.Length != 0)
@@ -37,13 +37,18 @@ public class MonsterPatrolState : State
     {
         Debug.Log(agent.hasPath);
         
+=======
+    }
+    public void OnStateStay()
+    {
+>>>>>>> parent of 7e50d31 (Patrol)
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
             GoToNextPoint();
     }
 
     public void OnStateExit()
     {
-        agent.autoBraking = true;
+
     }
 
     private void GoToNextPoint()
@@ -52,26 +57,13 @@ public class MonsterPatrolState : State
             return;
         //将代理设置为前往当前选定的目标。
 
+<<<<<<< HEAD
         agent.destination = patrolRoute.wayPoints[destPointIndex].position;
         Debug.Log(string.Format("正在前往{0}", destPointIndex));
+=======
+>>>>>>> parent of 7e50d31 (Patrol)
         //选择数组中的下一个点作为目标，循环到开始
         destPointIndex = (destPointIndex + 1) % patrolRoute.wayPoints.Length;
     }
-
-    public float GetPathRemainingDistance(NavMeshAgent agent)
-    {
-        if (agent.pathPending ||
-            agent.pathStatus == NavMeshPathStatus.PathInvalid ||
-            agent.path.corners.Length == 0)
-            return -1f;
-
-        float distance = 0.0f;
-        for (int i = 0; i < agent.path.corners.Length - 1; ++i)
-        {
-            distance += Vector3.Distance(agent.path.corners[i], agent.path.corners[i + 1]);
-        }
-
-        return distance;
-    }
-
+    
 }

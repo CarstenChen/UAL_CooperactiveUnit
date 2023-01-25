@@ -23,11 +23,8 @@ public class AIMonsterController : MonoBehaviour
 
     [NonSerialized] public NavMeshAgent agent;
     [NonSerialized] public bool readyToChase;
-    [NonSerialized] public bool routeChanged;
-
+    [NonSerialized] public Waypoints previousPatrolRoute;
     [NonSerialized] public Waypoints currentPatrolRoute;
-    protected Waypoints previousPatrolRoute;
-
 
     protected Dictionary<StateType, State> states = new Dictionary<StateType, State>();
 
@@ -43,9 +40,6 @@ public class AIMonsterController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         param.animator = GetComponent<Animator>();
-
-        currentPatrolRoute = routes[0];
-        previousPatrolRoute = routes[0];
     }
 
     private void Start()
@@ -73,16 +67,21 @@ public class AIMonsterController : MonoBehaviour
         }
 
 
-        if (routeChanged && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))
+        if (currentPatrolRoute != previousPatrolRoute && (currentState.GetType()!= typeof(MonsterIdleState) || currentState.GetType() != typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Patrol);
         }
 
         currentState.OnStateStay();
-
-        routeChanged = false;
     }
 
+<<<<<<< HEAD
+=======
+    private void FixedUpdate()
+    {
+        
+    }
+>>>>>>> parent of 7e50d31 (Patrol)
     private void RegisterState()
     {
         states.Add(StateType.Idle, new MonsterIdleState(this));
@@ -135,8 +134,6 @@ public class AIMonsterController : MonoBehaviour
 
     public void AdjustPatrolRoutes()
     {
-        previousPatrolRoute = currentPatrolRoute;
-
         int pickRoute = 0;
 
         for (int i = 0; i < routes.Length - 1; i++)
@@ -148,11 +145,14 @@ public class AIMonsterController : MonoBehaviour
         }
 
         currentPatrolRoute = routes[pickRoute];
+<<<<<<< HEAD
 
         if (currentPatrolRoute!=previousPatrolRoute)
         {
             routeChanged = true;
             Debug.Log("ChangeRoute");
         }
+=======
+>>>>>>> parent of 7e50d31 (Patrol)
     }
 }
