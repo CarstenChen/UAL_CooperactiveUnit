@@ -21,11 +21,12 @@ public class MonsterChaseState : State
     }
     public void OnStateStay()
     {
-
+        if (agent.enabled == true)
+            agent.SetDestination(param.chaseTarget.position);
     }
 
     public void OnStateExit()
     {
-
+        monster.readyToChase = false;
     }
 }

@@ -20,9 +20,10 @@ public class AIMonsterController : MonoBehaviour
     public LayerMask adjustNormalLayer;
     public Transform body;
     public Waypoints[] routes;
-    
+
     [NonSerialized] public NavMeshAgent agent;
     [NonSerialized] public bool readyToChase;
+    [NonSerialized] public Waypoints previousPatrolRoute;
     [NonSerialized] public Waypoints currentPatrolRoute;
 
     protected Dictionary<StateType, State> states = new Dictionary<StateType, State>();
@@ -45,13 +46,13 @@ public class AIMonsterController : MonoBehaviour
     {
         RegisterState();
         SwitchToState(StateType.Idle);
+
+        InvokeRepeating("AdjustPatrolRoutes", 0f, 3f);
     }
 
     private void Update()
     {
-        if (agent.enabled == true)
-            agent.SetDestination(param.chaseTarget.position);
-
+        //ÌùµØ
         UpdateBodyYAxis();
 
         if (PlayerInput.pi_Instance.TestInput1)
@@ -65,6 +66,17 @@ public class AIMonsterController : MonoBehaviour
             SwitchToState(StateType.Chase);
         }
 
+
+        if (currentPatrolRoute != previousPatrolRoute && (currentState.GetType()!= typeof(MonsterIdleState) || currentState.GetType() != typeof(MonsterPatrolState)))
+        {
+            SwitchToState(StateType.Patrol);
+        }
+
+        currentState.OnStateStay();
+    }
+
+    private void FixedUpdate()
+    {
         
     }
     private void RegisterState()
@@ -121,18 +133,14 @@ public class AIMonsterController : MonoBehaviour
     {
         int pickRoute = 0;
 
-        for(int i = 0;i< routes.Length-1; i++)
+        for (int i = 0; i < routes.Length - 1; i++)
         {
-            if(Vector3.Distance(param.chaseTarget.position,routes[i].root.position)> Vector3.Distance(param.chaseTarget.position, routes[i + 1].root.position))
+            if (Vector3.Distance(param.chaseTarget.position, routes[i].root.position) > Vector3.Distance(param.chaseTarget.position, routes[i + 1].root.position))
             {
                 pickRoute = i + 1;
             }
         }
 
-        if(currentPatrolRoute != routes[pickRoute])
-        {
-            currentPatrolRoute = routes[pickRoute];
-            SwitchToState(StateType.Chase);
-        }
+        currentPatrolRoute = routes[pickRoute];
     }
 }

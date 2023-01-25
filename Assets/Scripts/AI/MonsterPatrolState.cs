@@ -13,7 +13,8 @@ public class MonsterPatrolState : State
     public MonsterPatrolState(AIMonsterController monster)
     {
         this.monster = monster;
-        this.param = monster.param;       
+        this.param = monster.param;
+        this.agent = monster.agent;
     }
 
     public void OnStateEnter()
