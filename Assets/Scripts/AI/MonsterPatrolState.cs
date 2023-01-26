@@ -19,12 +19,21 @@ public class MonsterPatrolState : State
 
     public void OnStateEnter()
     {
-        destPointIndex = 0;
+        
         patrolRoute = monster.currentPatrolRoute;
 
         //闪现到第一个点
         if (patrolRoute.wayPoints.Length != 0)
         {
+            if (patrolRoute.invisiblePoints.Count != 0)
+            {
+                destPointIndex = patrolRoute.invisiblePoints[Random.Range(0, patrolRoute.invisiblePoints.Count)];
+            }
+            else
+            {
+                destPointIndex = 0;
+            }
+
             //强制换位置需要暂时禁用agent
             agent.enabled = false;
             monster.transform.position = patrolRoute.wayPoints[destPointIndex].position;
