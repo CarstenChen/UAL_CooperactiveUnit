@@ -16,17 +16,27 @@ public class MonsterChaseState : State
 
     public void OnStateEnter()
     {
+
+        //make sure agent has path
+        agent.enabled = true;
+        agent.destination = param.chaseTarget.position;
+
+        //random chase speed
+        agent.speed = Random.Range(0,2)!=0? param.normalChaseSpeed : param.fastChaseSpeed;
+
+        //make sure agent is not static
         agent.isStopped = false;
+
         Debug.Log("Chase");
     }
     public void OnStateStay()
     {
-        if (agent.enabled == true)
-            agent.SetDestination(param.chaseTarget.position);
+        agent.SetDestination(param.chaseTarget.position);
     }
 
     public void OnStateExit()
     {
         monster.readyToChase = false;
+        agent.speed = param.normalChaseSpeed;
     }
 }

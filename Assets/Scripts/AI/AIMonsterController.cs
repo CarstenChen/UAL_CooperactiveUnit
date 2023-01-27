@@ -11,6 +11,10 @@ public class Parameter
     public Animator animator;
     public float raidDistanceBehindPlayer;
     public float raidAngleBehindPlayer = 60f;
+    public float fastDeccelaration = 100f;
+    public float normalAcceleration = 10f;
+    public float normalChaseSpeed = 10f;
+    public float fastChaseSpeed = 15f;
 }
 
 public class AIMonsterController : MonoBehaviour
@@ -22,6 +26,7 @@ public class AIMonsterController : MonoBehaviour
     public Waypoints[] routes;
 
     [NonSerialized] public NavMeshAgent agent;
+    [NonSerialized] public bool readyToRaid;
     [NonSerialized] public bool readyToChase;
     [NonSerialized] public bool routeChanged;
     [NonSerialized] public bool playerInSight;
@@ -54,32 +59,62 @@ public class AIMonsterController : MonoBehaviour
     private void Start()
     {
         RegisterState();
+
+        //以Idle状态进入
         SwitchToState(StateType.Idle);
 
         InvokeRepeating("AdjustPatrolRoutes", 0f, 3f);
+
+        agent.speed = param.normalChaseSpeed;
+        agent.acceleration = param.normalAcceleration;
     }
 
     private void Update()
     {
-        //贴地
+        //ground rotation
         UpdateBodyYAxis();
 
-        if (PlayerInput.pi_Instance.TestInput1)
+        //patrol if nothing to do
+        if ((!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
+            (routeChanged && currentState.GetType() == typeof(MonsterPatrolState)))
         {
-            SwitchToState(StateType.Raid);
-            StartCoroutine(SpawnBehindPlayer());
+            SwitchToState(StateType.Patrol);
         }
 
-        if (readyToChase)
+
+        //raid when in idle/patrol state and main story is triggered or player is found during patrol 
+        if ((AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))||
+           (playerInSight && currentState.GetType() == typeof(MonsterPatrolState)))
+        {
+            SwitchToState(StateType.Raid);
+            StartCoroutine(OnSpawnBehindPlayer());
+            AIDirector.Instance.tensiveTime = false;
+        }
+
+        //dash after raid to player
+        if (readyToChase && currentState.GetType() == typeof(MonsterRaidState))
         {
             SwitchToState(StateType.Chase);
         }
 
+        #region
+        //if (PlayerInput.pi_Instance.TestInput1)
+        //{
+        //    SwitchToState(StateType.Raid);
+        //    StartCoroutine(OnSpawnBehindPlayer());
+        //}
 
-        if (routeChanged && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))
-        {
-            SwitchToState(StateType.Patrol);
-        }
+        //if (readyToChase)
+        //{
+        //    SwitchToState(StateType.Chase);
+        //}
+
+
+        //if (routeChanged && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))
+        //{
+        //    SwitchToState(StateType.Patrol);
+        //}
+        #endregion
 
         currentState.OnStateStay();
 
@@ -87,7 +122,7 @@ public class AIMonsterController : MonoBehaviour
 
         //记录上一帧玩家是否在视野中和球形Trigger中
         lastPlayerInSight = playerInSight;
-        lastPlayerInSphereTrigger = playerInSight;
+        lastPlayerInSphereTrigger = playerInSphereTrigger;
     }
 
     private void RegisterState()
@@ -132,11 +167,10 @@ public class AIMonsterController : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnBehindPlayer()
+    IEnumerator OnSpawnBehindPlayer()
     {
-        agent.enabled = false;
+
         yield return new WaitForSeconds(2f);
-        agent.enabled = true;
         readyToChase = true;
     }
 
@@ -156,7 +190,7 @@ public class AIMonsterController : MonoBehaviour
 
         currentPatrolRoute = routes[pickRoute];
 
-        if (currentPatrolRoute!=previousPatrolRoute)
+        if (currentPatrolRoute != previousPatrolRoute)
         {
             routeChanged = true;
             Debug.Log("ChangeRoute");

@@ -19,10 +19,15 @@ public class MonsterPatrolState : State
 
     public void OnStateEnter()
     {
-        
+        //make sure agent has path
+        agent.enabled = true;
+
+        //stop braking
+        agent.autoBraking = false;
+
         patrolRoute = monster.currentPatrolRoute;
 
-        //闪现到第一个点
+        //teleport to first wayPoint
         if (patrolRoute.wayPoints.Length != 0)
         {
             if (patrolRoute.invisiblePoints.Count != 0)
@@ -34,15 +39,13 @@ public class MonsterPatrolState : State
                 destPointIndex = 0;
             }
 
-            //强制换位置需要暂时禁用agent
+            //temporarily stop agent on change position
             agent.enabled = false;
             monster.transform.position = patrolRoute.wayPoints[destPointIndex].position;
             agent.enabled = true;
             agent.SetDestination(patrolRoute.wayPoints[destPointIndex].position);
         }
 
-
-        agent.autoBraking = false;
         Debug.Log("Patrol");
     }
     public void OnStateStay()
@@ -63,12 +66,11 @@ public class MonsterPatrolState : State
         if (patrolRoute.wayPoints.Length == 0)
             return;
 
-        //将代理设置为前往当前选定的目标。
         if (agent.enabled == true)
             agent.destination = patrolRoute.wayPoints[destPointIndex].position;
         
         //Debug.Log(string.Format("正在前往{0}", destPointIndex));
-        //选择数组中的下一个点作为目标，循环到开始
+        //repeat a cycle
         destPointIndex = (destPointIndex + 1) % patrolRoute.wayPoints.Length;
     }
 }

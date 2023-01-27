@@ -16,7 +16,7 @@ public class AIEyeSight : MonoBehaviour
     //public bool showLOS = true;
 
     protected AIMonsterController monster;
-    protected bool isTriggerRange = true;
+    protected bool isTriggerRange = false;
 
     protected List<Vector3> itemList = new List<Vector3>();
 

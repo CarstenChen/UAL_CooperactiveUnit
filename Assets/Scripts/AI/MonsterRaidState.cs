@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
+/// <summary>
+/// Find a point behind and teleport there, so ready to attack player on its back
+/// </summary>
 public class MonsterRaidState : State
 {
     private AIMonsterController monster;
@@ -16,23 +20,34 @@ public class MonsterRaidState : State
 
     public void OnStateEnter()
     {
+        //make sure agent has path
+        agent.enabled = true;
+        agent.destination = param.chaseTarget.position;
+        //make sure agent is static
+        agent.speed = 0f;
+        agent.acceleration = param.fastDeccelaration;
+        agent.isStopped = true;
+
         monster.readyToChase = false;
+
         monster.transform.position = GetPointBehindPlayer();
         Debug.Log("Raid");
     }
     public void OnStateStay()
     {
-        Debug.Log(agent.enabled);
-        //Debug.Log(agent.hasPath);
-        //if (!agent.hasPath&&!agent.pathPending)
-        //{
-        //    monster.transform.position = GetPointBehindPlayer();
-        //}
+        //if teleport on an isle, teleport again
+        if (!agent.hasPath)
+        {
+            monster.transform.position = GetPointBehindPlayer();
+        }
     }
 
     public void OnStateExit()
     {
-        
+        agent.speed = param.normalChaseSpeed;
+        agent.acceleration = param.normalAcceleration;
+        agent.isStopped = false;
+
     }
 
     private Vector3 GetPointBehindPlayer()
