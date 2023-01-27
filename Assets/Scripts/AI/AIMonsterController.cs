@@ -24,12 +24,15 @@ public class AIMonsterController : MonoBehaviour
     [NonSerialized] public NavMeshAgent agent;
     [NonSerialized] public bool readyToChase;
     [NonSerialized] public bool routeChanged;
-
+    [NonSerialized] public bool playerInSight;
+    [NonSerialized] public bool playerInSphereTrigger;
     [NonSerialized] public Waypoints currentPatrolRoute;
+
     protected Waypoints previousPatrolRoute;
-
-
     protected Dictionary<StateType, State> states = new Dictionary<StateType, State>();
+    protected bool lastPlayerInSight;
+    protected bool lastPlayerInSphereTrigger;
+
 
 
     public enum StateType
@@ -81,6 +84,10 @@ public class AIMonsterController : MonoBehaviour
         currentState.OnStateStay();
 
         routeChanged = false;
+
+        //记录上一帧玩家是否在视野中和球形Trigger中
+        lastPlayerInSight = playerInSight;
+        lastPlayerInSphereTrigger = playerInSight;
     }
 
     private void RegisterState()
