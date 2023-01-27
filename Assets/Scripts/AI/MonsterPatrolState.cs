@@ -67,7 +67,7 @@ public class MonsterPatrolState : State
         if (agent.enabled == true)
             agent.destination = patrolRoute.wayPoints[destPointIndex].position;
         
-        Debug.Log(string.Format("正在前往{0}", destPointIndex));
+        //Debug.Log(string.Format("正在前往{0}", destPointIndex));
         //选择数组中的下一个点作为目标，循环到开始
         destPointIndex = (destPointIndex + 1) % patrolRoute.wayPoints.Length;
     }

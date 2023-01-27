@@ -22,7 +22,9 @@ public class MonsterRaidState : State
     }
     public void OnStateStay()
     {
-        //if (!agent.hasPath)
+        Debug.Log(agent.enabled);
+        //Debug.Log(agent.hasPath);
+        //if (!agent.hasPath&&!agent.pathPending)
         //{
         //    monster.transform.position = GetPointBehindPlayer();
         //}
@@ -41,9 +43,8 @@ public class MonsterRaidState : State
         float offsetZ = param.raidDistanceBehindPlayer * Mathf.Cos(angleBehindPlayer * Mathf.PI / 180);
 
         Vector3 position = new Vector3(param.chaseTarget.transform.position.x + offsetX, 0, param.chaseTarget.transform.position.z + offsetZ);
-
-        position = NavMesh.SamplePosition(position, out NavMeshHit hit, 5f, 1) ? hit.position : monster.transform.position;
-
+        position = NavMesh.SamplePosition(position, out NavMeshHit hit, 25f, 1) ? hit.position : monster.transform.position;
+        
         return position;
     }
 
