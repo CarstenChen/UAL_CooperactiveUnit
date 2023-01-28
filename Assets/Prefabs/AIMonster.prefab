@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 7073430668112378433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 5, z: 5}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7073430668694481464}
@@ -146,7 +146,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1
   m_Speed: 10
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 3
@@ -154,7 +154,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.5
-  m_BaseOffset: 0.2
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &7073430668112378445
@@ -174,6 +174,10 @@ MonoBehaviour:
     animator: {fileID: 7073430668112378446}
     raidDistanceBehindPlayer: 25
     raidAngleBehindPlayer: 45
+    fastDeccelaration: 100
+    normalAcceleration: 20
+    normalChaseSpeed: 11
+    fastChaseSpeed: 13
   adjustNormalLayer:
     serializedVersion: 2
     m_Bits: 2147483647
@@ -213,14 +217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49aaf3493c97ad478312a81f978df68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 0}
   accuracy: 50
   angle: 60
   radius: 5
   range: 6
-  targetTags:
-  - Player
-  showLOS: 1
 --- !u!135 &1341257334
 SphereCollider:
   m_ObjectHideFlags: 0

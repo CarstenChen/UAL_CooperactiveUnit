@@ -69,10 +69,16 @@ public class AIMonsterController : MonoBehaviour
         agent.acceleration = param.normalAcceleration;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //ground rotation
         UpdateBodyYAxis();
+
+        bool raidWhenSeePlayer = false;
+        if(currentState.GetType() == typeof(MonsterPatrolState))
+        {
+            raidWhenSeePlayer = UnityEngine.Random.Range(0, 2) != 0 ? true : false;
+        }
 
         //patrol if nothing to do
         if ((!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
@@ -83,8 +89,8 @@ public class AIMonsterController : MonoBehaviour
 
 
         //raid when in idle/patrol state and main story is triggered or player is found during patrol 
-        if ((AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))||
-           (playerInSight && currentState.GetType() == typeof(MonsterPatrolState)))
+        if ((AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState))) ||
+           (playerInSight && raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Raid);
             StartCoroutine(OnSpawnBehindPlayer());
@@ -92,7 +98,8 @@ public class AIMonsterController : MonoBehaviour
         }
 
         //dash after raid to player
-        if (readyToChase && currentState.GetType() == typeof(MonsterRaidState))
+        if (readyToChase && currentState.GetType() == typeof(MonsterRaidState) || 
+            (playerInSight && !raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Chase);
         }
