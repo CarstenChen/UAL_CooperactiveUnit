@@ -7,6 +7,8 @@ public class MonsterChaseState : State
     private AIMonsterController monster;
     private NavMeshAgent agent;
     private Parameter param;
+
+    protected float tick;
     public MonsterChaseState(AIMonsterController monster)
     {
         this.monster = monster;
@@ -23,6 +25,7 @@ public class MonsterChaseState : State
 
         //random chase speed
         agent.speed = Random.Range(0,2)!=0? param.normalChaseSpeed : param.fastChaseSpeed;
+        param.currentChaseSpeed = agent.speed;
 
         //make sure agent is not static
         agent.isStopped = false;
@@ -32,6 +35,7 @@ public class MonsterChaseState : State
     public void OnStateStay()
     {
         agent.SetDestination(param.chaseTarget.position);
+
     }
 
     public void OnStateExit()

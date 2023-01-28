@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 
 public class PlayerController : MonoBehaviour
 {
     public float targetAngle;
+    public delegate void ScreamEvent(float a);
+    public static event ScreamEvent MonsterSlowDownEvent;
 
-    [SerializeField] protected  CinemachineFreeLook TPSCamera;
-
-    [SerializeField] protected float moveSpeed;  //旋转的最大速度
+    [Header("Movement Setting")]
+    [SerializeField] protected CinemachineFreeLook TPSCamera;
+    [SerializeField] protected float moveSpeed;  //最大速度
     [SerializeField] protected float maxRotateSpeed;  //旋转的最大速度
     [SerializeField] protected float gravity = 10f;  //重力
     [SerializeField] protected float initialJumpSpeed = 0f;  //起跳初速度
+
+    [Header("Cream Setting")]
+    public float minMonsterSpeedDecreaseRate = 0.5f;
+    public float maxMonsterSpeedDecreaseRate = 0.8f;
 
     protected Animator animator;
     protected PlayerInput playerInput;
@@ -38,6 +47,11 @@ public class PlayerController : MonoBehaviour
 
     protected bool isAttacking;
 
+    protected bool canScream = false;
+
+    protected PlayerScreenEffects playerScreenEffects;
+    [SerializeField] protected ScreamRing screamRing;
+
 
     protected bool IsPressingMoveKey
     {
@@ -52,6 +66,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerController = GetComponent<CharacterController>();
         animatorCache = new AnimatorInfo(animator);
+        playerScreenEffects = GetComponent<PlayerScreenEffects>();
     }
 
     // Update is called once per frame
@@ -61,18 +76,17 @@ public class PlayerController : MonoBehaviour
         CacheAnimatorState();
         //播放标签为“BlockInput”的动画时，禁止输入
         UpdateInputBlock();
-        
+
         //后续尖叫可能用得上
         //DealWithScreamAttackAnimation();
-
 
         CalculateHorizontalMovement();
         CalculateVerticalMovement();
         SetMoveAnimation();
 
         CalculateRotation();
-        if(IsPressingMoveKey)
-        CharacterRotate();
+        if (IsPressingMoveKey)
+            CharacterRotate();
 
         TimeoutToIdle();
     }
@@ -118,8 +132,8 @@ public class PlayerController : MonoBehaviour
         isGrounded = playerController.isGrounded;
 
         //设置跳跃动画
-        if (isGrounded)
-            Debug.Log("isGrounded");
+        if (isGrounded) { }
+        //Debug.Log("isGrounded");
         else
         {
             animator.SetFloat("VerticalSpeed", curVerticalSpeed);
@@ -154,7 +168,7 @@ public class PlayerController : MonoBehaviour
         {
             curVerticalSpeed = -2f;
 
-            if(playerInput.JumpInput && isReadyToJump)
+            if (playerInput.JumpInput && isReadyToJump)
             {
                 curVerticalSpeed = initialJumpSpeed;
                 isGrounded = false;
@@ -167,20 +181,20 @@ public class PlayerController : MonoBehaviour
             if (playerInput.JumpInput && curVerticalSpeed > 0f)
             {
                 curVerticalSpeed -= gravity * Time.deltaTime;
-            }       
-            else if(Mathf.Approximately(curVerticalSpeed, 0f))
+            }
+            else if (Mathf.Approximately(curVerticalSpeed, 0f))
             {
                 curVerticalSpeed = 0f;
             }
             else
-            //airborne状态
-            curVerticalSpeed -= 2 * gravity * Time.deltaTime;
+                //airborne状态
+                curVerticalSpeed -= 2 * gravity * Time.deltaTime;
         }
     }
 
     void SetMoveAnimation()
     {
-        animator.SetFloat("ForwardSpeed", curSpeedRef);   
+        animator.SetFloat("ForwardSpeed", curSpeedRef);
     }
 
     void CalculateRotation()
@@ -220,16 +234,16 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetFloat("DeltaDeg2Rag", shortestDeltaRotDegree * Mathf.Deg2Rad);
 
-        curRotateSpeed = maxRotateSpeed * curSpeedRef / maxSpeedRef; 
+        curRotateSpeed = maxRotateSpeed * curSpeedRef / maxSpeedRef;
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, curRotateSpeed * Time.deltaTime);
     }
 
     void TimeoutToIdle()
     {
-        bool inputDetected = IsPressingMoveKey || playerInput.JumpInput || playerInput.AttackInput;
+        bool inputDetected = IsPressingMoveKey || playerInput.JumpInput || playerInput.ScreamInput;
 
-        if(isGrounded && !inputDetected)
+        if (isGrounded && !inputDetected)
         {
             idleTimer += Time.deltaTime;
 
@@ -275,17 +289,17 @@ public class PlayerController : MonoBehaviour
 
     void DealWithScreamAttackAnimation()
     {
-        //动画归一化时间（0-1），在（0-1）上的repeat
-        animator.SetFloat("MeleeStateTime", Mathf.Repeat(animatorCache.currentStateInfo.normalizedTime, 1f));
+        ////动画归一化时间（0-1），在（0-1）上的repeat
+        //animator.SetFloat("MeleeStateTime", Mathf.Repeat(animatorCache.currentStateInfo.normalizedTime, 1f));
 
 
-        //每一帧都reset，这样可以保证每次点击都触发一次trigger
-        animator.ResetTrigger("MeleeAttackTrigger");
+        ////每一帧都reset，这样可以保证每次点击都触发一次trigger
+        //animator.ResetTrigger("MeleeAttackTrigger");
 
-        if (playerInput.AttackInput)
-        {
-            animator.SetTrigger("MeleeAttackTrigger");
-        }
+        //if (playerInput.AttackInput)
+        //{
+        //    animator.SetTrigger("MeleeAttackTrigger");
+        //}
     }
 
     bool IsWeaponAnimationOnPlay()
@@ -295,5 +309,66 @@ public class PlayerController : MonoBehaviour
         isWeaponEquipped = animatorCache.nextStateInfo.tagHash == Animator.StringToHash("WeaponEquippedAnim") || animatorCache.currentStateInfo.tagHash == Animator.StringToHash("WeaponEquippedAnim");
 
         return isWeaponEquipped;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Monster")
+        {
+            canScream = true;
+            screamRing.ResetForwardRing();
+            Debug.Log("Can scream now");
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Monster")
+        {
+            AIMonsterController monster = other.GetComponent<AIMonsterController>();
+            if (playerInput.ScreamInput)
+            {
+
+                if (monster == null)
+                    return;
+
+                float offset = Mathf.Abs(playerScreenEffects.vignette.intensity.value - screamRing.scale);
+
+                if (offset < 0.05f)
+                {
+                    if(offset<0.025f)
+                    {
+                        MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
+
+                        Debug.Log("Perffect, Monster Slow Down");
+
+                    }
+                    else
+                    {
+                        MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
+
+                        Debug.Log("Good, Monster Slow Down");
+                    }
+                    StartCoroutine(screamRing.AfterScream());
+                    
+                }
+                else
+                {
+                    Debug.Log("Failed");
+                }
+
+
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Monster")
+        {
+            canScream = false;
+            //Debug.Log("Can scream now");
+
+        }
     }
 }

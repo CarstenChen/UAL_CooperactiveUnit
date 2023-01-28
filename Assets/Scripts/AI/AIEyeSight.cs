@@ -34,6 +34,7 @@ public class AIEyeSight : MonoBehaviour
         if (!isTriggerRange)
         {
             monster.playerInSphereTrigger = false;
+            monster.playerInSight = false;
             return;
         }
         else

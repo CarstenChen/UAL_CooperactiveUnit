@@ -15,6 +15,9 @@ public class Parameter
     public float normalAcceleration = 10f;
     public float normalChaseSpeed = 10f;
     public float fastChaseSpeed = 15f;
+    public float minSpeed;
+
+    [NonSerialized] public float currentChaseSpeed;
 }
 
 public class AIMonsterController : MonoBehaviour
@@ -38,7 +41,7 @@ public class AIMonsterController : MonoBehaviour
     protected bool lastPlayerInSight;
     protected bool lastPlayerInSphereTrigger;
 
-
+    protected Coroutine currentSlowDownCoroutine;
 
     public enum StateType
     {
@@ -54,6 +57,8 @@ public class AIMonsterController : MonoBehaviour
 
         currentPatrolRoute = routes[0];
         previousPatrolRoute = routes[0];
+
+        PlayerController.MonsterSlowDownEvent += SlowDownOnAttacked;
     }
 
     private void Start()
@@ -102,6 +107,11 @@ public class AIMonsterController : MonoBehaviour
             (playerInSight && !raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Chase);
+        }
+
+        if(!playerInSphereTrigger && currentState.GetType() == typeof(MonsterChaseState))
+        {
+            SwitchToState(StateType.Idle);
         }
 
         #region
@@ -200,7 +210,27 @@ public class AIMonsterController : MonoBehaviour
         if (currentPatrolRoute != previousPatrolRoute)
         {
             routeChanged = true;
-            Debug.Log("ChangeRoute");
+           // Debug.Log("ChangeRoute");
         }
+    }
+
+    public void SlowDownOnAttacked(float slowDownRate)
+    {
+        if (currentSlowDownCoroutine != null)
+            StopCoroutine(currentSlowDownCoroutine);
+
+        currentSlowDownCoroutine = StartCoroutine(SlowDown(slowDownRate));
+    }
+
+    IEnumerator SlowDown(float slowDownRate)
+    {
+        agent.speed = Mathf.Clamp(agent.speed * UnityEngine.Random.Range(0, slowDownRate), param.minSpeed, param.currentChaseSpeed);
+        yield return new WaitForSeconds(3f);
+        agent.speed = param.currentChaseSpeed;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController.MonsterSlowDownEvent -= SlowDownOnAttacked;
     }
 }

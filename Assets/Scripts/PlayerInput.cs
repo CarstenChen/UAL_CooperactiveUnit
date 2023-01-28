@@ -20,7 +20,7 @@ public class PlayerInput : MonoBehaviour
     public bool inputBlock;
     protected Vector2 pl_MoveInput;
     protected bool pl_Jump;
-    protected bool pl_Attack;
+    protected bool pl_Scream;
     protected bool pl_Test1;
 
 
@@ -33,7 +33,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
     public bool JumpInput { get { return pl_Jump && !inputBlock; } }
-    public bool AttackInput { get { return pl_Attack && !inputBlock; } }
+    public bool ScreamInput { get { return pl_Scream && !inputBlock; } }
 
     public bool TestInput1 { get { return pl_Test1; } }
 
@@ -61,7 +61,7 @@ public class PlayerInput : MonoBehaviour
         //pl_Jump = value.isPressed;
     }
 
-    void OnFire(InputValue value)
+    void OnScream (InputValue value)
     {
         //冲掉前一个输入，保持attack是true
         if(currentCoroutine != null)
@@ -79,9 +79,9 @@ public class PlayerInput : MonoBehaviour
 
     IEnumerator SetAttackParameter()
     {
-        pl_Attack = true;
+        pl_Scream = true;
         yield return new WaitForSeconds(attackInputInterval);
-        pl_Attack = false;
+        pl_Scream = false;
     }
 
     IEnumerator ResetTestButton()
