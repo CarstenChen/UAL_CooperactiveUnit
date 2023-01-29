@@ -151,6 +151,7 @@ public class AIEyeSight : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isTriggerRange = true;
+            monster.playerFirstFound = true;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -159,5 +160,6 @@ public class AIEyeSight : MonoBehaviour
         {
             isTriggerRange = false;
         }
+
     }
 }

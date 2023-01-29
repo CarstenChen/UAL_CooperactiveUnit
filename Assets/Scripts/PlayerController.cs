@@ -326,38 +326,31 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Monster")
         {
             AIMonsterController monster = other.GetComponent<AIMonsterController>();
+            if (monster == null)
+                return;
+
             if (playerInput.ScreamInput)
             {
-
-                if (monster == null)
-                    return;
-
-                float offset = Mathf.Abs(playerScreenEffects.vignette.intensity.value - screamRing.scale);
+                float offset = Mathf.Abs(playerScreenEffects.vignetteScaleValue - playerScreenEffects.ringScaleValue);
 
                 if (offset < 0.05f)
                 {
                     if(offset<0.025f)
                     {
                         MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
-
                         Debug.Log("Perffect, Monster Slow Down");
-
                     }
                     else
                     {
                         MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
-
                         Debug.Log("Good, Monster Slow Down");
                     }
-                    StartCoroutine(screamRing.AfterScream());
-                    
+                    playerScreenEffects.DealWithRingDisplay();
                 }
                 else
                 {
                     Debug.Log("Failed");
                 }
-
-
             }
         }
     }

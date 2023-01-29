@@ -34,6 +34,7 @@ public class AIMonsterController : MonoBehaviour
     [NonSerialized] public bool routeChanged;
     [NonSerialized] public bool playerInSight;
     [NonSerialized] public bool playerInSphereTrigger;
+    [NonSerialized] public bool playerFirstFound;
     [NonSerialized] public Waypoints currentPatrolRoute;
 
     protected Waypoints previousPatrolRoute;
@@ -97,8 +98,11 @@ public class AIMonsterController : MonoBehaviour
         if ((AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState))) ||
            (playerInSight && raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
+            playerFirstFound = true;//so it chase player ingnoring eyesight
+            Debug.Log(playerFirstFound);
             SwitchToState(StateType.Raid);
             StartCoroutine(OnSpawnBehindPlayer());
+
             AIDirector.Instance.tensiveTime = false;
         }
 
@@ -109,7 +113,7 @@ public class AIMonsterController : MonoBehaviour
             SwitchToState(StateType.Chase);
         }
 
-        if(!playerInSphereTrigger && currentState.GetType() == typeof(MonsterChaseState))
+        if(!playerInSphereTrigger && !playerFirstFound && currentState.GetType() == typeof(MonsterChaseState))
         {
             SwitchToState(StateType.Idle);
         }
@@ -232,5 +236,15 @@ public class AIMonsterController : MonoBehaviour
     private void OnDisable()
     {
         PlayerController.MonsterSlowDownEvent -= SlowDownOnAttacked;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if(currentState.GetType() != typeof(MonsterRaidState))
+            playerFirstFound = false;
+        }
+
     }
 }

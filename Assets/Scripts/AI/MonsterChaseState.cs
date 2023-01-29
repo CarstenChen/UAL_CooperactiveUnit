@@ -31,6 +31,8 @@ public class MonsterChaseState : State
         agent.isStopped = false;
 
         Debug.Log("Chase");
+
+        PlayerScreenEffects.Instance.enabled = true;
     }
     public void OnStateStay()
     {
@@ -42,5 +44,6 @@ public class MonsterChaseState : State
     {
         monster.readyToChase = false;
         agent.speed = param.normalChaseSpeed;
+        PlayerScreenEffects.Instance.enabled = false;
     }
 }
