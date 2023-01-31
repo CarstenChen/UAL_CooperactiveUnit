@@ -62,7 +62,9 @@ Material:
     - _FullScreenIntensity: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ScreeEdgeSize: 0.5
     - _ScreemEdgeSize: 1
+    - _ScreenEdgeSize: 0.9741369
     - _SrcBlend: 5
     - _Surface: 1
     - _VoroScale: 8
@@ -71,5 +73,5 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _ScreenEdgeColor: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
+    - _ScreenEdgeColor: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

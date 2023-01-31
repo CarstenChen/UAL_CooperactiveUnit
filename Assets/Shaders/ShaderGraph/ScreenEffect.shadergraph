@@ -1148,7 +1148,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "3d8534abff4943ae91a95144c4b3baf3",
     "m_Id": 0,
-    "m_DisplayName": "ScreemEdgeSize",
+    "m_DisplayName": "ScreenEdgeSize",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1666,10 +1666,10 @@
     "m_Guid": {
         "m_GuidSerialized": "1450c326-96d9-464d-9592-86e3bc8bb0a7"
     },
-    "m_Name": "ScreemEdgeSize",
+    "m_Name": "ScreenEdgeSize",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "ScreemEdgeSize",
-    "m_DefaultReferenceName": "_ScreemEdgeSize",
+    "m_RefNameGeneratedByDisplayName": "ScreenEdgeSize",
+    "m_DefaultReferenceName": "_ScreenEdgeSize",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

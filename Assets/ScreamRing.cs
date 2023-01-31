@@ -12,8 +12,6 @@ public class ScreamRing : MonoBehaviour
     public PlayerScreenEffects playerScreenEffects;
     public AIMonsterController monster;
 
-    public bool isGetingClose;
-
     protected Image ringImage;
     protected RectTransform imageTransform;
 

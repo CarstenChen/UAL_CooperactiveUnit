@@ -355,7 +355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 64262e6c9c4f5b149a0928a053cb7e2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75da41b73a4e0cd45ae3ea12b683ed0f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1364,7 +1364,6 @@ GameObject:
   - component: {fileID: 613411340}
   - component: {fileID: 613411342}
   - component: {fileID: 613411341}
-  - component: {fileID: 613411343}
   m_Layer: 5
   m_Name: ComboRing
   m_TagString: Untagged
@@ -1390,7 +1389,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1920}
+  m_SizeDelta: {x: 1917.12, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &613411341
 MonoBehaviour:
@@ -1412,7 +1411,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a019a4aa678ba6a4296ecd71d28dbcb1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1040366703dfc54f88ea88d961f4555, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1430,24 +1429,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613411339}
   m_CullTransparentMesh: 1
---- !u!114 &613411343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613411339}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aae6918e33c4bc64fb966202cc6a78c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scale: 1
-  normalSprite: {fileID: 21300000, guid: a019a4aa678ba6a4296ecd71d28dbcb1, type: 3}
-  highlightSprite: {fileID: 21300000, guid: 38175671ed458b54ab2bf58bfa0797a2, type: 3}
-  playerScreenEffects: {fileID: 1758939358}
-  monster: {fileID: 401978256}
-  isGetingClose: 0
 --- !u!1 &615124138
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,17 +4182,6 @@ Transform:
   m_Father: {fileID: 299716506}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1758939358 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1767493555074866365, guid: 195b7f579d7116c458498fde69073473, type: 3}
-  m_PrefabInstance: {fileID: 5757089391302172475}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 400d9fc43d275824ea35ada501cb1316, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1798566948
 GameObject:
   m_ObjectHideFlags: 0
@@ -5500,19 +5470,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2686275282764333421, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008347932
+      value: -0.000000008347934
       objectReference: {fileID: 0}
     - target: {fileID: 2686275282764333421, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000002080121
+      value: 0.0000000020801214
       objectReference: {fileID: 0}
     - target: {fileID: 2686275282830019158, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000033391732
+      value: -0.000000033391732
       objectReference: {fileID: 0}
     - target: {fileID: 2686275282830019158, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000008320486
+      value: 0.000000008320486
       objectReference: {fileID: 0}
     - target: {fileID: 2686275282977496835, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_Follow
@@ -5608,13 +5578,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 60496838}
     - target: {fileID: 1767493555074866365, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: vignetteMtl
+      value: 
+      objectReference: {fileID: 2100000, guid: c2fc0fca2a27e0e45bf530186e141cf4, type: 2}
+    - target: {fileID: 1767493555074866365, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: normalSprite
       value: 
-      objectReference: {fileID: 21300000, guid: a019a4aa678ba6a4296ecd71d28dbcb1, type: 3}
+      objectReference: {fileID: 21300000, guid: 879003741c020a74e9ed3e422cb36e40, type: 3}
     - target: {fileID: 1767493555074866365, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: highlightSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 38175671ed458b54ab2bf58bfa0797a2, type: 3}
+      objectReference: {fileID: 21300000, guid: 590f6e163f8d23a43ad2a6a8f56a1024, type: 3}
+    - target: {fileID: 1767493555074866365, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: vignetteIntesity
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1767493555074866365, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: monsterDetectRange
       value: 21
@@ -5678,7 +5656,7 @@ PrefabInstance:
     - target: {fileID: 5757089391599193246, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: screamRing
       value: 
-      objectReference: {fileID: 613411343}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 195b7f579d7116c458498fde69073473, type: 3}
 --- !u!1001 &7073430667215693335

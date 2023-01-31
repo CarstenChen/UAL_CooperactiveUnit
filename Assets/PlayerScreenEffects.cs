@@ -20,6 +20,8 @@ public class PlayerScreenEffects : MonoBehaviour
     [Header("Vignette Settings")]
     public Image vignetteImg;
     public float vignetteScaleValue;
+    public Material vignetteMtl;
+    public float vignetteIntesity = 0.5f;
 
     [Header("Ring Settings")]
     [Range(0, 1)]
@@ -27,10 +29,9 @@ public class PlayerScreenEffects : MonoBehaviour
     public Sprite normalSprite;
     public Sprite highlightSprite;
     public AIMonsterController monster;
-
     public bool isGetingClose;
-
     public Image ringImage;
+
     protected RectTransform imageTransform;
 
     protected Vector3 originSize;
@@ -39,16 +40,19 @@ public class PlayerScreenEffects : MonoBehaviour
     Coroutine currentRingCoroutine;
     private void OnEnable()
     {
+        
         vignetteImg.enabled = true;
         ringImage.enabled = true;
+        vignetteMtl.SetFloat("_FullScreenIntensity", vignetteIntesity);
     }
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
-
+        vignetteMtl.SetFloat("_FullScreenIntensity", 0f);
         this.enabled = false;
+
     }
     // Start is called before the first frame update
     void Start()
@@ -60,7 +64,7 @@ public class PlayerScreenEffects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -71,6 +75,7 @@ public class PlayerScreenEffects : MonoBehaviour
             vignetteScaleValue = Mathf.Clamp(distance / monsterDetectRange, 0, 1);
             //vignette.intensity.value = Mathf.Clamp(value, 0, 1);
             vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1) * vignetteScaleValue;
+            vignetteMtl.SetFloat("_ScreenEdgeSize", vignetteScaleValue);
 
             if (vignetteScaleValue - ringScaleValue < 0)
             {
@@ -90,6 +95,9 @@ public class PlayerScreenEffects : MonoBehaviour
         vignetteImg.enabled = false;
         if (ringImage != null)
         ringImage.enabled = false;
+
+        if(vignetteMtl!=null)
+            vignetteMtl.SetFloat("_FullScreenIntensity", 0f);
     }
 
     public void ResetForwardRing()
