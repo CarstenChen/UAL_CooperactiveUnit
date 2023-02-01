@@ -276,7 +276,7 @@
                     "name": "",
                     "id": "f0150a7f-2dfa-4776-b627-960b2a8e6974",
                     "path": "<Keyboard>/1",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "TestKey1",

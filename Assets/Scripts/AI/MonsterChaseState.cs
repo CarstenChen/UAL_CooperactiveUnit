@@ -30,12 +30,13 @@ public class MonsterChaseState : State
         //make sure agent is not static
         agent.isStopped = false;
 
-        Debug.Log("Chase");
-
         PlayerScreenEffects.Instance.enabled = true;
+
+        Debug.Log("Chase");
     }
     public void OnStateStay()
     {
+
         agent.SetDestination(param.chaseTarget.position);
 
     }

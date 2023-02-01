@@ -16,6 +16,8 @@ public class Parameter
     public float normalChaseSpeed = 10f;
     public float fastChaseSpeed = 15f;
     public float minSpeed;
+    public float[] coolDown;
+    public int dizzyHitTimes=3;
 
     [NonSerialized] public float currentChaseSpeed;
 }
@@ -36,6 +38,9 @@ public class AIMonsterController : MonoBehaviour
     [NonSerialized] public bool playerInSphereTrigger;
     [NonSerialized] public bool playerFirstFound;
     [NonSerialized] public Waypoints currentPatrolRoute;
+    [NonSerialized] public int hitTimes = 0;
+    [NonSerialized] public float currentCoolDown;
+    [NonSerialized] public int dizzyTimes = 0;
 
     protected Waypoints previousPatrolRoute;
     protected Dictionary<StateType, State> states = new Dictionary<StateType, State>();
@@ -46,7 +51,7 @@ public class AIMonsterController : MonoBehaviour
 
     public enum StateType
     {
-        Idle, Chase, Attack, Patrol, Raid
+        Idle, Chase, Attack, Patrol, Raid,Dizzy
     }
 
     protected State currentState;
@@ -77,6 +82,9 @@ public class AIMonsterController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (currentCoolDown > 0) currentCoolDown -= Time.fixedDeltaTime;
+        else currentCoolDown = 0;
+
         //ground rotation
         UpdateBodyYAxis();
 
@@ -113,7 +121,17 @@ public class AIMonsterController : MonoBehaviour
             SwitchToState(StateType.Chase);
         }
 
-        if(!playerInSphereTrigger && !playerFirstFound && currentState.GetType() == typeof(MonsterChaseState))
+        if(!playerInSphereTrigger && !playerFirstFound && hitTimes< param.dizzyHitTimes && currentState.GetType() == typeof(MonsterChaseState))
+        {
+            SwitchToState(StateType.Idle);
+        }
+
+        if(playerInSphereTrigger && hitTimes >= param.dizzyHitTimes && currentState.GetType() == typeof(MonsterChaseState))
+        {
+            SwitchToState(StateType.Dizzy);
+        }
+
+        if(currentCoolDown<=0 && currentState.GetType() == typeof(MonsterDizzyState))
         {
             SwitchToState(StateType.Idle);
         }
@@ -153,6 +171,7 @@ public class AIMonsterController : MonoBehaviour
         states.Add(StateType.Attack, new MonsterAttackState(this));
         states.Add(StateType.Patrol, new MonsterPatrolState(this));
         states.Add(StateType.Raid, new MonsterRaidState(this));
+        states.Add(StateType.Dizzy, new MonsterDizzyState(this));
     }
 
     public void SwitchToState(StateType type)
@@ -224,11 +243,13 @@ public class AIMonsterController : MonoBehaviour
             StopCoroutine(currentSlowDownCoroutine);
 
         currentSlowDownCoroutine = StartCoroutine(SlowDown(slowDownRate));
+
+        Debug.Log(string.Format("Hit {0} Times", hitTimes));
     }
 
     IEnumerator SlowDown(float slowDownRate)
     {
-        agent.speed = Mathf.Clamp(agent.speed * UnityEngine.Random.Range(0, slowDownRate), param.minSpeed, param.currentChaseSpeed);
+        agent.speed = Mathf.Clamp(agent.speed * UnityEngine.Random.Range(slowDownRate/2, slowDownRate), param.minSpeed, param.currentChaseSpeed);
         yield return new WaitForSeconds(3f);
         agent.speed = param.currentChaseSpeed;
     }
@@ -244,7 +265,9 @@ public class AIMonsterController : MonoBehaviour
         {
             if(currentState.GetType() != typeof(MonsterRaidState))
             playerFirstFound = false;
-        }
 
+            if (currentState.GetType() != typeof(MonsterDizzyState))
+                hitTimes = 0;
+        }
     }
 }

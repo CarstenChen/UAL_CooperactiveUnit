@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class MonsterIdleState : State
+public class MonsterDizzyState : State
 {
     private AIMonsterController monster;
     private NavMeshAgent agent;
     private Parameter param;
-    public MonsterIdleState(AIMonsterController monster)
+
+    protected float tick;
+    public MonsterDizzyState(AIMonsterController monster)
     {
         this.monster = monster;
         this.agent = monster.agent;
@@ -16,10 +18,14 @@ public class MonsterIdleState : State
 
     public void OnStateEnter()
     {
-        agent.enabled = true;
+        //stop agent
         agent.speed = 0f;
         agent.isStopped = true;
-        Debug.Log("Idle");
+        agent.enabled = false;
+
+        Debug.Log("Dizzy");
+
+        monster.currentCoolDown = param.coolDown[Mathf.Clamp(monster.dizzyTimes++, 0, param.coolDown.Length - 1)];
     }
     public void OnStateStay()
     {
@@ -28,7 +34,10 @@ public class MonsterIdleState : State
 
     public void OnStateExit()
     {
+        agent.enabled = true;
         agent.speed = param.normalChaseSpeed;
         agent.isStopped = false;
+
+        monster.hitTimes = 0;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
 
 
 public class PlayerController : MonoBehaviour
@@ -50,8 +51,8 @@ public class PlayerController : MonoBehaviour
     protected bool canScream = false;
 
     protected PlayerScreenEffects playerScreenEffects;
-    [SerializeField] protected ScreamRing screamRing;
 
+    protected AIMonsterController monster;
 
     protected bool IsPressingMoveKey
     {
@@ -79,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
         //后续尖叫可能用得上
         //DealWithScreamAttackAnimation();
+        if(canScream)
+        Scream();
 
         CalculateHorizontalMovement();
         CalculateVerticalMovement();
@@ -315,41 +318,88 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Monster")
         {
+            monster = other.GetComponent<AIMonsterController>();
+
             canScream = true;
-            screamRing.ResetForwardRing();
-            Debug.Log("Can scream now");
+            //Debug.Log("Can scream now");
+
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.tag == "Monster")
+    //    {
+    //        monster = other.GetComponent<AIMonsterController>();
+    //        if (monster == null)
+    //            return;
+
+    //        if (playerInput.ScreamInput)
+    //        {
+    //            float offset = Mathf.Abs(playerScreenEffects.vignetteScaleValue - playerScreenEffects.ringScaleValue);
+
+    //            if (offset < 0.05f)
+    //            {
+    //                if (offset < 0.025f)
+    //                {
+    //                    MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
+    //                    Debug.Log("Perffect, Monster Slow Down");
+
+    //                    monster.hitTimes++;
+    //                }
+    //                else
+    //                {
+    //                    MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
+    //                    Debug.Log("Good, Monster Slow Down");
+
+    //                    monster.hitTimes++;
+    //                }
+    //                playerScreenEffects.DealWithRingDisplay();
+    //            }
+    //            else
+    //            {
+    //                Debug.Log("Failed");
+
+    //                if (monster.hitTimes > 0)
+    //                {
+    //                    monster.hitTimes--;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
+    private void Scream()
     {
-        if (other.tag == "Monster")
+        if (playerInput.ScreamInput&&!playerInput.hasDealAttack)
         {
-            AIMonsterController monster = other.GetComponent<AIMonsterController>();
-            if (monster == null)
-                return;
+            float offset = Mathf.Abs(playerScreenEffects.vignetteScaleValue - playerScreenEffects.ringScaleValue);
 
-            if (playerInput.ScreamInput)
+            if (offset < 0.05f)
             {
-                float offset = Mathf.Abs(playerScreenEffects.vignetteScaleValue - playerScreenEffects.ringScaleValue);
-
-                if (offset < 0.05f)
+                if (offset < 0.025f)
                 {
-                    if(offset<0.025f)
-                    {
-                        MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
-                        Debug.Log("Perffect, Monster Slow Down");
-                    }
-                    else
-                    {
-                        MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
-                        Debug.Log("Good, Monster Slow Down");
-                    }
-                    playerScreenEffects.DealWithRingDisplay();
+                    MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
+                    Debug.Log("Perffect, Monster Slow Down");
+                    playerInput.hasDealAttack = true;
+                    monster.hitTimes++;
                 }
                 else
                 {
-                    Debug.Log("Failed");
+                    MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
+                    Debug.Log("Good, Monster Slow Down");
+                    playerInput.hasDealAttack = true;
+                    monster.hitTimes++;
+                }
+                playerScreenEffects.DealWithRingDisplay();
+            }
+            else
+            {
+                Debug.Log("Failed");
+                playerInput.hasDealAttack = true;
+                if (monster.hitTimes > 0)
+                {
+                    monster.hitTimes--;
                 }
             }
         }

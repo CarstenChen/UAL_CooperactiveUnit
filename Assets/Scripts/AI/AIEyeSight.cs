@@ -96,7 +96,7 @@ public class AIEyeSight : MonoBehaviour
 
     void CallBack(GameObject obj)
     {
-        Debug.Log("发现目标:" + obj.name);
+        //Debug.Log("发现目标:" + obj.name);
         monster.playerInSight = true;
     }
 

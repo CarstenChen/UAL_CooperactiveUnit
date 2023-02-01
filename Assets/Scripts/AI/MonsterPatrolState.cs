@@ -21,6 +21,7 @@ public class MonsterPatrolState : State
     {
         //make sure agent has path
         agent.enabled = true;
+        agent.isStopped = false;
 
         //stop braking
         agent.autoBraking = false;

@@ -33,12 +33,14 @@ public class PlayerInput : MonoBehaviour
         }
     }
     public bool JumpInput { get { return pl_Jump && !inputBlock; } }
-    public bool ScreamInput { get { return pl_Scream && !inputBlock; } }
+    public bool ScreamInput { get { return pl_Scream  && !inputBlock; } }
 
     public bool TestInput1 { get { return pl_Test1; } }
 
     protected const float attackInputInterval = 0.03f;
     protected Coroutine currentCoroutine;
+
+    public bool hasDealAttack;
 
     void Awake()
     {
@@ -63,8 +65,9 @@ public class PlayerInput : MonoBehaviour
 
     void OnScream (InputValue value)
     {
-        //冲掉前一个输入，保持attack是true
-        if(currentCoroutine != null)
+        //StartCoroutine(SetAttackParameter());
+        ////冲掉前一个输入，保持attack是true
+        if (currentCoroutine != null)
         {
             StopCoroutine(currentCoroutine);
         }
@@ -81,6 +84,7 @@ public class PlayerInput : MonoBehaviour
     {
         pl_Scream = true;
         yield return new WaitForSeconds(attackInputInterval);
+        hasDealAttack = false;
         pl_Scream = false;
     }
 

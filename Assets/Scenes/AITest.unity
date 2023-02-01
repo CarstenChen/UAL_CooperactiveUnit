@@ -4828,17 +4828,17 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_PointAction: {fileID: 3913122638929817632, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_MoveAction: {fileID: 1645312762845977330, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_SubmitAction: {fileID: 957142182043759464, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_CancelAction: {fileID: 1532768046803756942, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_LeftClickAction: {fileID: -8649695802469241979, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_MiddleClickAction: {fileID: -7988335336385050990, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_RightClickAction: {fileID: 7913909512492781110, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_ScrollWheelAction: {fileID: 3452742748614520416, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -1455788555901140975, guid: 357c78beb496afc43ba576db164526fc, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -2410626702824113492, guid: 357c78beb496afc43ba576db164526fc, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
 --- !u!1 &2039956031
@@ -5458,15 +5458,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2686275282287166060, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2669336
+      value: 0.26693356
       objectReference: {fileID: 0}
     - target: {fileID: 2686275282287166060, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 3.4238033e-15
+      value: 0.000000028720944
       objectReference: {fileID: 0}
     - target: {fileID: 2686275282287166060, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -1.836517e-15
+      value: -0.00000000795524
       objectReference: {fileID: 0}
     - target: {fileID: 2686275282764333421, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5651,11 +5651,19 @@ PrefabInstance:
       objectReference: {fileID: 1256238041}
     - target: {fileID: 5757089391599193246, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5757089391599193246, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: screamRing
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757089391599193246, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: minMonsterSpeedDecreaseRate
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757089391599193247, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard&Mouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 195b7f579d7116c458498fde69073473, type: 3}
@@ -5724,7 +5732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: param.minSpeed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: param.chaseTarget
@@ -5732,7 +5740,7 @@ PrefabInstance:
       objectReference: {fileID: 315413415}
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: param.fastChaseSpeed
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: routes.Array.data[0]
@@ -5744,7 +5752,7 @@ PrefabInstance:
       objectReference: {fileID: 983350234}
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: param.normalChaseSpeed
-      value: 5.5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: param.fastDeccelaration
@@ -5757,6 +5765,22 @@ PrefabInstance:
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: param.normalAcceleration
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
+      propertyPath: param.coolDown.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
+      propertyPath: param.coolDown.Array.data[0]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
+      propertyPath: param.coolDown.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
+      propertyPath: param.coolDown.Array.data[2]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7073430668112378447, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: m_AngularSpeed
