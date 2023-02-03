@@ -322,7 +322,6 @@ public class PlayerController : MonoBehaviour
 
             canScream = true;
             //Debug.Log("Can scream now");
-
         }
     }
 
@@ -396,11 +395,11 @@ public class PlayerController : MonoBehaviour
             else
             {
                 Debug.Log("Failed");
+
                 playerInput.hasDealAttack = true;
-                if (monster.hitTimes > 0)
-                {
-                    monster.hitTimes--;
-                }
+
+                AIDirector.Instance.RandomDecreaseHitTimes();
+
             }
         }
     }

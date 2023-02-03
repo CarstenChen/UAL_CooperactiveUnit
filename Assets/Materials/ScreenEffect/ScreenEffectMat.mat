@@ -64,7 +64,7 @@ Material:
     - _QueueOffset: 0
     - _ScreeEdgeSize: 0.5
     - _ScreemEdgeSize: 1
-    - _ScreenEdgeSize: 0.49948692
+    - _ScreenEdgeSize: 0.25168273
     - _SrcBlend: 5
     - _Surface: 1
     - _VoroScale: 8

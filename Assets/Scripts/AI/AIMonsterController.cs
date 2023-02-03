@@ -18,6 +18,7 @@ public class Parameter
     public float minSpeed;
     public float[] coolDown;
     public int dizzyHitTimes=3;
+    public AnimatorInfo animatorCache;
 
     [NonSerialized] public float currentChaseSpeed;
 }
@@ -41,12 +42,16 @@ public class AIMonsterController : MonoBehaviour
     [NonSerialized] public int hitTimes = 0;
     [NonSerialized] public float currentCoolDown;
     [NonSerialized] public int dizzyTimes = 0;
+    [NonSerialized] public bool attackOver = false;
 
-    protected Waypoints previousPatrolRoute;
+    //state data
     protected Dictionary<StateType, State> states = new Dictionary<StateType, State>();
+    //patrol route data
+    protected Waypoints previousPatrolRoute;
+    //player info
     protected bool lastPlayerInSight;
     protected bool lastPlayerInSphereTrigger;
-
+    //slowdown debuff (override)
     protected Coroutine currentSlowDownCoroutine;
 
     public enum StateType
@@ -60,6 +65,7 @@ public class AIMonsterController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         param.animator = GetComponent<Animator>();
+        param.animatorCache = new AnimatorInfo(param.animator);
 
         currentPatrolRoute = routes[0];
         previousPatrolRoute = routes[0];
@@ -79,7 +85,10 @@ public class AIMonsterController : MonoBehaviour
         agent.speed = param.normalChaseSpeed;
         agent.acceleration = param.normalAcceleration;
     }
-
+    private void Update()
+    {
+        CacheAnimatorState();
+    }
     private void FixedUpdate()
     {
         if (currentCoolDown > 0) currentCoolDown -= Time.fixedDeltaTime;
@@ -93,6 +102,18 @@ public class AIMonsterController : MonoBehaviour
         {
             raidWhenSeePlayer = UnityEngine.Random.Range(0, 2) != 0 ? true : false;
         }
+
+        //attack first when meet
+        if(!attackOver && playerInSphereTrigger && Vector3.Distance(param.chaseTarget.position,transform.position)<=agent.stoppingDistance && currentState.GetType() == typeof(MonsterChaseState))
+        {
+            SwitchToState(StateType.Attack);
+        }
+        //if out of range during attack animation, chase player again
+        if(attackOver && currentState.GetType() == typeof(MonsterAttackState))
+        {
+            SwitchToState(StateType.Idle);
+        }
+
 
         //patrol if nothing to do
         if ((!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
@@ -218,17 +239,7 @@ public class AIMonsterController : MonoBehaviour
     {
         previousPatrolRoute = currentPatrolRoute;
 
-        int pickRoute = 0;
-
-        for (int i = 0; i < routes.Length - 1; i++)
-        {
-            if (Vector3.Distance(param.chaseTarget.position, routes[i].root.position) > Vector3.Distance(param.chaseTarget.position, routes[i + 1].root.position))
-            {
-                pickRoute = i + 1;
-            }
-        }
-
-        currentPatrolRoute = routes[pickRoute];
+        currentPatrolRoute = routes[AIDirector.Instance.CalculateRouteByPlayerDesiredDestination(routes)];
 
         if (currentPatrolRoute != previousPatrolRoute)
         {
@@ -269,5 +280,18 @@ public class AIMonsterController : MonoBehaviour
             if (currentState.GetType() != typeof(MonsterDizzyState))
                 hitTimes = 0;
         }
+    }
+
+    void CacheAnimatorState()
+    {
+        //上一帧动画信息记录
+        param.animatorCache.previousCurrentStateInfo = param.animatorCache.currentStateInfo;
+        param.animatorCache.previousIsAnimatorTransitioning = param.animatorCache.isAnimatorTransitioning;
+        param.animatorCache.previousNextStateInfo = param.animatorCache.nextStateInfo;
+
+        //当前帧动画信息更新
+        param.animatorCache.currentStateInfo = param.animator.GetCurrentAnimatorStateInfo(0);
+        param.animatorCache.isAnimatorTransitioning = param.animator.IsInTransition(0);
+        param.animatorCache.nextStateInfo = param.animator.GetNextAnimatorStateInfo(0);
     }
 }

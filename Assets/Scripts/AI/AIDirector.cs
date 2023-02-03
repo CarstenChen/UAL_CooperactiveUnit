@@ -7,24 +7,32 @@ public class AIDirector : MonoBehaviour
     private static AIDirector instance;
     public static AIDirector Instance { get { return instance; } private set { } }
 
-    [SerializeField] protected AIMonsterController monster;
+    public static bool isGameOver=false;
+
+    public AIMonsterController monster;
+    public PlayerController player;
+
     protected int currentMainStoryIndex;
     protected Coroutine currentTensiveTimeCoroutine;
-
     public bool tensiveTime;
-
-
 
     // Start is called before the first frame update
     void Awake()
     {
         if(instance==null)
         instance = this;
+        isGameOver = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isGameOver)
+        {
+           Debug.Log("You lose");
+            Time.timeScale = 0;
+        }
+
         if (PlayerInput.pi_Instance.TestInput1)
         {
             currentMainStoryIndex++;
@@ -35,10 +43,41 @@ public class AIDirector : MonoBehaviour
             currentTensiveTimeCoroutine = StartCoroutine(StartTensiveTime());            
         }
     }
+
+    //create tensive moment after player finding something important
     IEnumerator StartTensiveTime()
     {
-        yield return new WaitForSeconds(Random.Range(0f, 1f));
+        yield return new WaitForSeconds(Random.Range(1f, 3f));
         Debug.Log("Monster Raid");
         tensiveTime = true;
+    }
+
+
+    //give player a hidden chance to overcome chase 
+    public void RandomDecreaseHitTimes()
+    {
+        if (UnityEngine.Random.Range(0, 3) != 0)
+        {
+            if (monster.hitTimes > 0)
+            {
+                monster.hitTimes--;
+            }
+        }
+    }
+
+    //calculate which is the route that is the most possible player destination for monster petrol
+    public int CalculateRouteByPlayerDesiredDestination(Waypoints[] routes)
+    {
+        int pickRoute = 0;
+
+        for (int i = 0; i < routes.Length - 1; i++)
+        {
+            if (Vector3.Distance(player.transform.position, routes[i].root.position) > Vector3.Distance(player.transform.position, routes[i + 1].root.position))
+            {
+                pickRoute = i + 1;
+            }
+        }
+
+        return pickRoute;
     }
 }

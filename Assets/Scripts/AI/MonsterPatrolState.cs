@@ -53,7 +53,7 @@ public class MonsterPatrolState : State
     {
         //Debug.Log(agent.hasPath);
         
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < agent.stoppingDistance)
             GoToNextPoint();
     }
 
