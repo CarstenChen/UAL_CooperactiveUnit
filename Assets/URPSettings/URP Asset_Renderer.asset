@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889aa28581e945f478ed3bc95e6d0291, type: 3}
   m_Name: ScreenBlit
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     Event: 500
-    blitMaterial: {fileID: 2100000, guid: c2fc0fca2a27e0e45bf530186e141cf4, type: 2}
+    blitMaterial: {fileID: 2100000, guid: 90004319cb5107b49b7d4e5318ae2099, type: 2}
     blitMaterialPassIndex: 0
     setInverseViewMatrix: 0
     requireDepthNormals: 0

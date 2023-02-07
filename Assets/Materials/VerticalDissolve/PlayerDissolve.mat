@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Dissolve_Dissolve_Direction_Metallic
+  m_Name: PlayerDissolve
   m_Shader: {fileID: -6465566751694194690, guid: 4646cfe8b2b909e468b54c795b40f39c, type: 3}
   m_ValidKeywords:
   - BOOLEAN_DIRECTION_FROM_EULERANGLE_ON
@@ -58,7 +58,7 @@ Material:
     - BOOLEAN_USE_WROLDSPACE: 1
     - BOOLEAN_WORLDORIGIN: 0
     - BOOLEAN_WROLDSPACE_OFFEST: 0
-    - _DierctionEdgeWidthScale: 11.43
+    - _DierctionEdgeWidthScale: 10
     - _EdgeColorIntensity: 1
     - _EdgeWidth: 0.582
     - _Metallic: 0.41
@@ -69,8 +69,8 @@ Material:
     - _QueueOffset: 0
     - _Smoothness: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _DissolveDirection: {r: 0, g: -1, b: -180, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _DissolveDirection: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveOffest: {r: 0, g: -1, b: 0, a: 0}
     - _EdgeColor: {r: 1.3246073, g: 0, b: 0, a: 1}
     - _NoiseUVSpeed: {r: 1, g: 1, b: 0, a: 0}

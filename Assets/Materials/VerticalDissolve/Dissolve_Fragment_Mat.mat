@@ -68,7 +68,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ClipRate: 0.906
-    - _CutOffHeight: 3
+    - _CutOffHeight: 0.32
     - _EdgeWidth: 0.05
     - _NoiseScale: 50
     - _NoiseStrengh: 0.2

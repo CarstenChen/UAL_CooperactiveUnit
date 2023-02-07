@@ -24,6 +24,8 @@ public class AIDirector : MonoBehaviour
     protected Coroutine currentTensiveTimeCoroutine;
     public bool tensiveTime;
 
+    public bool goEnding;
+
     // Start is called before the first frame update
     void Awake()
     {

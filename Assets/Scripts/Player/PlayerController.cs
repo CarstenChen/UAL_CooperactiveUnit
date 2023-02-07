@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
         //存储动画状态
         CacheAnimatorState();
         //播放标签为“BlockInput”的动画时，禁止输入
-        UpdateInputBlock();
+        //UpdateInputBlock();
 
         //后续尖叫可能用得上
         //DealWithScreamAttackAnimation();
@@ -292,7 +292,7 @@ public class PlayerController : MonoBehaviour
 
         currentInputBlock |= animatorCache.nextStateInfo.tagHash == Animator.StringToHash("BlockInput");
 
-        playerInput.inputBlock = currentInputBlock;
+        PlayerInput.inputBlock = currentInputBlock;
     }
 
 

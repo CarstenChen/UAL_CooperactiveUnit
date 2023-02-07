@@ -17,7 +17,7 @@ public class PlayerInput : MonoBehaviour
         private set { }
     }
 
-    public bool inputBlock;
+    public static bool inputBlock;
     protected Vector2 pl_MoveInput;
     protected bool pl_Jump;
     protected bool pl_Scream;
