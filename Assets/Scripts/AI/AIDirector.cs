@@ -7,12 +7,16 @@ public class AIDirector : MonoBehaviour
     private static AIDirector instance;
     public static AIDirector Instance { get { return instance; } private set { } }
 
-    public static bool isGameOver=false;
-
     public AIMonsterController monster;
     public PlayerController player;
+    public float totalPlayerSan = 300f;
+    public int mainStoryNum;
 
-    protected int currentMainStoryIndex;
+    public static bool isGameOver=false;
+    public static float playerSan;
+
+
+    public int currentMainStoryIndex=0;
     protected Coroutine currentTensiveTimeCoroutine;
     public bool tensiveTime;
 
@@ -24,24 +28,41 @@ public class AIDirector : MonoBehaviour
         isGameOver = false;
     }
 
+    private void Start()
+    {
+        playerSan = totalPlayerSan;
+    }
     // Update is called once per frame
     void Update()
     {
+        if (playerSan > 0f)
+        {
+            playerSan -= Time.deltaTime;
+        }
+        else
+        {
+            isGameOver = true;
+        }
+
         if (isGameOver)
         {
            Debug.Log("You lose");
             Time.timeScale = 0;
         }
+    }
 
-        if (PlayerInput.pi_Instance.TestInput1)
-        {
-            currentMainStoryIndex++;
-            Debug.Log("Player has read main story");
+    public void ReadMainStory()
+    {
+        if (currentMainStoryIndex >= mainStoryNum)
+            return;
 
-            if(currentTensiveTimeCoroutine!=null)
+        currentMainStoryIndex++;
+        Debug.Log("Player has read main story");
+
+        if (currentTensiveTimeCoroutine != null)
             StopCoroutine(currentTensiveTimeCoroutine);
-            currentTensiveTimeCoroutine = StartCoroutine(StartTensiveTime());            
-        }
+
+        currentTensiveTimeCoroutine = StartCoroutine(StartTensiveTime());
     }
 
     //create tensive moment after player finding something important
@@ -79,5 +100,10 @@ public class AIDirector : MonoBehaviour
         }
 
         return pickRoute;
+    }
+
+    public void AddSan(float num)
+    {
+        playerSan = Mathf.Clamp(playerSan + num, 0f, totalPlayerSan);
     }
 }

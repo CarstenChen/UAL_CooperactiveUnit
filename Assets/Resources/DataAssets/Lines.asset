@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98054a99caf0494479083a89315bdeed, type: 3}
+  m_Name: Lines
+  m_EditorClassIdentifier: 
+  lines:
+  - plotID: 0
+    index: 0
+    nextIndex: 1
+    text: This is a playtest!
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 0
+    index: 1
+    nextIndex: 2
+    text: I hate writing and reading CSV,
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 0
+    index: 2
+    nextIndex: 3
+    text: Oh!
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 0
+    index: 3
+    nextIndex: -1
+    text: Yeah~
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 1
+    index: 0
+    nextIndex: 1
+    text: 1
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 1
+    index: 1
+    nextIndex: 2
+    text: 2
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 1
+    index: 2
+    nextIndex: 3
+    text: 3
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 1
+    index: 3
+    nextIndex: 4
+    text: 4
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 1
+    index: 4
+    nextIndex: -1
+    text: 5
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 2
+    index: 0
+    nextIndex: 1
+    text: Nice, everything is done.
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 2
+    index: 1
+    nextIndex: -1
+    text: My arm feels pain and my heart goes deep.
+    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}

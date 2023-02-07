@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public float maxMonsterSpeedDecreaseRate = 0.8f;
 
     protected Animator animator;
-    protected PlayerInput playerInput;
+    public PlayerInput playerInput;
     protected CharacterController playerController;
 
     protected float maxSpeedRef = 1f;  //虚拟运动进程区间最大值

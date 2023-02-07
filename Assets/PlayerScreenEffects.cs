@@ -75,7 +75,7 @@ public class PlayerScreenEffects : MonoBehaviour
 
             EnableEffect();
 
-            vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            //vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             ringImage.sprite = normalSprite;
         }

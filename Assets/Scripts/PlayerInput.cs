@@ -22,6 +22,7 @@ public class PlayerInput : MonoBehaviour
     protected bool pl_Jump;
     protected bool pl_Scream;
     protected bool pl_Test1;
+    protected bool pl_Interact;
 
 
     public Vector2 MoveInput
@@ -37,9 +38,11 @@ public class PlayerInput : MonoBehaviour
 
     public bool TestInput1 { get { return pl_Test1; } }
 
-    protected const float attackInputInterval = 0.03f;
-    protected Coroutine currentCoroutine;
+    public bool InteractInput { get { return pl_Interact && !inputBlock; } }
 
+    protected const float attackInputInterval = 0.03f;
+    protected Coroutine currentScreamCoroutine;
+    protected Coroutine currentInteractCoroutine;
     public bool hasDealAttack;
 
     void Awake()
@@ -67,12 +70,22 @@ public class PlayerInput : MonoBehaviour
     {
         //StartCoroutine(SetAttackParameter());
         ////冲掉前一个输入，保持attack是true
-        if (currentCoroutine != null)
+        if (currentScreamCoroutine != null)
         {
-            StopCoroutine(currentCoroutine);
+            StopCoroutine(currentScreamCoroutine);
         }
 
-        currentCoroutine = StartCoroutine(SetAttackParameter());
+        currentScreamCoroutine = StartCoroutine(SetAttackParameter());
+    }
+
+    void OnInteract(InputValue value)
+    {
+        if (currentInteractCoroutine != null)
+        {
+            StopCoroutine(currentInteractCoroutine);
+        }
+
+        currentInteractCoroutine = StartCoroutine(SetInteractParameter());
     }
 
     void OnTestKey1 (InputValue value)
@@ -87,7 +100,12 @@ public class PlayerInput : MonoBehaviour
         hasDealAttack = false;
         pl_Scream = false;
     }
-
+    IEnumerator SetInteractParameter()
+    {
+        pl_Interact = true;
+        yield return new WaitForSeconds(0.1f);
+        pl_Interact = false;
+    }
     IEnumerator ResetTestButton()
     {
         pl_Test1 = true;

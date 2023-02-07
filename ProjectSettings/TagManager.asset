@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Monster
   - PlayerBody
+  - Interactibles
   layers:
   - Default
   - TransparentFX

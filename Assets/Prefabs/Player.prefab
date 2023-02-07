@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputBlock: 0
+  hasDealAttack: 0
 --- !u!114 &5757089391599193246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,10 +197,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetAngle: 0
   TPSCamera: {fileID: 0}
-  moveSpeed: 10
+  moveSpeed: 6
   maxRotateSpeed: 500
   gravity: 10
   initialJumpSpeed: 10
+  minMonsterSpeedDecreaseRate: 0.6
+  maxMonsterSpeedDecreaseRate: 0.8
 --- !u!114 &5757089391599193247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +229,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -280,7 +283,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400d9fc43d275824ea35ada501cb1316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: {fileID: 0}
+  monsterDetectRange: 30
+  vignetteImg: {fileID: 0}
+  vignetteScaleValue: 0
+  vignetteMtl: {fileID: 2100000, guid: c2fc0fca2a27e0e45bf530186e141cf4, type: 2}
+  vignetteIntesity: 0.8
+  ringScaleValue: 1
+  normalSprite: {fileID: 21300000, guid: 879003741c020a74e9ed3e422cb36e40, type: 3}
+  highlightSprite: {fileID: 21300000, guid: 590f6e163f8d23a43ad2a6a8f56a1024, type: 3}
+  monster: {fileID: 0}
+  isGetingClose: 0
+  ringImage: {fileID: 0}
 --- !u!135 &7077066666571862855
 SphereCollider:
   m_ObjectHideFlags: 0
