@@ -63,8 +63,14 @@ Material:
     - _FullScreenIntensity: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+<<<<<<< Updated upstream
     - _RingEdge: 0.003
     - _ScreemEdgeSize: 0.737
+=======
+    - _ScreeEdgeSize: 0.5
+    - _ScreemEdgeSize: 1
+    - _ScreenEdgeSize: 0.08219886
+>>>>>>> Stashed changes
     - _SrcBlend: 5
     - _Surface: 1
     - _VoroScale: 8

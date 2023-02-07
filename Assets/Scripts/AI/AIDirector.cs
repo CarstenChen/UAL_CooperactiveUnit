@@ -7,13 +7,17 @@ public class AIDirector : MonoBehaviour
     private static AIDirector instance;
     public static AIDirector Instance { get { return instance; } private set { } }
 
+    [Header("Monster Settings")]
     public AIMonsterController monster;
+    [Header("Player Settings")]
     public PlayerController player;
     public float totalPlayerSan = 300f;
+    [Header("Story Settings")]
     public int mainStoryNum;
+    public GameObject finalSceneGate;
 
-    public static bool isGameOver=false;
-    public static float playerSan;
+    [System.NonSerialized]public static bool isGameOver=false;
+    [System.NonSerialized] public static float playerSan;
 
 
     public int currentMainStoryIndex=0;
@@ -63,6 +67,11 @@ public class AIDirector : MonoBehaviour
             StopCoroutine(currentTensiveTimeCoroutine);
 
         currentTensiveTimeCoroutine = StartCoroutine(StartTensiveTime());
+
+        if (currentMainStoryIndex >= mainStoryNum)
+        {
+            finalSceneGate.SetActive(true);
+        }
     }
 
     //create tensive moment after player finding something important
