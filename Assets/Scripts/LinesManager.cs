@@ -11,14 +11,20 @@ public class LinesManager : MonoBehaviour
     public static LinesManager Instance { get { return instance; } private set { } }
 
     public GameObject lineUI;
-    protected TextMeshProUGUI textMeshPro;
+
     public Color LerpColorA;
     public Color LerpColorB;
 
+    [SerializeField] public static bool isPlayingLines;
+
+    protected TextMeshProUGUI textMeshPro;
+    protected Animator textAnimator;
     protected AudioSource audio;
     protected PlotManager plotManager;
     protected Lines[] allLines;
     protected Lines currentLine;
+
+    
 
     private void Awake()
     {
@@ -29,19 +35,29 @@ public class LinesManager : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
-        plotManager = Resources.Load<PlotManager>("DataAssets/Lines");
         textMeshPro= lineUI.GetComponentInChildren<TextMeshProUGUI>();
+        textAnimator = lineUI.GetComponent<Animator>();
+
+        plotManager = Resources.Load<PlotManager>("DataAssets/Lines");
         allLines = plotManager.lines;
     }
     
     public void DisplayLine(int plotID,int index)
     {
+        if(index == 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SetLineUI(true, 0f));
+            isPlayingLines = true;
+            //textAnimator.SetBool("FadeIn", true);
+            //textAnimator.SetBool("FadeOut", false);
+        }
+
         for(int i = 0; i < allLines.Length; i++)
         {
             if(allLines[i].plotID==plotID && allLines[i].index == index)
             {
                 currentLine = allLines[i];
-                StartCoroutine(LineFadeIn());
                 textMeshPro.text = currentLine.text;
                 StartCoroutine(WaitSoundEndToNextLine(currentLine));
             }
@@ -52,6 +68,7 @@ public class LinesManager : MonoBehaviour
 
         audio.clip = line.audio;
         audio.Play();
+
         yield return new WaitForSeconds(audio.clip.length);
         
         if(line.nextIndex != -1)
@@ -60,21 +77,21 @@ public class LinesManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(LineFadeOut());
+            textAnimator.SetBool("FadeIn", false);
+            textAnimator.SetBool("FadeOut", true);
+
+            StartCoroutine(SetLineUI(false,1f));
         }
     }
 
-    IEnumerator LineFadeIn()
+    IEnumerator SetLineUI(bool active, float delay)
     {
-        lineUI.SetActive(true);
-        lineUI.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, 0.04f);
-        yield return new WaitForSeconds(0.5f);
-    }
+        yield return new WaitForSeconds(delay);
+        lineUI.SetActive(active);
 
-    IEnumerator LineFadeOut()
-    {
-        lineUI.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1, 0, 0.04f);
-        yield return new WaitForSeconds(0.5f);
-        lineUI.SetActive(false);
+        if (!active)
+        {
+            isPlayingLines = false;
+        }
     }
 }

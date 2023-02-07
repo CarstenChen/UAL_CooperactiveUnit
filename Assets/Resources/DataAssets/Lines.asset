@@ -22,7 +22,7 @@ MonoBehaviour:
     index: 1
     nextIndex: 2
     text: I hate writing and reading CSV,
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 0
     index: 2
     nextIndex: 3
@@ -32,7 +32,7 @@ MonoBehaviour:
     index: 3
     nextIndex: -1
     text: Yeah~
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 1
     index: 0
     nextIndex: 1

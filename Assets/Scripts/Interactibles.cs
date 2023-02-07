@@ -18,7 +18,7 @@ public class Interactibes : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        
+
     }
     private void Start()
     {
@@ -36,19 +36,23 @@ public class Interactibes : MonoBehaviour
 
 
     private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player"&& canInteract)
         {
-            if (other.tag == "Player" && canInteract)
-            {
+            if ( !LinesManager.isPlayingLines)
                 interactionUI.SetActive(true);
+            else
+                interactionUI.SetActive(false);
 
-                if (player.playerInput.InteractInput)
-                {
-                    Interact();
-                    interactionUI.SetActive(false);
-                    canInteract = false;
-                }
+            if (player.playerInput.InteractInput)
+            {
+                Interact();
+                interactionUI.SetActive(false);
+                canInteract = false;
             }
         }
+
+    }
 
 
 
