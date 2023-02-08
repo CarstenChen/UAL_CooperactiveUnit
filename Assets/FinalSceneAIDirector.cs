@@ -28,13 +28,15 @@ public class FinalSceneAIDirector : MonoBehaviour
     [SerializeField] protected Color[] skyColorsByPhases;
     [SerializeField] protected CinemachineVirtualCamera finalCamera;
     [SerializeField] protected GameObject finalCameraMoveTo;
+    [SerializeField] protected GameObject screamEffect;
 
-    [System.NonSerialized] protected bool canPress = false;
+
+   [System.NonSerialized] protected bool canPress = false;
     [System.NonSerialized] public bool autoWriting;
     protected float currentKeyNum;
 
-
-
+    protected int previousPhase;
+    protected bool phaseRaised;
 
 
     
@@ -45,6 +47,7 @@ public class FinalSceneAIDirector : MonoBehaviour
     }
     void Start()
     {
+        ResetMaterial();
         finalCamera = GameObject.Find("CM vcam2").GetComponent<CinemachineVirtualCamera>();
         finalCamera.LookAt = finalCameraMoveTo.transform;
         finalCamera.Follow = finalCameraMoveTo.transform;
@@ -67,6 +70,15 @@ public class FinalSceneAIDirector : MonoBehaviour
             }
         }
 
+        if (previousPhase < currentPhase)
+        {
+            phaseRaised = true;
+        }
+        else
+        {
+            phaseRaised = false;
+        }
+
         if (winRate >= 1)
         {
             emittedObjectEvent();
@@ -83,9 +95,18 @@ public class FinalSceneAIDirector : MonoBehaviour
             DealWithSystemForce();
         }
 
-        DealWithSkyExposureChange();
+        if (phaseRaised)
+        {
+            DealWithSkyExposureChange();
+            DealWithSkyColorChange();
+            if(currentPhase!=phaseWinrates.Length)
+            PlayScreamEffect();
+        }
+
         DealWithSkyRotationChange();
-        DealWithSkyColorChange();
+
+
+        previousPhase = currentPhase;
     }
 
     IEnumerator EndGame()
@@ -135,8 +156,6 @@ public class FinalSceneAIDirector : MonoBehaviour
     void DealWithSkyRotationChange()
     {
         skyBoxMaterial.SetFloat("_Rotation", 360 * winRate);
-
-
     }
 
     void DealWithSkyExposureChange()
@@ -147,5 +166,18 @@ public class FinalSceneAIDirector : MonoBehaviour
     void DealWithSkyColorChange()
     {
         skyBoxMaterial.SetColor("_Tint", skyColorsByPhases[currentPhase]);
+    }
+
+     void ResetMaterial()
+    {
+        skyBoxMaterial.SetFloat("_Rotation", 0);
+        skyBoxMaterial.SetFloat("_Exposure", skyExposuresByPhases[0]);
+        skyBoxMaterial.SetColor("_Tint", skyColorsByPhases[0]);
+    }
+    void PlayScreamEffect()
+    {
+        screamEffect.SetActive(false);
+        screamEffect.SetActive(true);
+
     }
 }
