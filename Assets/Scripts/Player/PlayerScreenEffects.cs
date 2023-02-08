@@ -39,19 +39,22 @@ public class PlayerScreenEffects : MonoBehaviour
     [Header("Model Settings")]
     public GameObject shieldModel;
     public float originalShieldSize;
+    public float minShieldSize;
+    public Color shieldColor1;
+    public Color shieldColor2;
     public Material shieldMaterial;
     public GameObject attackModel;
     public float originalAttackSize;
-    public Color color1;
-    public Color color2;
+
+
 
 
     protected RectTransform imageTransform;
 
     protected Vector3 originSize;
-    Coroutine currentRingCoroutine;
+    protected Coroutine currentRingCoroutine;
 
-    protected bool ringLocked;
+    public bool ringLocked;
     private void OnEnable()
     {
         ringLocked = false;
@@ -101,7 +104,7 @@ public class PlayerScreenEffects : MonoBehaviour
             //ringImage.sprite = normalSprite;
 
             shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize;
-            shieldMaterial.SetColor("color_1", color1);
+            shieldMaterial.SetColor("color_1", shieldColor1);
         }
     }
 
@@ -129,10 +132,16 @@ public class PlayerScreenEffects : MonoBehaviour
             
             //ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1) * ringScaleValue;
 
-            shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize * ringScaleValue;
-
-
-            UpdateRingImage();
+            if(ringScaleValue> minShieldSize / originalShieldSize)
+            {
+                shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize * ringScaleValue;
+                UpdateRingImage();
+            }
+            else
+            {
+                ringLocked = true;
+                shieldModel.SetActive(false);
+            }
         }
     }
 
@@ -182,6 +191,7 @@ public class PlayerScreenEffects : MonoBehaviour
         if (shieldModel != null)
         {
             shieldModel.transform.localScale = new Vector3(1, 1, 1) *originalShieldSize* effectScaleValue;
+
             shieldModel.SetActive(false);
         }
     }
@@ -217,12 +227,12 @@ public class PlayerScreenEffects : MonoBehaviour
         if (Mathf.Abs(effectScaleValue - ringScaleValue) < 0.05f)
         {
             //ringImage.sprite = highlightSprite;
-            shieldMaterial.SetColor("color_1", color2);
+            shieldMaterial.SetColor("color_1", shieldColor2);
         }
         else
         {
             //ringImage.sprite = normalSprite;
-            shieldMaterial.SetColor("color_1", color1);
+            shieldMaterial.SetColor("color_1", shieldColor1);
         }
     }
 }
