@@ -18,19 +18,33 @@ public class PlayerScreenEffects : MonoBehaviour
     //[NonSerialized] public Vignette vignette;
 
     [Header("Vignette Settings")]
-    public Image vignetteImg;
-    public float vignetteScaleValue;
-    public Material vignetteMtl;
-    public float vignetteIntesity = 0.5f;
+    //public Image vignetteImg;
+
+    public float effectScaleValue;
+
+    //public Material vignetteMtl;
+    //public float vignetteIntesity = 0.5f;
 
     [Header("Ring Settings")]
     [Range(0, 1)]
     public float ringScaleValue = 1f;
-    public Sprite normalSprite;
-    public Sprite highlightSprite;
+
+    //public Sprite normalSprite;
+    //public Sprite highlightSprite;
     public AIMonsterController monster;
     public bool isGetingClose;
-    public Image ringImage;
+    //public Image ringImage;
+
+
+    [Header("Model Settings")]
+    public GameObject shieldModel;
+    public float originalShieldSize;
+    public Material shieldMaterial;
+    public GameObject attackModel;
+    public float originalAttackSize;
+    public Color color1;
+    public Color color2;
+
 
     protected RectTransform imageTransform;
 
@@ -41,18 +55,24 @@ public class PlayerScreenEffects : MonoBehaviour
     private void OnEnable()
     {
         ringLocked = false;
-        vignetteImg.enabled = false;
-        ringImage.enabled = false;
-        vignetteMtl.SetFloat("_FullScreenIntensity", 0);
+
+        //vignetteImg.enabled = false;
+        //ringImage.enabled = false;
+        //vignetteMtl.SetFloat("_FullScreenIntensity", 0);
+
+        shieldModel.SetActive(false);
+        attackModel.SetActive(false);
+        attackModel.transform.localScale = new Vector3(1, 1, 1);
     }
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
-        vignetteMtl.SetFloat("_FullScreenIntensity", 0f);
-        this.enabled = false;
 
+        //vignetteMtl.SetFloat("_FullScreenIntensity", 0f);
+        attackModel.transform.localScale = new Vector3(1, 1, 1);
+        this.enabled = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -76,8 +96,12 @@ public class PlayerScreenEffects : MonoBehaviour
             EnableEffect();
 
             //vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            ringImage.sprite = normalSprite;
+
+            //ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            //ringImage.sprite = normalSprite;
+
+            shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize;
+            shieldMaterial.SetColor("color_1", color1);
         }
     }
 
@@ -89,16 +113,24 @@ public class PlayerScreenEffects : MonoBehaviour
             EnableEffect();
 
             float distance = Vector3.Distance(other.transform.position, transform.position);
-            vignetteScaleValue = Mathf.Clamp(distance / monsterDetectRange, 0, 1);
+            effectScaleValue = Mathf.Clamp(distance / monsterDetectRange, 0, 1);
             //vignette.intensity.value = Mathf.Clamp(value, 0, 1);
-            vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1) * vignetteScaleValue;
-            vignetteMtl.SetFloat("_ScreenEdgeSize", vignetteScaleValue);
 
-            if (vignetteScaleValue - ringScaleValue < 0)
+            //vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1) * effectScaleValue;
+            //vignetteMtl.SetFloat("_ScreenEdgeSize", effectScaleValue);
+
+            
+            attackModel.transform.localScale = new Vector3(1, 1, 1) * effectScaleValue;
+
+            if (effectScaleValue - ringScaleValue < 0)
             {
                 ResetForwardRing();
             }
-            ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1) * ringScaleValue;
+            
+            //ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1) * ringScaleValue;
+
+            shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize * ringScaleValue;
+
 
             UpdateRingImage();
         }
@@ -106,10 +138,16 @@ public class PlayerScreenEffects : MonoBehaviour
 
     protected void EnableEffect()
     {
-        vignetteImg.enabled = true;
+        //vignetteImg.enabled = true;
+        //if (!ringLocked)
+        //    ringImage.enabled = true;
+        //vignetteMtl.SetFloat("_FullScreenIntensity", vignetteIntesity);
+
+        attackModel.SetActive(true);
         if (!ringLocked)
-            ringImage.enabled = true;
-        vignetteMtl.SetFloat("_FullScreenIntensity", vignetteIntesity);
+            shieldModel.SetActive(true);
+        attackModel.transform.localScale = new Vector3(1, 1, 1) * effectScaleValue;
+
     }
 
     private void OnDisable()
@@ -117,28 +155,41 @@ public class PlayerScreenEffects : MonoBehaviour
         if (currentRingCoroutine != null)
             StopCoroutine(currentRingCoroutine);
 
-        if (vignetteImg != null)
+        //if (vignetteImg != null)
+        //{
+        //    vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        //    vignetteImg.enabled = false;
+
+        //}
+
+        //if (ringImage != null)
+        //{
+        //    ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        //    ringImage.enabled = false;
+        //}
+
+
+        //if (vignetteMtl != null)
+        //    vignetteMtl.SetFloat("_FullScreenIntensity", 0f);
+
+        if ( attackModel != null)
         {
-            vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            vignetteImg.enabled = false;
+            attackModel.transform.localScale = new Vector3(1, 1, 1) * effectScaleValue;
+            attackModel.SetActive(false);
 
         }
 
-        if (ringImage != null)
+        if (shieldModel != null)
         {
-            ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            ringImage.enabled = false;
+            shieldModel.transform.localScale = new Vector3(1, 1, 1) *originalShieldSize* effectScaleValue;
+            shieldModel.SetActive(false);
         }
-
-
-        if (vignetteMtl != null)
-            vignetteMtl.SetFloat("_FullScreenIntensity", 0f);
     }
 
     public void ResetForwardRing()
     {
 
-        ringScaleValue = Mathf.Clamp(vignetteScaleValue - UnityEngine.Random.Range(0.1f, 0.15f), 0, 1f);
+        ringScaleValue = Mathf.Clamp(effectScaleValue - UnityEngine.Random.Range(0.1f, 0.15f), 0, 1f);
     }
 
     public void DealWithRingDisplay()
@@ -152,22 +203,26 @@ public class PlayerScreenEffects : MonoBehaviour
     IEnumerator AfterScream()
     {
         ringLocked = true;
-        ringImage.enabled = false;
+        //ringImage.enabled = false;
+        shieldModel.SetActive(false);
         yield return new WaitForSeconds(3f);
-        ringImage.enabled = true;
+        //ringImage.enabled = true;
+        shieldModel.SetActive(true);
         ringLocked = false;
         ResetForwardRing();
     }
 
     protected void UpdateRingImage()
     {
-        if (Mathf.Abs(vignetteScaleValue - ringScaleValue) < 0.05f)
+        if (Mathf.Abs(effectScaleValue - ringScaleValue) < 0.05f)
         {
-            ringImage.sprite = highlightSprite;
+            //ringImage.sprite = highlightSprite;
+            shieldMaterial.SetColor("color_1", color2);
         }
         else
         {
-            ringImage.sprite = normalSprite;
+            //ringImage.sprite = normalSprite;
+            shieldMaterial.SetColor("color_1", color1);
         }
     }
 }

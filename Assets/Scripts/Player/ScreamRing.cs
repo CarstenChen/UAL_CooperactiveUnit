@@ -27,7 +27,7 @@ public class ScreamRing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerScreenEffects.vignetteScaleValue - scale < 0)
+        if (playerScreenEffects.effectScaleValue - scale < 0)
         {
             ResetForwardRing();
         }
@@ -41,7 +41,7 @@ public class ScreamRing : MonoBehaviour
     public void ResetForwardRing()
     {
         //scale = Mathf.Clamp(playerScreenEffects.currentScaleValue - Random.Range(0.1f, 0.15f),0,1f);
-        Debug.Log(string.Format("{0},{1}",scale, playerScreenEffects.vignetteScaleValue));
+        Debug.Log(string.Format("{0},{1}",scale, playerScreenEffects.effectScaleValue));
     }
 
     public IEnumerator AfterScream()
@@ -62,7 +62,7 @@ public class ScreamRing : MonoBehaviour
 
     protected void UpdateImage()
     {
-        if (Mathf.Abs(playerScreenEffects.vignetteScaleValue - scale) < 0.05f)
+        if (Mathf.Abs(playerScreenEffects.effectScaleValue - scale) < 0.05f)
         {
             ringImage.sprite = highlightSprite;
         }

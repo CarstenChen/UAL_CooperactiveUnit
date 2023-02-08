@@ -381,7 +381,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput.ScreamInput&&!playerInput.hasDealAttack)
         {
-            float offset = Mathf.Abs(playerScreenEffects.vignetteScaleValue - playerScreenEffects.ringScaleValue);
+            float offset = Mathf.Abs(playerScreenEffects.effectScaleValue - playerScreenEffects.ringScaleValue);
 
             if (offset < 0.05f)
             {
