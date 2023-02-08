@@ -15,7 +15,7 @@ public class EmittedObject : MonoBehaviour
     private void OnEnable()
     {
         x = 0;
-        FinalSceneManager.emittedObjectEvent += () =>{ stopMove = true; };
+        FinalSceneAIDirector.emittedObjectEvent += () =>{ stopMove = true; };
     }
 
     // Update is called once per frame

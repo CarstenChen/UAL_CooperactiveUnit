@@ -26,6 +26,6 @@ public class ConsoleInteractible : Interactibes
         virtualCamera.Priority = 20;
         freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
         PlayerInput.inputBlock = true;
-        FinalSceneManager.Instance.autoWriting = true;
+        FinalSceneAIDirector.Instance.autoWriting = true;
     }
 }
