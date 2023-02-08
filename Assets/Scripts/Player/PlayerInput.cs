@@ -17,7 +17,7 @@ public class PlayerInput : MonoBehaviour
         private set { }
     }
 
-    public static bool inputBlock;
+    public static bool inputBlock=false;
     protected Vector2 pl_MoveInput;
     protected bool pl_Jump;
     protected bool pl_Scream;
@@ -47,6 +47,7 @@ public class PlayerInput : MonoBehaviour
 
     void Awake()
     {
+        inputBlock = false;
         //初始化单件
         if (pi_Instance == null)
             pi_Instance = this;

@@ -383,6 +383,7 @@ Transform:
   - {fileID: 1004607661}
   - {fileID: 5757089392492690819}
   - {fileID: 1165760479}
+  - {fileID: 3708183857606960713}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -398,7 +399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a554401046a55b448be340c81b844c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputBlock: 0
   hasDealAttack: 0
 --- !u!114 &5757089391599193246
 MonoBehaviour:
@@ -420,7 +420,7 @@ MonoBehaviour:
   initialJumpSpeed: 10
   minMonsterSpeedDecreaseRate: 0.6
   maxMonsterSpeedDecreaseRate: 0.8
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 5757089391599193245}
 --- !u!114 &5757089391599193247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   monsterDetectRange: 25
   vignetteImg: {fileID: 0}
   vignetteScaleValue: 0
-  vignetteMtl: {fileID: 2100000, guid: c2fc0fca2a27e0e45bf530186e141cf4, type: 2}
+  vignetteMtl: {fileID: 2100000, guid: 90004319cb5107b49b7d4e5318ae2099, type: 2}
   vignetteIntesity: 0.8
   ringScaleValue: 1
   normalSprite: {fileID: 21300000, guid: 879003741c020a74e9ed3e422cb36e40, type: 3}
@@ -635,6 +635,68 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &3709137455331444283
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5757089391599193244}
+    m_Modifications:
+    - target: {fileID: 1444865496548280, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_Name
+      value: Scream
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+--- !u!4 &3708183857606960713 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+  m_PrefabInstance: {fileID: 3709137455331444283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5279607509097234152
 PrefabInstance:
   m_ObjectHideFlags: 0

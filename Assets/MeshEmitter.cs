@@ -7,7 +7,7 @@ public class MeshEmitter : MonoBehaviour
 {
 
     public GameObject[] meshList;
-    public GameObject objectPool;
+    public GameObject root;
 
     public float lowSpeed;
     public float highSpeed;
@@ -17,18 +17,6 @@ public class MeshEmitter : MonoBehaviour
 
     protected GameObject currentMesh;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ChangeMesh()
     {
         currentMesh = meshList[Random.Range(0, meshList.Length)];
@@ -37,7 +25,7 @@ public class MeshEmitter : MonoBehaviour
     public void EmitMesh()
     {
         Quaternion dir = Quaternion.Euler(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)));    
-        GameObject obj = ObjectPool.instance.GetGameObject(currentMesh, transform.position, dir, objectPool.transform);
+        GameObject obj = ObjectPool.instance.GetGameObject(currentMesh, transform.position, dir, root.transform);
 
         EmittedObject eo = obj.GetComponent<EmittedObject>();
         if (eo != null)

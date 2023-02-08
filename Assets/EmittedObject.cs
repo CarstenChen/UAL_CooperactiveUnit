@@ -9,10 +9,13 @@ public class EmittedObject : MonoBehaviour
     public float speed;
     private float x;
     public float time = 1;
+
+    protected bool stopMove;
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        x = 0;
+        FinalSceneManager.emittedObjectEvent += () =>{ stopMove = true; };
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class EmittedObject : MonoBehaviour
 
     private void Move()
     {
+        if (stopMove) return;
         x += Time.deltaTime / time;
 
         transform.position = Vector3.LerpUnclamped(transform.position, transform.position+new Vector3(0, speed*Time.deltaTime, 0), moveCurve.Evaluate(x));

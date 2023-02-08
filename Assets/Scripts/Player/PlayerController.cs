@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [Header("Cream Setting")]
     public float minMonsterSpeedDecreaseRate = 0.5f;
     public float maxMonsterSpeedDecreaseRate = 0.8f;
+    public GameObject screamEffect;
 
     protected Animator animator;
     public PlayerInput playerInput;
@@ -208,6 +209,7 @@ public class PlayerController : MonoBehaviour
 
     void CalculateRotation()
     {
+
         Vector3 moveInputDir = new Vector3(playerInput.MoveInput.x, 0, playerInput.MoveInput.y).normalized;
 
         //计算摄像机当前朝向的实际方向
@@ -241,6 +243,7 @@ public class PlayerController : MonoBehaviour
 
     void CharacterRotate()
     {
+
         animator.SetFloat("DeltaDeg2Rag", shortestDeltaRotDegree * Mathf.Deg2Rad);
 
         curRotateSpeed = maxRotateSpeed * curSpeedRef / maxSpeedRef;
@@ -397,6 +400,8 @@ public class PlayerController : MonoBehaviour
                     monster.hitTimes++;
                 }
                 playerScreenEffects.DealWithRingDisplay();
+                screamEffect.SetActive(false);
+                screamEffect.SetActive(true);
             }
             else
             {

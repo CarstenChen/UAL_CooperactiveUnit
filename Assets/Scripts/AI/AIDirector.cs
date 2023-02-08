@@ -79,7 +79,7 @@ public class AIDirector : MonoBehaviour
     //create tensive moment after player finding something important
     IEnumerator StartTensiveTime()
     {
-        yield return new WaitForSeconds(Random.Range(50f, 100f));
+        yield return new WaitForSeconds(Random.Range(5f, 10f));
         Debug.Log("Monster Raid");
         tensiveTime = true;
     }
