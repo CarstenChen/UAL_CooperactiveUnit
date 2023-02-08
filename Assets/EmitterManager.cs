@@ -32,7 +32,7 @@ public class EmitterManager : MonoBehaviour
 
     public void RandomArrangeEmitter()
     {
-        for(int i = 0;i < emitters.Length; i++)
+        for(int i = 0;i <= FinalSceneAIDirector.Instance.currentPhase; i++)
         {
             Vector3 pos = new Vector3(Random.Range(-20 , 20), -10f, Random.Range(20, 40));
 

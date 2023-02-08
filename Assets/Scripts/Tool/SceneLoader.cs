@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -27,8 +28,10 @@ public class SceneLoader : MonoBehaviour
         
     }
 
-    public IEnumerator LoadScene(string name)
+    public IEnumerator LoadScene(string name, Color fadeColor)
     {
+        GameObject.Find("SceneLoaderCanvas").GetComponentInChildren<Image>().color = fadeColor;
+
         sceneFadeAnimator.ResetTrigger("FadeIn");
 
         if (sceneFadeAnimator != null)

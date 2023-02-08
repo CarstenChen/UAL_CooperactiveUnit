@@ -9,7 +9,7 @@ public class SceneGateTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(SceneLoader.instance.LoadScene(finalSceneName));
+        StartCoroutine(SceneLoader.instance.LoadScene(finalSceneName, Color.black)) ;
         
     }
 }

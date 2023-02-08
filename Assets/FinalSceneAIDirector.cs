@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class FinalSceneAIDirector : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class FinalSceneAIDirector : MonoBehaviour
     public Material monsterBodyMtl;
 
     public float winRate;
+    public int currentPhase;
 
     [SerializeField] protected int winKeyNum;
 
@@ -24,13 +26,16 @@ public class FinalSceneAIDirector : MonoBehaviour
     [SerializeField] protected Material skyBoxMaterial;
     [SerializeField] protected float[] skyExposuresByPhases;
     [SerializeField] protected Color[] skyColorsByPhases;
+    [SerializeField] protected CinemachineVirtualCamera finalCamera;
+    [SerializeField] protected GameObject finalCameraMoveTo;
+
     [System.NonSerialized] protected bool canPress = false;
     [System.NonSerialized] public bool autoWriting;
     protected float currentKeyNum;
 
 
 
-    protected int currentPhase;
+
 
     
     private void Awake()
@@ -40,6 +45,9 @@ public class FinalSceneAIDirector : MonoBehaviour
     }
     void Start()
     {
+        finalCamera = GameObject.Find("CM vcam2").GetComponent<CinemachineVirtualCamera>();
+        finalCamera.LookAt = finalCameraMoveTo.transform;
+        finalCamera.Follow = finalCameraMoveTo.transform;
     }
 
     // Update is called once per frame
@@ -62,6 +70,8 @@ public class FinalSceneAIDirector : MonoBehaviour
         if (winRate >= 1)
         {
             emittedObjectEvent();
+            finalCamera.Priority = 30;
+            StartCoroutine(EndGame());
         }
 
         DealWithDissolveModel();
@@ -78,6 +88,12 @@ public class FinalSceneAIDirector : MonoBehaviour
         DealWithSkyColorChange();
     }
 
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(SceneLoader.instance.LoadScene("Terrain", Color.white));
+
+    }
     void DealWithAutoWriting()
     {
         if (currentCoolDown > 0)
@@ -104,7 +120,7 @@ public class FinalSceneAIDirector : MonoBehaviour
     void DealWithSystemForce()
     {
         if(Random.Range(0,25)==0)
-        currentKeyNum=Mathf.Clamp(currentKeyNum- Random.Range(1, 3), 0,winKeyNum);
+        currentKeyNum=Mathf.Clamp(currentKeyNum- Random.Range(1, 2), 0,winKeyNum);
         
     }
 
