@@ -104,7 +104,7 @@ public class PlayerScreenEffects : MonoBehaviour
             //ringImage.sprite = normalSprite;
 
             shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize;
-            shieldMaterial.SetColor("color_1", shieldColor1);
+            shieldMaterial.SetColor("_FresnelColor", shieldColor1);
         }
     }
 
@@ -123,7 +123,7 @@ public class PlayerScreenEffects : MonoBehaviour
             //vignetteMtl.SetFloat("_ScreenEdgeSize", effectScaleValue);
 
             
-            attackModel.transform.localScale = new Vector3(1, 1, 1) * effectScaleValue;
+            attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize*effectScaleValue;
 
             if (effectScaleValue - ringScaleValue < 0)
             {
@@ -155,7 +155,7 @@ public class PlayerScreenEffects : MonoBehaviour
         attackModel.SetActive(true);
         if (!ringLocked)
             shieldModel.SetActive(true);
-        attackModel.transform.localScale = new Vector3(1, 1, 1) * effectScaleValue;
+        attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize * effectScaleValue;
 
     }
 
@@ -183,7 +183,7 @@ public class PlayerScreenEffects : MonoBehaviour
 
         if ( attackModel != null)
         {
-            attackModel.transform.localScale = new Vector3(1, 1, 1) * effectScaleValue;
+            attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize * effectScaleValue;
             attackModel.SetActive(false);
 
         }
@@ -227,12 +227,12 @@ public class PlayerScreenEffects : MonoBehaviour
         if (Mathf.Abs(effectScaleValue - ringScaleValue) < 0.05f)
         {
             //ringImage.sprite = highlightSprite;
-            shieldMaterial.SetColor("color_1", shieldColor2);
+            shieldMaterial.SetColor("_FresnelColor", shieldColor2);
         }
         else
         {
             //ringImage.sprite = normalSprite;
-            shieldMaterial.SetColor("color_1", shieldColor1);
+            shieldMaterial.SetColor("_FresnelColor", shieldColor1);
         }
     }
 }
