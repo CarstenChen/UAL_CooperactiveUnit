@@ -94,11 +94,10 @@ public class FinalSceneAIDirector : MonoBehaviour
             DealWithAutoWriting();
             DealWithSystemForce();
         }
-
+        DealWithSkyExposureChange();
+        DealWithSkyColorChange();
         if (phaseRaised)
         {
-            DealWithSkyExposureChange();
-            DealWithSkyColorChange();
             if(currentPhase!=phaseWinrates.Length)
             PlayScreamEffect();
         }

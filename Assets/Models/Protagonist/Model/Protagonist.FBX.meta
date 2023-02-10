@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 4689f08b43d7cd541b97ab8c40b06768
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftUpperLeg' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Protagonist(Clone)
+      parentName: 
+      position: {x: 0.19327193, y: 0.6349983, z: 0.06312452}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u4F4E\u6A21\u6700\u7EC8uv"
+      parentName: Protagonist(Clone)
+      position: {x: -0, y: -0.0010638038, z: 0.5105107}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 5.4420424, y: 5.4420424, z: 5.4420424}
+    - name: "\u5BF9\u8C61005"
+      parentName: Protagonist(Clone)
+      position: {x: -0, y: -0.0010638038, z: 0.5105107}
+      rotation: {x: 1, y: 0, z: -0, w: 0.0000004013393}
+      scale: {x: -5.4420424, y: -5.4420424, z: -5.4420424}
+    - name: "\u7EC4002"
+      parentName: Protagonist(Clone)
+      position: {x: 0.002613891, y: 0.03166624, z: 0.28463215}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Plane011
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: -0.0026440185, z: -0.04814338}
+      rotation: {x: -0.00000012793875, y: 0.78528243, z: 0.6191377, w: -0.00000010087034}
+      scale: {x: 0.33129662, y: 0.33129662, z: 0.33129662}
+    - name: Plane010
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: 0.0025004228, z: -0.03434267}
+      rotation: {x: -0.00000012356922, y: 0.7584624, z: 0.65171677, w: -0.00000010617815}
+      scale: {x: 0.30794498, y: 0.30794498, z: 0.30794498}
+    - name: Plane009
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: 0.006715754, z: -0.020398948}
+      rotation: {x: -0.000000117324646, y: 0.72013354, z: 0.6938355, w: -0.00000011304015}
+      scale: {x: 0.2954208, y: 0.2954208, z: 0.2954208}
+    - name: Plane008
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: 0.008689466, z: -0.0046487474}
+      rotation: {x: -0.00000010821852, y: 0.66424054, z: 0.7475189, w: -0.0000001217863}
+      scale: {x: 0.35869753, y: 0.3586975, z: 0.3586975}
+    - name: Plane007
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: 0.011382452, z: 0.009312028}
+      rotation: {x: -0.000000114633, y: 0.6873134, z: 0.72636104, w: -0.00000012114555}
+      scale: {x: 0.396301, y: 0.39630097, z: 0.43132874}
+    - name: Plane006
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: 0.015067306, z: 0.02526125}
+      rotation: {x: -0.000000110400066, y: 0.6776308, z: 0.7354023, w: -0.00000011981224}
+      scale: {x: 0.40034232, y: 0.40034232, z: 0.40034232}
+    - name: Plane005
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: 0.01642657, z: 0.04023456}
+      rotation: {x: -0.00000009192717, y: 0.5642449, z: 0.8256074, w: -0.00000013450853}
+      scale: {x: 0.34960577, y: 0.34960577, z: 0.34960577}
+    - name: Plane004
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: 0.014418797, z: 0.054407917}
+      rotation: {x: -0.00000007829435, y: 0.48056728, z: 0.8769579, w: -0.00000014287458}
+      scale: {x: 0.35258472, y: 0.35258472, z: 0.35258472}
+    - name: Plane003
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: 0.008584434, z: 0.07014669}
+      rotation: {x: -0.000000087527, y: 0.53723687, z: 0.8434314, w: -0.00000013741243}
+      scale: {x: 0.30794498, y: 0.30794498, z: 0.30794498}
+    - name: Plane002
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: 0.0026743945, z: 0.08398809}
+      rotation: {x: -0.00000007632309, y: 0.46846774, z: 0.8834806, w: -0.00000014393727}
+      scale: {x: 0.286891, y: 0.286891, z: 0.286891}
+    - name: Plane013
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: -0.006411485, z: -0.062097177}
+      rotation: {x: -0.000000103991574, y: 0.6382957, z: 0.76979125, w: -0.00000012541491}
+      scale: {x: 0.32759988, y: 0.32759988, z: 0.32759988}
+    - name: Plane015
+      parentName: "\u7EC4002"
+      position: {x: 0.00026063088, y: -0.009083741, z: -0.07718928}
+      rotation: {x: -0.00000009620772, y: 0.5905188, z: 0.8070239, w: -0.00000013148087}
+      scale: {x: 0.38766915, y: 0.38766915, z: 0.38766915}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
