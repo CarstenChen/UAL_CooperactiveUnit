@@ -7,8 +7,8 @@ using System;
 [Serializable]
 public class Parameter
 {
+    [Header("AI Settings")]
     public Transform chaseTarget;
-    public Animator animator;
     public float raidDistanceBehindPlayer;
     public float raidAngleBehindPlayer = 60f;
     public float fastDeccelaration = 100f;
@@ -18,7 +18,13 @@ public class Parameter
     public float minSpeed;
     public float[] coolDown;
     public int dizzyHitTimes=3;
+
+    [Header("Animation Settings")]
+    public Animator animator;
     public AnimatorInfo animatorCache;
+
+    [Header("Effect Settings")]
+    public GameObject raidFlashEffect;
 
     [NonSerialized] public float currentChaseSpeed;
 }

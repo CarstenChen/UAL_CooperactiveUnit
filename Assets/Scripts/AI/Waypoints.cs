@@ -9,10 +9,14 @@ public class Waypoints : MonoBehaviour
     public Transform[] wayPoints;
     public Transform player;
     public Dictionary<int, int> invisiblePoints;
+
+    private void Awake()
+    {
+        root = transform;
+    }
+
     private void Start()
     {
-
-        root = transform;
 
         invisiblePoints = new Dictionary<int, int>();
         wayPoints = new Transform[transform.childCount];

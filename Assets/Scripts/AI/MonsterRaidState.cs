@@ -32,6 +32,8 @@ public class MonsterRaidState : State
 
         monster.transform.position = GetPointBehindPlayer();
         Debug.Log("Raid");
+        param.raidFlashEffect.SetActive(false);
+        param.raidFlashEffect.SetActive(true);
     }
     public void OnStateStay()
     {
