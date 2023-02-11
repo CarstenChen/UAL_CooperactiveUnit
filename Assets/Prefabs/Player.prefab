@@ -3315,7 +3315,7 @@ GameObject:
   - component: {fileID: 1107891756}
   - component: {fileID: 1107891755}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: AttackSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3329,7 +3329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107891753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7812,8 +7812,8 @@ CharacterController:
   m_Radius: 0.3
   m_SlopeLimit: 90
   m_StepOffset: 0
-  m_SkinWidth: 0.001
-  m_MinMoveDistance: 0.001
+  m_SkinWidth: 0.01
+  m_MinMoveDistance: 0.01
   m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!114 &1767493555074866365
 MonoBehaviour:
@@ -7832,14 +7832,14 @@ MonoBehaviour:
   ringScaleValue: 1
   monster: {fileID: 0}
   isGetingClose: 0
-  shieldModel: {fileID: 1107891753}
-  originalShieldSize: 8
-  minShieldSize: 2
+  shieldModel: {fileID: 3990704062219032907}
+  originalShieldSize: 3.5
+  minShieldSize: 1
   shieldColor1: {r: 0, g: 1, b: 1, a: 0.1764706}
-  shieldColor2: {r: 0, g: 1, b: 0, a: 1}
-  shieldMaterial: {fileID: 2100000, guid: 42e360212edb53741bbf85eea7629338, type: 2}
-  attackModel: {fileID: 1954168860}
-  originalAttackSize: 1
+  shieldColor2: {r: 1, g: 0.5958981, b: 0, a: 1}
+  shieldMaterial: {fileID: 2100000, guid: 16dcb61846b97184ea53f7b45c8e17d9, type: 2}
+  attackModel: {fileID: 1107891753}
+  originalAttackSize: 8
   ringLocked: 0
 --- !u!135 &7077066666571862855
 SphereCollider:
@@ -7971,21 +7971,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1107891754}
     m_Modifications:
+    - target: {fileID: 2876623434868073107, guid: 90f6bd099ca01d04ba385c9f62fba47e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876623434868073107, guid: 90f6bd099ca01d04ba385c9f62fba47e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876623434868073107, guid: 90f6bd099ca01d04ba385c9f62fba47e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2876623434868105939, guid: 90f6bd099ca01d04ba385c9f62fba47e, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2876623434868105939, guid: 90f6bd099ca01d04ba385c9f62fba47e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -82.891
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2876623434868105939, guid: 90f6bd099ca01d04ba385c9f62fba47e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.72
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2876623434868105939, guid: 90f6bd099ca01d04ba385c9f62fba47e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.813
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2876623434868105939, guid: 90f6bd099ca01d04ba385c9f62fba47e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8110,15 +8122,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8166,10 +8178,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 16dcb61846b97184ea53f7b45c8e17d9, type: 2}
     - target: {fileID: 919132149155446097, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_Name
-      value: Shield01
+      value: ScreamShield
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
+--- !u!1 &3990704062219032907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
+  m_PrefabInstance: {fileID: 4296642825359664154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4335282676185842673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
