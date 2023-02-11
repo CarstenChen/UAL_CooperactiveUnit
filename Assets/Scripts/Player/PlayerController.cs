@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     protected float idleTimeout = 5f;  //多久开始考虑idle动画
     protected float idleTimer;
     protected AnimatorInfo animatorCache;
+    protected AnimatorInfo animatorCacheExtraLayer;
 
     protected bool isAttacking;
 
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerController = GetComponent<CharacterController>();
         animatorCache = new AnimatorInfo(animator);
+        animatorCacheExtraLayer = new AnimatorInfo(animator);
         playerScreenEffects = GetComponent<PlayerScreenEffects>();
 
         SceneManager.activeSceneChanged += Spawn;
@@ -81,12 +83,13 @@ public class PlayerController : MonoBehaviour
     {
         //存储动画状态
         CacheAnimatorState();
+        CacheExtraAnimatorState();
         //播放标签为“BlockInput”的动画时，禁止输入
         //UpdateInputBlock();
 
         //后续尖叫可能用得上
         //DealWithScreamAttackAnimation();
-        if(canScream)
+        if (canScream)
         Scream();
 
         CalculateHorizontalMovement();
@@ -288,6 +291,19 @@ public class PlayerController : MonoBehaviour
         animatorCache.nextStateInfo = animator.GetNextAnimatorStateInfo(0);
     }
 
+    void CacheExtraAnimatorState()
+    {
+        //上一帧动画信息记录
+        animatorCacheExtraLayer.previousCurrentStateInfo = animatorCache.currentStateInfo;
+        animatorCacheExtraLayer.previousIsAnimatorTransitioning = animatorCache.isAnimatorTransitioning;
+        animatorCacheExtraLayer.previousNextStateInfo = animatorCache.nextStateInfo;
+
+        //当前帧动画信息更新
+        animatorCacheExtraLayer.currentStateInfo = animator.GetCurrentAnimatorStateInfo(1);
+        animatorCacheExtraLayer.isAnimatorTransitioning = animator.IsInTransition(1);
+        animatorCacheExtraLayer.nextStateInfo = animator.GetNextAnimatorStateInfo(1);
+    }
+
     void UpdateInputBlock()
     {
         //播放标签为“BlockInput”的动画时，禁止输入
@@ -402,6 +418,9 @@ public class PlayerController : MonoBehaviour
                 playerScreenEffects.DealWithRingDisplay();
                 screamEffect.SetActive(false);
                 screamEffect.SetActive(true);
+
+                animator.SetBool("Scream", true);
+                StartCoroutine(ResetScreamAnim());
             }
             else
             {
@@ -440,5 +459,19 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         onSpawn = false;
+    }
+
+    IEnumerator ResetScreamAnim()
+    {
+        yield return null;
+        if(animatorCacheExtraLayer.currentStateInfo.IsName("Scream")&& animatorCache.currentStateInfo.normalizedTime >= 1)
+        {
+            animator.SetBool("Scream", false);
+        }
+        else
+        {
+            StartCoroutine(ResetScreamAnim());
+        }
+
     }
 }
