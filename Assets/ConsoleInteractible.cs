@@ -11,8 +11,9 @@ public class ConsoleInteractible : Interactibes
     public Transform standPoint;
     public GameObject cameraCenter;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         freeLookCamera = GameObject.Find("TPS FreeLook").GetComponent<CinemachineFreeLook>();
         virtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
     }
@@ -20,12 +21,18 @@ public class ConsoleInteractible : Interactibes
     {
         
         base.Interact();
+        freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
+        PlayerInput.inputBlock = true;
+        StartCoroutine(StartAutoWriting());
+    }
+
+    IEnumerator StartAutoWriting()
+    {
+        yield return new WaitForSeconds(0.05f);
+        FinalSceneAIDirector.Instance.autoWriting = true;
         player.transform.position = standPoint.position;
         player.transform.rotation = standPoint.rotation;
         virtualCamera.LookAt = cameraCenter.transform;
         virtualCamera.Priority = 20;
-        freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
-        PlayerInput.inputBlock = true;
-        FinalSceneAIDirector.Instance.autoWriting = true;
     }
 }

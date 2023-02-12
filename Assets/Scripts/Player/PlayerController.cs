@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System;
 
 
 public class PlayerController : MonoBehaviour
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public float maxMonsterSpeedDecreaseRate = 0.8f;
     public GameObject screamEffect;
 
-    protected Animator animator;
+    [NonSerialized]public Animator animator;
     public PlayerInput playerInput;
     protected CharacterController playerController;
 
@@ -106,6 +107,14 @@ public class PlayerController : MonoBehaviour
     //这个方法会覆盖被选为Animate Physics的Animator Controller的root motion，进而由此函数控制移动
     private void OnAnimatorMove()
     {
+        if (FinalSceneAIDirector.Instance != null)
+        {
+            if (FinalSceneAIDirector.Instance.autoWriting)
+            {
+                return;
+            }
+        }
+
         if (onSpawn) return;
         Vector3 movement = Vector3.zero;
 

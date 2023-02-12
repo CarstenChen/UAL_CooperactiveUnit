@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using Cinemachine;
 
 public class FinalSceneAIDirector : MonoBehaviour
@@ -30,14 +31,21 @@ public class FinalSceneAIDirector : MonoBehaviour
     [SerializeField] protected GameObject finalCameraMoveTo;
     [SerializeField] protected GameObject screamEffect;
 
+    [Header("Player Settings")]
+    public PlayerController player;
+    public float playerWritingAnimTick;
+    protected float tick;
 
-   [System.NonSerialized] protected bool canPress = false;
+
+    [System.NonSerialized] protected bool canPress = false;
     [System.NonSerialized] public bool autoWriting;
     protected float currentKeyNum;
 
     protected int previousPhase;
     protected bool phaseRaised;
 
+    protected string currentKey;
+    protected string previousKey;
 
     
     private void Awake()
@@ -116,6 +124,8 @@ public class FinalSceneAIDirector : MonoBehaviour
     }
     void DealWithAutoWriting()
     {
+        tick -= Time.deltaTime;
+
         if (currentCoolDown > 0)
         {
             Debug.Log(canPress);
@@ -129,10 +139,29 @@ public class FinalSceneAIDirector : MonoBehaviour
 
         if (Keyboard.current.anyKey.isPressed && canPress)
         {
+            //InputSystem.onAnyButtonPress.CallOnce(ctrl => { currentKey = ctrl.name; });
+            //if (currentKey == previousKey)
+            //{
+            //    return;
+            //}
+
             currentKeyNum++;
             Debug.Log(canPress);
             EmitterManager.Instance.RandomArrangeEmitter();
             currentCoolDown = coolDown * (1-winRate);
+            tick = playerWritingAnimTick;
+
+            //InputSystem.onAnyButtonPress.CallOnce(ctrl => { previousKey = ctrl.name; });
+            
+        }
+
+        if (tick > 0)
+        {
+            player.animator.SetBool("Writing", true);
+        }
+        else
+        {
+            player.animator.SetBool("Writing", false);
         }
 
     }

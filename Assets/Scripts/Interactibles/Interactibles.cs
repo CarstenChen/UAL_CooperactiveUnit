@@ -14,14 +14,14 @@ public class Interactibes : MonoBehaviour
     protected bool canInteract = true;
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
 
         interactionUI = player.transform.Find("PlayerCanvas").Find("InteractionUI").gameObject;
     }
-    private void Start()
+    protected virtual void Start()
     {
         interactionUI.SetActive(false);
         if (particle != default)
