@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4618859166011632}
   - component: {fileID: 205914914645918422}
-  - component: {fileID: 1599217177}
+  - component: {fileID: 4511605915862672204}
   m_Layer: 0
   m_Name: RootsUV1_4_MS_P
   m_TagString: Untagged
@@ -317,8 +317,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23536071978830686}
   m_Enabled: 1
---- !u!64 &1599217177
-MeshCollider:
+--- !u!136 &4511605915862672204
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -327,10 +327,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: 5b25d832bee07524aad39572ce8e06e0, type: 3}
+  m_Radius: 4
+  m_Height: 20
+  m_Direction: 1
+  m_Center: {x: 0, y: 5.731435, z: 0.5}
 --- !u!1 &1964149623819618
 GameObject:
   m_ObjectHideFlags: 0

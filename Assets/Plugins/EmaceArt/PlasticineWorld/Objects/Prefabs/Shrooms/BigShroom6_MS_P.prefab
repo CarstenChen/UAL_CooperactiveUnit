@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 4964347880458776}
   - component: {fileID: 205297095796189390}
   - component: {fileID: 5099808695817456910}
+  - component: {fileID: 1217035063532732250}
   m_Layer: 0
   m_Name: BigShroom6_MS_P
   m_TagString: Untagged
@@ -324,8 +325,21 @@ MeshCollider:
   m_GameObject: {fileID: 1703782915272498}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: edb963797b3df7c44bb68735f20daea6, type: 3}
+--- !u!65 &1217035063532732250
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703782915272498}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.03, y: 2.39, z: 1}
+  m_Center: {x: -0.34, y: 1.32, z: 0}

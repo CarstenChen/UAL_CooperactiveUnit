@@ -5,7 +5,7 @@ using UnityEngine;
 public class AIEyeSight : MonoBehaviour
 {
     [Header("Eye Sight Settings")]
-    //public MeshFilter mesh;
+    public MeshFilter mesh;
     [Range(5f, 1000f)]
     public float accuracy = 50;
     [Range(1f, 180f)]
@@ -13,7 +13,8 @@ public class AIEyeSight : MonoBehaviour
     [Range(1f, 50f)]
     public float radius = 5f;
     public float range = 6f;
-    //public bool showLOS = true;
+    public bool showLOS = true;
+    public string detectionTags;
 
     protected AIMonsterController monster;
     protected bool isTriggerRange = false;
@@ -55,7 +56,7 @@ public class AIEyeSight : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, range))
             {
-                if (hit.collider.gameObject.tag == "Player")
+                if (hit.collider.gameObject.tag == detectionTags)
                 {
                     CallBack(hit.collider.gameObject);
                     return;
@@ -70,14 +71,16 @@ public class AIEyeSight : MonoBehaviour
             monster.playerInSight = false;
         }
 
-        //if (showLOS)
-        //{
-        //    DrawLos(newVertices);
-        //}
-        //else
-        //{
-        //    mesh.mesh.Clear();
-        //}
+
+
+        if (showLOS)
+        {
+            DrawLos(newVertices);
+        }
+        else
+        {
+            mesh.mesh.Clear();
+        }
     }
 
     void Initialize()
@@ -92,11 +95,12 @@ public class AIEyeSight : MonoBehaviour
                 range = light.range;
             }
         }
+
     }
 
     void CallBack(GameObject obj)
     {
-        //Debug.Log("发现目标:" + obj.name);
+        Debug.Log("See:" + obj.name);
         monster.playerInSight = true;
     }
 
@@ -122,27 +126,27 @@ public class AIEyeSight : MonoBehaviour
         return itemList;
     }
 
-    //void DrawLos(List<Vector3> newVertices)
-    //{
-    //    mesh.mesh.Clear();
-    //    List<Vector2> newUV = new List<Vector2>();
-    //    List<int> newTriangles = new List<int>();
-    //    for (int i = 1; i < newVertices.Count - 1; i++)
-    //    {
-    //        newTriangles.Add(0);
-    //        newTriangles.Add(i);
-    //        newTriangles.Add(i + 1);
-    //    }
-    //    for (int i = 0; i < newVertices.Count; i++)
-    //    {
-    //        newUV.Add(new Vector2(newVertices[i].x, newVertices[i].z));
-    //    }
-    //    mesh.mesh.vertices = newVertices.ToArray();
-    //    mesh.mesh.triangles = newTriangles.ToArray();
-    //    mesh.mesh.uv = newUV.ToArray();
-    //    mesh.transform.rotation = Quaternion.identity;
-    //    mesh.mesh.RecalculateNormals();
-    //    }
+    void DrawLos(List<Vector3> newVertices)
+    {
+        mesh.mesh.Clear();
+        List<Vector2> newUV = new List<Vector2>();
+        List<int> newTriangles = new List<int>();
+        for (int i = 1; i < newVertices.Count - 1; i++)
+        {
+            newTriangles.Add(0);
+            newTriangles.Add(i);
+            newTriangles.Add(i + 1);
+        }
+        for (int i = 0; i < newVertices.Count; i++)
+        {
+            newUV.Add(new Vector2(newVertices[i].x, newVertices[i].z));
+        }
+        mesh.mesh.vertices = newVertices.ToArray();
+        mesh.mesh.triangles = newTriangles.ToArray();
+        mesh.mesh.uv = newUV.ToArray();
+        mesh.transform.rotation = Quaternion.identity;
+        mesh.mesh.RecalculateNormals();
+    }
 
     void OnTriggerStay(Collider other)
     {
@@ -151,6 +155,7 @@ public class AIEyeSight : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isTriggerRange = true;
+            Debug.Log("Detect:" + other.gameObject.name);
             monster.playerFirstFound = true;
         }
     }

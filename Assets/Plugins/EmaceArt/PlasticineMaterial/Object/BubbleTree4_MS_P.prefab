@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 4698258795161258}
   - component: {fileID: 205198752287449788}
   - component: {fileID: 5198740727069130708}
+  - component: {fileID: 8637040316387681162}
   m_Layer: 0
   m_Name: BubbleTree4_MS_P
   m_TagString: Untagged
@@ -433,8 +434,21 @@ MeshCollider:
   m_GameObject: {fileID: 1753307509642898}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300020, guid: e99230b8ad6a67d498a620277811c73b, type: 3}
+--- !u!135 &8637040316387681162
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753307509642898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.62
+  m_Center: {x: -0.55, y: 5.22, z: 0}

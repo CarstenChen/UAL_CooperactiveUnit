@@ -7469,7 +7469,6 @@ GameObject:
   - component: {fileID: 5757089391302172477}
   - component: {fileID: 1767493555074866365}
   - component: {fileID: 7077066666571862855}
-  - component: {fileID: 6992446343276215933}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7596,10 +7595,10 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.3
-  m_SlopeLimit: 90
+  m_SlopeLimit: 60
   m_StepOffset: 0
   m_SkinWidth: 0.01
-  m_MinMoveDistance: 0.01
+  m_MinMoveDistance: 0.02
   m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!114 &1767493555074866365
 MonoBehaviour:
@@ -7636,22 +7635,10 @@ SphereCollider:
   m_GameObject: {fileID: 5757089391599193240}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &6992446343276215933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5757089391599193240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4fb2a63960715e4f81676c4b4f4ce7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5757089391671880360
 GameObject:
   m_ObjectHideFlags: 0
@@ -8062,6 +8049,10 @@ PrefabInstance:
     - target: {fileID: 5309510568129782115, guid: 71242ab589a65c346ad3bd38c15fcc8f, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309510568129782115, guid: 71242ab589a65c346ad3bd38c15fcc8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5309510568129782119, guid: 71242ab589a65c346ad3bd38c15fcc8f, type: 3}
       propertyPath: m_Pivot.x

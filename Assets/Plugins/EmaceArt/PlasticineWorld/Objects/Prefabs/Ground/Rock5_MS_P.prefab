@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 4758673888609154}
   - component: {fileID: 205184917305776284}
   - component: {fileID: 1937219641040088177}
+  - component: {fileID: 6676765181656267116}
   m_Layer: 0
   m_Name: Rock5_MS_P
   m_TagString: Untagged
@@ -321,8 +322,21 @@ MeshCollider:
   m_GameObject: {fileID: 1952295562036670}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: c3b38eedd243c7f47ae63d58741aa5fc, type: 3}
+--- !u!65 &6676765181656267116
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952295562036670}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.91, y: 2.65, z: 2.45}
+  m_Center: {x: 0, y: 1.44, z: 0.54}

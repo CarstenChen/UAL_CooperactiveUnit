@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 4604401347551446}
   - component: {fileID: 205456823150249950}
   - component: {fileID: 7999764565902253702}
+  - component: {fileID: 692994574782628389}
   m_Layer: 0
   m_Name: Clif6_MS_P
   m_TagString: Untagged
@@ -243,11 +244,24 @@ MeshCollider:
   m_GameObject: {fileID: 1836633396438698}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 015f263b8f5ea9844a49b7aefe593277, type: 3}
+--- !u!135 &692994574782628389
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836633396438698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 17.4
+  m_Center: {x: 0.46, y: -9.1, z: 0}
 --- !u!1 &1914128687082758
 GameObject:
   m_ObjectHideFlags: 0

@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 4067569957202150}
   - component: {fileID: 205595731588027338}
   - component: {fileID: 5358528281908686019}
+  - component: {fileID: 9213750464563102897}
   m_Layer: 0
   m_Name: Rock1_MS_P
   m_TagString: Untagged
@@ -321,8 +322,21 @@ MeshCollider:
   m_GameObject: {fileID: 1949370341930786}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300012, guid: b7708df207de2514eab48ba6fe211482, type: 3}
+--- !u!135 &9213750464563102897
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949370341930786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Center: {x: 0, y: 0.37, z: -0.06}
