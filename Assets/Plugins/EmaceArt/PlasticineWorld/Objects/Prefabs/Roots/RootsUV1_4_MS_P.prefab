@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4618859166011632}
   - component: {fileID: 205914914645918422}
-  - component: {fileID: 1401934644995459769}
+  - component: {fileID: 1599217177}
   m_Layer: 0
   m_Name: RootsUV1_4_MS_P
   m_TagString: Untagged
@@ -276,7 +276,7 @@ Transform:
   m_GameObject: {fileID: 1858813131601298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.57, y: 0, z: -0.49}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.80555, y: 0.80554986, z: 0.80555}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4596401194717904}
@@ -317,8 +317,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23536071978830686}
   m_Enabled: 1
---- !u!136 &1401934644995459769
-CapsuleCollider:
+--- !u!64 &1599217177
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -327,10 +327,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 3
-  m_Height: 20
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.3874989, z: 0.0070643425}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 5b25d832bee07524aad39572ce8e06e0, type: 3}
 --- !u!1 &1964149623819618
 GameObject:
   m_ObjectHideFlags: 0

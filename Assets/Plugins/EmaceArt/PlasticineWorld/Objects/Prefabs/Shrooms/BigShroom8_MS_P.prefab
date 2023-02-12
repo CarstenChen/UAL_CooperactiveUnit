@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4474693903096592}
   - component: {fileID: 205192294283866900}
-  - component: {fileID: 8073453718984388338}
+  - component: {fileID: 6561781710269049238}
   m_Layer: 0
   m_Name: BigShroom8_MS_P
   m_TagString: Untagged
@@ -193,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 1749875414000626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.63762, y: 0.63762, z: 0.63762003}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4618041913211472}
@@ -229,8 +229,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23908492289944044}
   m_Enabled: 1
---- !u!136 &8073453718984388338
-CapsuleCollider:
+--- !u!64 &6561781710269049238
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -239,10 +239,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.8
-  m_Height: 1.5
-  m_Direction: 1
-  m_Center: {x: -0.000000018483806, y: 0.8833652, z: 0.13478836}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 59e29266e3daba74c9f72c4ffe0ce2c0, type: 3}
 --- !u!1 &1777241244229576
 GameObject:
   m_ObjectHideFlags: 0
