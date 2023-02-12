@@ -37,6 +37,8 @@ public class AIDirector : MonoBehaviour
     private void Start()
     {
         playerSan = totalPlayerSan;
+
+        GuideUIController.instance.ShowGuideUI(GuideUIController.instance.guideUI[0]);
     }
     // Update is called once per frame
     void Update()

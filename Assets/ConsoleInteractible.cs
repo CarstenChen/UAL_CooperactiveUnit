@@ -21,6 +21,7 @@ public class ConsoleInteractible : Interactibes
     {
         
         base.Interact();
+        GuideUIController.instance.ShowGuideUI(GuideUIController.instance.guideUI[2]);
         freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
         PlayerInput.inputBlock = true;
         StartCoroutine(StartAutoWriting());
