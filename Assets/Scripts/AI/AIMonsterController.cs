@@ -211,26 +211,16 @@ public class AIMonsterController : MonoBehaviour
     private void UpdateBodyYAxis()
     {
         RaycastHit hit;
-        Ray ray = new Ray(transform.position + Vector3.up * 0.5f, -Vector3.up);
+        int Rmask = LayerMask.GetMask("Terrain");
 
-        Debug.DrawRay(transform.position + Vector3.up * 0.5f, -Vector3.up, Color.red);
+        Vector3 Point_dir = body.TransformDirection(Vector3.down);
 
-        if (Physics.Raycast(ray, out hit, 3f, adjustNormalLayer, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(body.position, Point_dir, out hit, 50.0f, Rmask))
         {
-            if (hit.normal == Vector3.up)
-            {
-                if (body.rotation != transform.rotation)
-                {
-                    body.rotation = Quaternion.Lerp(body.rotation, transform.rotation, 0.1f);
-                }
-                else
-                {
-                    return;
-                }
-            }
 
-            Quaternion groundRotation = Quaternion.LookRotation(Vector3.Cross(hit.normal, Vector3.Cross(body.forward, hit.normal)), hit.normal);
-            body.rotation = Quaternion.Lerp(body.rotation, groundRotation, 0.1f);
+            Quaternion NextRot = Quaternion.LookRotation(Vector3.Cross(hit.normal, Vector3.Cross(transform.forward, hit.normal)), hit.normal);
+
+            body.rotation = Quaternion.Lerp(body.rotation, NextRot, 0.1f);
         }
     }
 

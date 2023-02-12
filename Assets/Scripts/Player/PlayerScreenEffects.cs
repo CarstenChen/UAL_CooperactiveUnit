@@ -80,7 +80,7 @@ public class PlayerScreenEffects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SphereCollider>().radius = monsterDetectRange;
+        
         //volume.profile.TryGet<Vignette>(out vignette);
     }
 
@@ -113,26 +113,29 @@ public class PlayerScreenEffects : MonoBehaviour
         if (other.tag == "Monster")
         {
             if (this.enabled == false) return;
-            EnableEffect();
 
             float distance = Vector3.Distance(other.transform.position, transform.position);
             effectScaleValue = Mathf.Clamp(distance / monsterDetectRange, 0, 1);
-            //vignette.intensity.value = Mathf.Clamp(value, 0, 1);
+            //effectScaleValue = distance / monsterDetectRange;
 
-            //vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1) * effectScaleValue;
-            //vignetteMtl.SetFloat("_ScreenEdgeSize", effectScaleValue);
+            //if (effectScaleValue >= 1f) return;
 
-            
+            EnableEffect();
+
+
+
+
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize*effectScaleValue;
 
             if (effectScaleValue - ringScaleValue < 0)
             {
                 ResetForwardRing();
             }
-            
-            //ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1) * ringScaleValue;
 
-            if(ringScaleValue> minShieldSize / originalShieldSize)
+            //shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize * ringScaleValue;
+            //UpdateRingImage();
+
+            if (ringScaleValue> minShieldSize / originalShieldSize)
             {
                 shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize * ringScaleValue;
                 UpdateRingImage();
@@ -153,6 +156,7 @@ public class PlayerScreenEffects : MonoBehaviour
         //vignetteMtl.SetFloat("_FullScreenIntensity", vignetteIntesity);
 
         attackModel.SetActive(true);
+
         if (!ringLocked)
             shieldModel.SetActive(true);
         attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize * effectScaleValue;

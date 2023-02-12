@@ -3292,8 +3292,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107891753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 5.5, y: 5.5, z: 5.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3564079450602268297}
@@ -7528,8 +7528,8 @@ MonoBehaviour:
   maxRotateSpeed: 500
   gravity: 10
   initialJumpSpeed: 10
-  minMonsterSpeedDecreaseRate: 0.6
-  maxMonsterSpeedDecreaseRate: 0.8
+  minMonsterSpeedDecreaseRate: 0.7
+  maxMonsterSpeedDecreaseRate: 0.9
   screamEffect: {fileID: 3710019163638138243}
   playerInput: {fileID: 5757089391599193245}
 --- !u!114 &5757089391599193247
@@ -7612,19 +7612,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400d9fc43d275824ea35ada501cb1316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterDetectRange: 25
+  monsterDetectRange: 50
   effectScaleValue: 0
   ringScaleValue: 1
   monster: {fileID: 0}
   isGetingClose: 0
   shieldModel: {fileID: 3990704062219032907}
-  originalShieldSize: 3.5
-  minShieldSize: 1
+  originalShieldSize: 2.5
+  minShieldSize: 0.05
   shieldColor1: {r: 0, g: 1, b: 1, a: 0.1764706}
   shieldColor2: {r: 1, g: 0.5958981, b: 0, a: 1}
   shieldMaterial: {fileID: 2100000, guid: 16dcb61846b97184ea53f7b45c8e17d9, type: 2}
   attackModel: {fileID: 1107891753}
-  originalAttackSize: 8
+  originalAttackSize: 5.5
   ringLocked: 0
 --- !u!135 &7077066666571862855
 SphereCollider:
@@ -7895,23 +7895,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
       propertyPath: m_LocalPosition.z

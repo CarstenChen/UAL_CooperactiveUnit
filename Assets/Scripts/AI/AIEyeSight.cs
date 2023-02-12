@@ -10,7 +10,7 @@ public class AIEyeSight : MonoBehaviour
     public float accuracy = 50;
     [Range(1f, 180f)]
     public float angle = 60f;
-    [Range(1f, 50f)]
+    [Range(1f, 180f)]
     public float radius = 5f;
     public float range = 6f;
     public bool showLOS = true;
@@ -91,7 +91,7 @@ public class AIEyeSight : MonoBehaviour
             if (light.type == LightType.Spot)
             {
                 angle = light.spotAngle / 2;
-                radius = light.spotAngle / 8;
+                radius = light.spotAngle/2;
                 range = light.range;
             }
         }
