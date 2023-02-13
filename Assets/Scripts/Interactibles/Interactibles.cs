@@ -32,10 +32,6 @@ public class Interactibes : MonoBehaviour
 
     }
 
-    public virtual void OnTriggerForcedEnd()
-    {
-
-    }
 
 
     private void OnTriggerStay(Collider other)

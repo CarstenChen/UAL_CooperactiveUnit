@@ -34,7 +34,7 @@ public class StoryInteractible : Interactibes
         yield return null;
         if (!hidden)
         {
-            hideGameObject.transform.Translate(new Vector3(0, -0.02f, 0));
+            hideGameObject.transform.Translate(new Vector3(0, -0.04f, 0));
             StartCoroutine(HideGameObject());
         }
         else

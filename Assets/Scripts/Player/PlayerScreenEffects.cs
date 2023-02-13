@@ -105,6 +105,7 @@ public class PlayerScreenEffects : MonoBehaviour
 
             shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize;
             shieldMaterial.SetColor("_FresnelColor", shieldColor1);
+            shieldMaterial.SetColor("_BackColor", shieldColor1);
         }
     }
 
@@ -232,11 +233,13 @@ public class PlayerScreenEffects : MonoBehaviour
         {
             //ringImage.sprite = highlightSprite;
             shieldMaterial.SetColor("_FresnelColor", shieldColor2);
+            shieldMaterial.SetColor("_BackColor", shieldColor2);
         }
         else
         {
             //ringImage.sprite = normalSprite;
             shieldMaterial.SetColor("_FresnelColor", shieldColor1);
+            shieldMaterial.SetColor("_BackColor", shieldColor1);
         }
     }
 }
