@@ -7620,7 +7620,7 @@ MonoBehaviour:
   isGetingClose: 0
   shieldModel: {fileID: 3990704062219032907}
   originalShieldSize: 2.5
-  minShieldSize: 0.05
+  minShieldSize: 0.01
   shieldColor1: {r: 0, g: 1, b: 1, a: 0.1764706}
   shieldColor2: {r: 1, g: 0.5958981, b: 0, a: 1}
   shieldMaterial: {fileID: 2100000, guid: 16dcb61846b97184ea53f7b45c8e17d9, type: 2}
@@ -8053,7 +8053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5309510568129782115, guid: 71242ab589a65c346ad3bd38c15fcc8f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5309510568129782119, guid: 71242ab589a65c346ad3bd38c15fcc8f, type: 3}
       propertyPath: m_Pivot.x
@@ -8237,6 +8237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UV
       objectReference: {fileID: 0}
+    - target: {fileID: -5957050453599665154, guid: fb110c0ed8f217747946d1ea9198a967, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4c8ed28444df8c48b8a616238984cb9, type: 2}
     - target: {fileID: -4456828611979465053, guid: fb110c0ed8f217747946d1ea9198a967, type: 3}
       propertyPath: m_Name
       value: 6
@@ -8281,6 +8285,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 389ea9052b8d0e94aa3eccee150ad021, type: 2}
+    - target: {fileID: 3056906454176760320, guid: fb110c0ed8f217747946d1ea9198a967, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0990b794d550d084d94d531b8941380f, type: 2}
     - target: {fileID: 4999241567009315057, guid: fb110c0ed8f217747946d1ea9198a967, type: 3}
       propertyPath: m_Name
       value: 9
@@ -8342,6 +8350,10 @@ PrefabInstance:
     - target: {fileID: 166128, guid: 18dbd9456e1b03346a652aa4212da728, type: 3}
       propertyPath: m_Name
       value: SanEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 166128, guid: 18dbd9456e1b03346a652aa4212da728, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 487524, guid: 18dbd9456e1b03346a652aa4212da728, type: 3}
       propertyPath: m_RootOrder
