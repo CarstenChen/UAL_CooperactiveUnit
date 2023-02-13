@@ -10,6 +10,7 @@ public class StoryInteractible : Interactibes
     public float duration;
 
     protected bool hidden=false;
+
     public override void Interact()
     {
         base.Interact();

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SanInteractible : Interactibes
 {
     [Header("San Interactibe Settings")]
-    public ParticleSystem sanRecoverParticle = default;
+    public GameObject sanRecoverParticle = default;
 
     public float sanRecover = 60f;
     public override void Interact()
@@ -13,7 +13,8 @@ public class SanInteractible : Interactibes
         base.Interact();
 
         AIDirector.Instance.AddSan(sanRecover);
-        sanRecoverParticle.Play();
+        sanRecoverParticle.SetActive(false);
+        sanRecoverParticle.SetActive(true);
         
     }
 }

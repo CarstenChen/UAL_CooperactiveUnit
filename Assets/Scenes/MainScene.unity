@@ -404,7 +404,7 @@ PrefabInstance:
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
       value: 
-      objectReference: {fileID: 722099715}
+      objectReference: {fileID: 370574643}
     - target: {fileID: 6162420755824931790, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: m_Name
       value: San (1)
@@ -2145,6 +2145,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4571375709318344, guid: 141eaaf7334bbfa40ae69579ba766c85, type: 3}
   m_PrefabInstance: {fileID: 365774309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &370574643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7832250573364025211, guid: 195b7f579d7116c458498fde69073473, type: 3}
+  m_PrefabInstance: {fileID: 5757089391302172475}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &401978256 stripped
 MonoBehaviour:
@@ -3953,11 +3958,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4618859166011632, guid: 00d579a46e70f154badb7868ee6d303e, type: 3}
   m_PrefabInstance: {fileID: 1536290236}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &722099715 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5757089392492690828, guid: 195b7f579d7116c458498fde69073473, type: 3}
-  m_PrefabInstance: {fileID: 5757089391302172475}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &738956754
 GameObject:
   m_ObjectHideFlags: 0
@@ -4971,7 +4971,7 @@ PrefabInstance:
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
       value: 
-      objectReference: {fileID: 722099715}
+      objectReference: {fileID: 370574643}
     - target: {fileID: 6162420755824931790, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: m_Name
       value: San
@@ -7576,19 +7576,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 818302815}
     m_Modifications:
     - target: {fileID: 7944135822797271713, guid: 0252ab3236318b24a861a016fffb2b87, type: 3}
-      propertyPath: duration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7944135822797271713, guid: 0252ab3236318b24a861a016fffb2b87, type: 3}
-      propertyPath: startDelay
-      value: 1
+      propertyPath: particle
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7944135822797271713, guid: 0252ab3236318b24a861a016fffb2b87, type: 3}
       propertyPath: hideGameObject
-      value: 
-      objectReference: {fileID: 1171503826}
-    - target: {fileID: 7944135822797271713, guid: 0252ab3236318b24a861a016fffb2b87, type: 3}
-      propertyPath: changeGameObject
       value: 
       objectReference: {fileID: 1171503826}
     - target: {fileID: 7944135822797271726, guid: 0252ab3236318b24a861a016fffb2b87, type: 3}
@@ -9615,7 +9607,7 @@ PrefabInstance:
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
       value: 
-      objectReference: {fileID: 722099715}
+      objectReference: {fileID: 370574643}
     - target: {fileID: 6162420755824931790, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: m_Name
       value: San (2)
@@ -10718,15 +10710,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953238994378, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.05184658
+      value: -0.051846575
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953238994378, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017712074
+      value: -0.00000001771208
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953238994378, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 9.1954727e-10
+      value: -9.195475e-10
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953301268270, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_RootOrder
@@ -11015,6 +11007,10 @@ PrefabInstance:
       propertyPath: TPSCamera
       value: 
       objectReference: {fileID: 1676734569}
+    - target: {fileID: 7832250573364025211, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 195b7f579d7116c458498fde69073473, type: 3}
 --- !u!1001 &7073430667215693335
