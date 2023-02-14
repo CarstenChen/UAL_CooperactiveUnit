@@ -44,6 +44,8 @@ public class MonsterChaseState : State
     public void OnStateExit()
     {
         monster.readyToChase = false;
+        monster.playerInSphereTrigger = false;
+        monster.playerHeard = false;
         agent.speed = param.normalChaseSpeed;
         PlayerScreenEffects.Instance.enabled = false;
     }

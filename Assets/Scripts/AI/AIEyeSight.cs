@@ -157,6 +157,11 @@ public class AIEyeSight : MonoBehaviour
             isTriggerRange = true;
             Debug.Log("Detect:" + other.gameObject.name);
             monster.playerFirstFound = true;
+
+            if (Random.Range(0, 500) == 0 && !monster.playerHeard)
+            {
+                monster.playerHeard = true;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -164,6 +169,7 @@ public class AIEyeSight : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isTriggerRange = false;
+            monster.playerHeard = false;
         }
 
     }

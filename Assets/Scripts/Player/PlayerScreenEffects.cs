@@ -55,6 +55,7 @@ public class PlayerScreenEffects : MonoBehaviour
     protected Coroutine currentRingCoroutine;
 
     public bool ringLocked;
+    public bool playerCannotScream;
     private void OnEnable()
     {
         ringLocked = false;
@@ -98,11 +99,6 @@ public class PlayerScreenEffects : MonoBehaviour
 
             EnableEffect();
 
-            //vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-
-            //ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            //ringImage.sprite = normalSprite;
-
             shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize;
             shieldMaterial.SetColor("_FresnelColor", shieldColor1);
             shieldMaterial.SetColor("_BackColor", shieldColor1);
@@ -119,16 +115,14 @@ public class PlayerScreenEffects : MonoBehaviour
             effectScaleValue = Mathf.Clamp(distance / monsterDetectRange, 0, 1);
             //effectScaleValue = distance / monsterDetectRange;
 
-            //if (effectScaleValue >= 1f) return;
+            if (effectScaleValue >= 1f) return;
+
 
             EnableEffect();
 
-
-
-
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize*effectScaleValue;
 
-            if (effectScaleValue - ringScaleValue < 0)
+            if (effectScaleValue - ringScaleValue < 0 || (playerCannotScream && effectScaleValue - ringScaleValue>0.1f))
             {
                 ResetForwardRing();
             }
@@ -138,12 +132,13 @@ public class PlayerScreenEffects : MonoBehaviour
 
             if (ringScaleValue> minShieldSize / originalShieldSize)
             {
+                playerCannotScream = false;
                 shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize * ringScaleValue;
                 UpdateRingImage();
             }
             else
             {
-                ringLocked = true;
+                playerCannotScream = true;
                 shieldModel.SetActive(false);
             }
         }
@@ -151,17 +146,12 @@ public class PlayerScreenEffects : MonoBehaviour
 
     protected void EnableEffect()
     {
-        //vignetteImg.enabled = true;
-        //if (!ringLocked)
-        //    ringImage.enabled = true;
-        //vignetteMtl.SetFloat("_FullScreenIntensity", vignetteIntesity);
-
         attackModel.SetActive(true);
 
-        if (!ringLocked)
+        if (!ringLocked &&!playerCannotScream)
             shieldModel.SetActive(true);
-        attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize * effectScaleValue;
 
+        attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize * effectScaleValue;
     }
 
     private void OnDisable()
@@ -204,7 +194,7 @@ public class PlayerScreenEffects : MonoBehaviour
     public void ResetForwardRing()
     {
 
-        ringScaleValue = Mathf.Clamp(effectScaleValue - UnityEngine.Random.Range(0.1f, 0.15f), 0, 1f);
+        ringScaleValue = Mathf.Clamp(effectScaleValue - UnityEngine.Random.Range(0.1f, 0.1f), 0, 1f);
     }
 
     public void DealWithRingDisplay()

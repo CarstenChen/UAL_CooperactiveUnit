@@ -18,6 +18,7 @@ public class Parameter
     public float minSpeed;
     public float[] coolDown;
     public int dizzyHitTimes=3;
+    public float catchDistance = 2f;
 
     [Header("Animation Settings")]
     public Animator animator;
@@ -43,6 +44,7 @@ public class AIMonsterController : MonoBehaviour
     [NonSerialized] public bool routeChanged;
     [NonSerialized] public bool playerInSight;
     [NonSerialized] public bool playerInSphereTrigger;
+    [NonSerialized] public bool playerHeard;
     [NonSerialized] public bool playerFirstFound;
     [NonSerialized] public Waypoints currentPatrolRoute;
     [NonSerialized] public int hitTimes = 0;
@@ -110,7 +112,7 @@ public class AIMonsterController : MonoBehaviour
         }
 
         //attack first when meet
-        if(!attackOver && playerInSphereTrigger && Vector3.Distance(param.chaseTarget.position,transform.position)<=agent.stoppingDistance && currentState.GetType() == typeof(MonsterChaseState))
+        if(!attackOver && playerInSphereTrigger && Vector3.Distance(param.chaseTarget.position,transform.position)<= param.catchDistance && currentState.GetType() == typeof(MonsterChaseState))
         {
             SwitchToState(StateType.Attack);
         }
@@ -143,7 +145,7 @@ public class AIMonsterController : MonoBehaviour
 
         //dash after raid to player
         if (readyToChase && currentState.GetType() == typeof(MonsterRaidState) || 
-            (playerInSight && !raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
+            ((playerHeard||playerInSight) && !raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Chase);
         }
