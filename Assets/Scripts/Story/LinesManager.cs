@@ -44,11 +44,14 @@ public class LinesManager : MonoBehaviour
     
     public void DisplayLine(int plotID,int index)
     {
+        if (isPlayingLines && index ==0) return;
+
         if(index == 0)
         {
             StopAllCoroutines();
             StartCoroutine(SetLineUI(true, 0f));
             isPlayingLines = true;
+
             //textAnimator.SetBool("FadeIn", true);
             //textAnimator.SetBool("FadeOut", false);
         }

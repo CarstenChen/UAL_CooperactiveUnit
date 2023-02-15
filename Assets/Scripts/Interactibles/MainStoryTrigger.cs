@@ -9,9 +9,12 @@ public class MainStoryTrigger : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex, 0);
-
-            AIDirector.Instance.ReadMainStory();
+           
+            if (!LinesManager.isPlayingLines)
+            {
+                LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex, 0);
+                AIDirector.Instance.ReadMainStory();
+            }
 
             StartCoroutine(LockMainStoryTrigger(3f));
         }

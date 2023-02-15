@@ -66,6 +66,7 @@ public class AIDirector : MonoBehaviour
             return;
 
         currentMainStoryIndex++;
+        player.GetComponent<PlayerChangeBody>().UpdatePlayerBodyMesh();
         Debug.Log("Player has read main story");
 
         if (currentTensiveTimeCoroutine != null)
