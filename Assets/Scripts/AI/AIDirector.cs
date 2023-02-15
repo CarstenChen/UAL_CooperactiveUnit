@@ -11,6 +11,7 @@ public class AIDirector : MonoBehaviour
     public AIMonsterController monster;
     [Header("Player Settings")]
     public PlayerController player;
+    public Transform playerPosCheck;
     public float totalPlayerSan = 300f;
     [Header("Story Settings")]
     public int mainStoryNum;
@@ -102,14 +103,16 @@ public class AIDirector : MonoBehaviour
     //calculate which is the route that is the most possible player destination for monster petrol
     public int CalculateRouteByPlayerDesiredDestination(Waypoints[] routes)
     {
+        
         int pickRoute = 0;
 
-        for (int i = 0; i < routes.Length - 1; i++)
+        for (int i = 0; i < routes.Length; i++)
         {
-            if (Vector3.Distance(player.transform.position, routes[i].root.position) > Vector3.Distance(player.transform.position, routes[i + 1].root.position))
-            {
-                pickRoute = i + 1;
+            if(Vector3.Distance(playerPosCheck.position, routes[pickRoute].root.position) >= Vector3.Distance(playerPosCheck.position, routes[i].root.position))
+                {
+                pickRoute = i;
             }
+
         }
 
         return pickRoute;

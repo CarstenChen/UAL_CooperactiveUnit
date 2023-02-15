@@ -88,7 +88,7 @@ public class AIMonsterController : MonoBehaviour
         //ÒÔIdle×´Ì¬½øÈë
         SwitchToState(StateType.Idle);
 
-        InvokeRepeating("AdjustPatrolRoutes", 0f, 3f);
+        InvokeRepeating("AdjustPatrolRoutes", 0f, 1f);
 
         agent.speed = param.normalChaseSpeed;
         agent.acceleration = param.normalAcceleration;
@@ -145,7 +145,7 @@ public class AIMonsterController : MonoBehaviour
 
         //dash after raid to player
         if (readyToChase && currentState.GetType() == typeof(MonsterRaidState) || 
-            ((playerHeard||playerInSight) && !raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
+            (((playerHeard&&!playerInSight) || playerInSight) && !raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Chase);
         }
@@ -242,7 +242,8 @@ public class AIMonsterController : MonoBehaviour
         if (currentPatrolRoute != previousPatrolRoute)
         {
             routeChanged = true;
-           // Debug.Log("ChangeRoute");
+            Debug.Log("ChangeRoute");
+            Debug.Log(currentPatrolRoute.root.name);
         }
     }
 
