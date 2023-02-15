@@ -9527,6 +9527,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4731361330691740, guid: 6a7149f2461bcb94caeb65222e5f39c1, type: 3}
   m_PrefabInstance: {fileID: 1507165213}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1509634515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509634516}
+  - component: {fileID: 1509634518}
+  - component: {fileID: 1509634517}
+  m_Layer: 0
+  m_Name: Caishuhuan
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 40
+  m_IsActive: 1
+--- !u!4 &1509634516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509634515}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1905757400}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!154 &1509634517
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509634515}
+  m_Material: {fileID: 0}
+  m_Enabled: 1
+  m_TerrainData: {fileID: 15600000, guid: c94d60cdd0cdcc142b6cd0b8c6425055, type: 2}
+  m_EnableTreeColliders: 1
+--- !u!218 &1509634518
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509634515}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: c94d60cdd0cdcc142b6cd0b8c6425055, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 1
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ScaleInLightmap: 0.8
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
 --- !u!4 &1512847562 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4499623670020848, guid: 7e56c90e27178e94c815558071846c3d, type: 3}
@@ -10086,7 +10164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster: {fileID: 0}
   player: {fileID: 315413413}
-  playerPosCheck: {fileID: 0}
   totalPlayerSan: 300
   mainStoryNum: 3
   finalSceneGate: {fileID: 0}
@@ -17132,6 +17209,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 827878536}
+  - {fileID: 1509634516}
   m_Father: {fileID: 593513685}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19963,7 +20041,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2217962835276254474}
-  m_LocalRotation: {x: 0.0097534135, y: -0.0000000021506952, z: 2.0977617e-11, w: 0.99995244}
+  m_LocalRotation: {x: 0.0097534135, y: 0.0000000021506952, z: -2.0977617e-11, w: 0.99995244}
   m_LocalPosition: {x: 121.2, y: 31.390308, z: 122.24763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20189,7 +20267,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2217962836024526389}
-  m_LocalRotation: {x: 0.009753412, y: -0.0000000010753476, z: 1.0488807e-11, w: 0.99995244}
+  m_LocalRotation: {x: 0.009753412, y: 0.0000000010753476, z: -1.0488807e-11, w: 0.99995244}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30158,7 +30236,6 @@ MonoBehaviour:
   attackModel: {fileID: 5757089392409004306}
   originalAttackSize: 8
   ringLocked: 0
-  playerCannotScream: 0
 --- !u!4 &6329365723595291675
 Transform:
   m_ObjectHideFlags: 0
