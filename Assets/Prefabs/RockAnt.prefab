@@ -136,6 +136,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Walking Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 709878215150526003, guid: 08cc22499822ce0438a6a58069f380a7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fcd5b6e374a4cd6408a694a2fc6d8562, type: 2}
+    - target: {fileID: 709878215150526005, guid: 08cc22499822ce0438a6a58069f380a7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 87388dc1b0e31df46bee50a3fef9d965, type: 2}
+    - target: {fileID: 709878215150526007, guid: 08cc22499822ce0438a6a58069f380a7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3809dea326269164491424828dd5f9d1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08cc22499822ce0438a6a58069f380a7, type: 3}
 --- !u!4 &2803743894354895258 stripped
