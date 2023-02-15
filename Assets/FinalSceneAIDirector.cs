@@ -122,6 +122,7 @@ public class FinalSceneAIDirector : MonoBehaviour
         StartCoroutine(SceneLoader.instance.LoadScene("Terrain", Color.white));
 
     }
+
     void DealWithAutoWriting()
     {
         tick -= Time.deltaTime;
@@ -166,6 +167,7 @@ public class FinalSceneAIDirector : MonoBehaviour
 
     }
 
+    // add input force to players so players have to crazily tap the key board.
     void DealWithSystemForce()
     {
         if(Random.Range(0,25)==0)
