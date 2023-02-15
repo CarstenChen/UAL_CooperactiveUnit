@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.48235297, g: 0.19215688, b: 0.19607845, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.004
@@ -12312,6 +12312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster: {fileID: 0}
   player: {fileID: 315413413}
+  playerPosCheck: {fileID: 0}
   totalPlayerSan: 300
   mainStoryNum: 3
   finalSceneGate: {fileID: 0}
@@ -22996,7 +22997,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2217962835276254474}
-  m_LocalRotation: {x: 0.009753648, y: 0.000000034478266, z: -3.3630485e-10, w: 0.99995244}
+  m_LocalRotation: {x: 0.009753648, y: -0.000000034478266, z: 3.3630485e-10, w: 0.99995244}
   m_LocalPosition: {x: 154.41, y: 18.49031, z: 140.74763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -23189,7 +23190,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2217962835818153270}
-  m_LocalRotation: {x: 0.035751063, y: 0.000000017195386, z: -6.151465e-10, w: 0.99936074}
+  m_LocalRotation: {x: 0.035751082, y: -0.00000001719538, z: 6.151466e-10, w: 0.99936074}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -23222,7 +23223,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2217962836024526389}
-  m_LocalRotation: {x: 0.009753647, y: 0.00000001723913, z: -1.6815238e-10, w: 0.99995244}
+  m_LocalRotation: {x: 0.009753647, y: -0.000000017239138, z: 1.6815248e-10, w: 0.99995244}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
