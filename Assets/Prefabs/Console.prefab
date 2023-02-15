@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cd47066d72a014cb3fb41cb9fd1a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyAfterCollected: 0
-  particle: {fileID: 0}
+  destroyAfterCollected: {fileID: 0}
+  particle: {fileID: 843342766542131878}
   virtualCamera: {fileID: 0}
   freeLookCamera: {fileID: 0}
   standPoint: {fileID: 0}
@@ -277,6 +277,11 @@ PrefabInstance:
 --- !u!4 &838601324877512234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4833790790388836, guid: 3ac333f98121d2b4fb4f98f9a0dba361, type: 3}
+  m_PrefabInstance: {fileID: 842845175184372302}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &843342766542131878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1764714084802792, guid: 3ac333f98121d2b4fb4f98f9a0dba361, type: 3}
   m_PrefabInstance: {fileID: 842845175184372302}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1834779445716306355

@@ -3465,7 +3465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &668605607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10503,6 +10503,7 @@ MonoBehaviour:
   attackModel: {fileID: 484946739}
   originalAttackSize: 8
   ringLocked: 0
+  playerCannotScream: 0
 --- !u!137 &1815891247083420708
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -22333,7 +22334,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4287523953102095826}
-  m_LocalRotation: {x: -0.051846575, y: -0.00000001771208, z: -9.195475e-10, w: 0.9986551}
+  m_LocalRotation: {x: -0.05184658, y: 0.000000017712074, z: 9.1954727e-10, w: 0.9986551}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

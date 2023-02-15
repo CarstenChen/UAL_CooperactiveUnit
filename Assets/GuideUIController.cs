@@ -42,7 +42,7 @@ public class GuideUIController : MonoBehaviour
     IEnumerator Wait(CanvasGroup uiCanvasGroup)
     {
         yield return new WaitForSeconds(2f);
-        StartCoroutine(UIFadeOut(uiCanvasGroup));
+       StartCoroutine(UIFadeOut(uiCanvasGroup));
     }
     IEnumerator UIFadeOut(CanvasGroup uiCanvasGroup)
     {

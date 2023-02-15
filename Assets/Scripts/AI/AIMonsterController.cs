@@ -99,6 +99,8 @@ public class AIMonsterController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (AIDirector.isGameOver) return;
+
         if (currentCoolDown > 0) currentCoolDown -= Time.fixedDeltaTime;
         else currentCoolDown = 0;
 
@@ -235,6 +237,8 @@ public class AIMonsterController : MonoBehaviour
 
     public void AdjustPatrolRoutes()
     {
+        if (AIDirector.isGameOver) return;
+
         previousPatrolRoute = currentPatrolRoute;
 
         currentPatrolRoute = routes[AIDirector.Instance.CalculateRouteByPlayerDesiredDestination(routes)];

@@ -47,7 +47,7 @@ public class FinalSceneAIDirector : MonoBehaviour
     protected string currentKey;
     protected string previousKey;
 
-    
+    protected bool hasEndGame;
     private void Awake()
     {
         if (instance == null)
@@ -59,6 +59,8 @@ public class FinalSceneAIDirector : MonoBehaviour
         finalCamera = GameObject.Find("CM vcam2").GetComponent<CinemachineVirtualCamera>();
         finalCamera.LookAt = finalCameraMoveTo.transform;
         finalCamera.Follow = finalCameraMoveTo.transform;
+
+        hasEndGame = false;
     }
 
     // Update is called once per frame
@@ -119,7 +121,12 @@ public class FinalSceneAIDirector : MonoBehaviour
     IEnumerator EndGame()
     {
         yield return new WaitForSeconds(1f);
-        StartCoroutine(SceneLoader.instance.LoadScene("Terrain", Color.white));
+
+        if (!hasEndGame)
+        {
+            StartCoroutine(SceneLoader.instance.LoadScene("MainScene", Color.white));
+            hasEndGame = true;
+        }
 
     }
 

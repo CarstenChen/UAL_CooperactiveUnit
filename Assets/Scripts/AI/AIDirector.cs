@@ -27,14 +27,16 @@ public class AIDirector : MonoBehaviour
 
     public bool goEnding;
 
+    protected bool hasRespawn;
+
     // Start is called before the first frame update
     void Awake()
     {
         if(instance==null)
         instance = this;
         isGameOver = false;
+        hasRespawn = false;
     }
-
     private void Start()
     {
         playerSan = totalPlayerSan;
@@ -56,7 +58,15 @@ public class AIDirector : MonoBehaviour
         if (isGameOver)
         {
            Debug.Log("You lose");
-            Time.timeScale = 0;
+
+            if (!hasRespawn)
+            {
+                StartCoroutine(SceneLoader.instance.LoadScene("MainScene", Color.black));
+                hasRespawn = true;
+            }
+
+
+
         }
     }
 
@@ -103,15 +113,18 @@ public class AIDirector : MonoBehaviour
     //calculate which is the route that is the most possible player destination for monster petrol
     public int CalculateRouteByPlayerDesiredDestination(Waypoints[] routes)
     {
-        
         int pickRoute = 0;
 
         for (int i = 0; i < routes.Length; i++)
         {
-            if(Vector3.Distance(playerPosCheck.position, routes[pickRoute].root.position) >= Vector3.Distance(playerPosCheck.position, routes[i].root.position))
+            if(routes!=null && playerPosCheck != null)
+            {
+                if (Vector3.Distance(playerPosCheck.position, routes[pickRoute].root.position) >= Vector3.Distance(playerPosCheck.position, routes[i].root.position))
                 {
-                pickRoute = i;
+                    pickRoute = i;
+                }
             }
+
 
         }
 

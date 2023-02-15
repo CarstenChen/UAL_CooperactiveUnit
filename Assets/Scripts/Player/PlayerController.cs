@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         animatorCacheExtraLayer = new AnimatorInfo(animator);
         playerScreenEffects = GetComponent<PlayerScreenEffects>();
 
-        SceneManager.activeSceneChanged += Spawn;
+        //SceneManager.activeSceneChanged += Spawn;
     }
 
     // Update is called once per frame

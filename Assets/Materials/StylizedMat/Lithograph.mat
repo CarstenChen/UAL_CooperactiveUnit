@@ -37,12 +37,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_5E956DC2: 0.8
-    - Vector1_727347EC: 0
-    - Vector1_E18F63AC: 0.5853417
-    - Vector1_EED9B6D: 0.6
-    - Vector1_F32149A0: 1000
-    - Vector1_F35DAF15: 0.5
+    - Vector1_5E956DC2: 0.65
+    - Vector1_727347EC: 3
+    - Vector1_E18F63AC: 0.43
+    - Vector1_EED9B6D: 0.55
+    - Vector1_F32149A0: 620
+    - Vector1_F35DAF15: 0.88
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0

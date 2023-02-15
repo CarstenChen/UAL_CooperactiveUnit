@@ -9,15 +9,26 @@ public class SceneLoader : MonoBehaviour
     public static SceneLoader instance { get; private set; }
     public Animator sceneFadeAnimator;
     public PlayerController player;
+    public GameObject eventSystem;
 
     private void Awake()
     {
         if(instance ==null)
         instance = this;
+        if (GameObject.Find("EventSystem") == null)
+        {
+            GameObject e = Instantiate(eventSystem);
+            e.name = "EventSystem";
+        }
+
     }
     // Start is called before the first frame update
     void Start()
     {
+
+
+
+
         GameObject.DontDestroyOnLoad(GameObject.Find("SceneLoaderCanvas"));
         GameObject.DontDestroyOnLoad(GameObject.Find("EventSystem"));
     }

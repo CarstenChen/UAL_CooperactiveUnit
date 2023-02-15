@@ -5,8 +5,8 @@ using UnityEngine;
 public class Interactibes : MonoBehaviour
 {
     [Header("Interactibe Settings")]
-    public bool destroyAfterCollected;
-    public ParticleSystem particle = default;
+    public GameObject destroyAfterCollected;
+    public GameObject particle;
     protected GameObject interactionUI;
     protected PlayerController player;
     protected Animator animator;
@@ -24,12 +24,18 @@ public class Interactibes : MonoBehaviour
     protected virtual void Start()
     {
         interactionUI.SetActive(false);
-        if (particle != default)
-            particle.Play();
+        if (particle != null)
+            particle.SetActive(true);
     }
     public virtual void Interact()
     {
+        if (destroyAfterCollected!=null)
+        {
+            destroyAfterCollected.GetComponent<MeshRenderer>().enabled = false;
+        }
 
+        if (particle != default)
+            particle.SetActive(false);
     }
 
 
@@ -48,8 +54,6 @@ public class Interactibes : MonoBehaviour
                 Interact();
                 interactionUI.SetActive(false);
                 canInteract = false;
-                if (particle != default)
-                    particle.Stop();
             }
         }
 
