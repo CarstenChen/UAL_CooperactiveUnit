@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 4303091702848866}
   - component: {fileID: 205808203411980788}
   - component: {fileID: 1046540525}
+  - component: {fileID: 2745204807595257691}
   m_Layer: 0
   m_Name: RootsUV2_7_MS_P
   m_TagString: Untagged
@@ -276,7 +277,7 @@ Transform:
   m_GameObject: {fileID: 1943064278708244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.38850403, y: 0.388504, z: 0.38850403}
+  m_LocalScale: {x: 0.38850397, y: 0.38850403, z: 0.388504}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4196882067601384}
@@ -326,11 +327,24 @@ MeshCollider:
   m_GameObject: {fileID: 1943064278708244}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 7b2d8a2970d1d91449aa1144bec16363, type: 3}
+--- !u!65 &2745204807595257691
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943064278708244}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.3707075, y: 3.34, z: 2.3272564}
+  m_Center: {x: -4.9660654, y: 0.61, z: -0.12}
 --- !u!1 &1971100995912810
 GameObject:
   m_ObjectHideFlags: 0
