@@ -87,7 +87,6 @@ public class AIDirector : MonoBehaviour
         tensiveTime = true;
     }
 
-
     //give player a hidden chance to overcome chase 
     public void RandomDecreaseHitTimes()
     {
@@ -117,6 +116,8 @@ public class AIDirector : MonoBehaviour
 
         return pickRoute;
     }
+
+
 
     public void AddSan(float num)
     {
