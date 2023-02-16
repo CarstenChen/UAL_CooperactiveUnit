@@ -16,7 +16,7 @@ public class MonsterIdleState : State
 
     public void OnStateEnter()
     {
-        param.bodyMesh.enabled = false;
+        param.bodyMesh.SetActive(false);
         agent.enabled = true;
         agent.speed = 0f;
         agent.isStopped = true;
@@ -33,6 +33,6 @@ public class MonsterIdleState : State
     {
         agent.speed = param.normalChaseSpeed;
         agent.isStopped = false;
-        param.bodyMesh.enabled = true ;
+        param.bodyMesh.SetActive(true);
     }
 }

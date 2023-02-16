@@ -28,7 +28,7 @@ public class Parameter
     public GameObject raidFlashEffect;
 
     [Header("Mesh Settings")]
-    public MeshRenderer bodyMesh;
+    public GameObject bodyMesh;
 
     [NonSerialized] public float currentChaseSpeed;
 }
