@@ -84,8 +84,12 @@ public class LinesManager : MonoBehaviour
         }
         else
         {
-            textAnimator.SetBool("FadeIn", false);
-            textAnimator.SetBool("FadeOut", true);
+            if (textAnimator != null)
+            {
+                textAnimator.SetBool("FadeIn", false);
+                textAnimator.SetBool("FadeOut", true);
+            }
+
 
             StartCoroutine(SetLineUI(false,1f));
         }
@@ -94,6 +98,7 @@ public class LinesManager : MonoBehaviour
     IEnumerator SetLineUI(bool active, float delay)
     {
         yield return new WaitForSeconds(delay);
+        if(lineUI!=null)
         lineUI.SetActive(active);
 
         if (!active)

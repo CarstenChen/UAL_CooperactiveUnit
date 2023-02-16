@@ -54,37 +54,26 @@ public class PlayerScreenEffects : MonoBehaviour
 
     public bool ringLocked;
     public bool playerCannotScream;
+
+    protected bool firstTimeToScream;
     private void OnEnable()
     {
         ringLocked = false;
 
-        //vignetteImg.enabled = false;
-        //ringImage.enabled = false;
-        //vignetteMtl.SetFloat("_FullScreenIntensity", 0);
-
         shieldModel.SetActive(false);
         attackModel.SetActive(false);
-        attackModel.transform.localScale = new Vector3(1, 1, 1);
+        //attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
     }
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
-
-
     }
     // Start is called before the first frame update
     void Start()
     {
-        attackModel.transform.localScale = new Vector3(1, 1, 1);
         this.enabled = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -96,6 +85,8 @@ public class PlayerScreenEffects : MonoBehaviour
             EnableEffect();
 
             shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize;
+            attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
+
             shieldMaterial.SetColor("_FresnelColor", shieldColor1);
             shieldMaterial.SetColor("_BackColor", shieldColor1);
         }
@@ -106,26 +97,34 @@ public class PlayerScreenEffects : MonoBehaviour
         if (other.tag == "Monster")
         {
             if (this.enabled == false) return;
-            AIDirector.Instance.onCatchingState = true;
 
             float distance = Vector3.Distance(other.transform.position, transform.position);
             effectScaleValue = Mathf.Clamp(distance / monsterDetectRange, 0, 1);
             //effectScaleValue = distance / monsterDetectRange;
 
-            if (effectScaleValue >= 1f) return;
+            if (effectScaleValue >= 1f)
+            {
+                DisableEffect();
+                ringLocked = false;
+                return;
+            }
 
+            if (!firstTimeToScream)
+            {
+                GuideUIController.instance.ShowGuideUI(GuideUIController.instance.guideUI[1]);
+                firstTimeToScream = true;
+            }
+
+            AIDirector.Instance.onCatchingState = true;
 
             EnableEffect();
 
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize*effectScaleValue;
 
-            if (effectScaleValue - ringScaleValue < 0 || (playerCannotScream && effectScaleValue - ringScaleValue>0.1f))
+            if (effectScaleValue - ringScaleValue < -0.05f || (playerCannotScream && effectScaleValue - ringScaleValue>0.1f))
             {
                 ResetForwardRing();
             }
-
-            //shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize * ringScaleValue;
-            //UpdateRingImage();
 
             if (ringScaleValue> minShieldSize / originalShieldSize)
             {
@@ -143,52 +142,48 @@ public class PlayerScreenEffects : MonoBehaviour
 
     protected void EnableEffect()
     {
+        if (!shieldModel.activeSelf)
+        {
+            ResetForwardRing();
+
+            if (!ringLocked && !playerCannotScream)
+            {
+                shieldModel.SetActive(true);
+            }
+        }
+
         attackModel.SetActive(true);
 
-        if (!ringLocked &&!playerCannotScream)
-            shieldModel.SetActive(true);
 
-        attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize * effectScaleValue;
     }
 
-    private void OnDisable()
+    protected void DisableEffect()
     {
         if (currentRingCoroutine != null)
             StopCoroutine(currentRingCoroutine);
 
-        //if (vignetteImg != null)
-        //{
-        //    vignetteImg.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        //    vignetteImg.enabled = false;
-
-        //}
-
-        //if (ringImage != null)
-        //{
-        //    ringImage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        //    ringImage.enabled = false;
-        //}
-
-
-        //if (vignetteMtl != null)
-        //    vignetteMtl.SetFloat("_FullScreenIntensity", 0f);
-
-        if ( attackModel != null)
+        if (attackModel != null)
         {
-            attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize * effectScaleValue;
+            attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
             attackModel.SetActive(false);
 
         }
 
         if (shieldModel != null)
         {
-            shieldModel.transform.localScale = new Vector3(1, 1, 1) *originalShieldSize* effectScaleValue;
+            shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize;
 
             shieldModel.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        DisableEffect();
 
         AIDirector.Instance.onCatchingState = false;
     }
+
 
     public void ResetForwardRing()
     {

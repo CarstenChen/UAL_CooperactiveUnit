@@ -60,6 +60,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389486a6ba0b530428bc51b9c7181442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showCamera: {fileID: 0}
+  freeLookCamera: {fileID: 0}
+  effect: {fileID: 7388298700561119050}
+  player: {fileID: 0}
 --- !u!1001 &7388298699378579818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -202,5 +206,10 @@ PrefabInstance:
 --- !u!4 &7388298700561032518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 443348, guid: e04fc59a6d1188e4a9a71edb77196cd8, type: 3}
+  m_PrefabInstance: {fileID: 7388298700561147538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7388298700561119050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 102872, guid: e04fc59a6d1188e4a9a71edb77196cd8, type: 3}
   m_PrefabInstance: {fileID: 7388298700561147538}
   m_PrefabAsset: {fileID: 0}

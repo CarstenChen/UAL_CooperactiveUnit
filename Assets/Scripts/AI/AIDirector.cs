@@ -16,6 +16,7 @@ public class AIDirector : MonoBehaviour
     [Header("Story Settings")]
     public int mainStoryNum;
     public GameObject finalSceneGate;
+    public GameObject finalSceneTimeline;
 
     [System.NonSerialized] public bool onBeingCatched;
     [System.NonSerialized] public bool onCatchingState;
@@ -74,7 +75,7 @@ public class AIDirector : MonoBehaviour
             return;
 
         currentMainStoryIndex++;
-        player.GetComponent<PlayerChangeBody>().UpdatePlayerBodyMesh();
+
         Debug.Log("Player has read main story");
 
         if (currentTensiveTimeCoroutine != null)
@@ -82,10 +83,6 @@ public class AIDirector : MonoBehaviour
 
         currentTensiveTimeCoroutine = StartCoroutine(StartTensiveTime());
 
-        if (currentMainStoryIndex >= mainStoryNum)
-        {
-            finalSceneGate.SetActive(true);
-        }
     }
 
     //create tensive moment after player finding something important
