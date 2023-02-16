@@ -38,7 +38,6 @@ public class AIMonsterController : MonoBehaviour
     [Header("Monster Settings")]
     public Parameter param;
     public LayerMask adjustNormalLayer;
-    public Transform body;
     public Waypoints[] routes;
 
     [NonSerialized] public NavMeshAgent agent;
@@ -226,14 +225,14 @@ public class AIMonsterController : MonoBehaviour
         RaycastHit hit;
         int Rmask = LayerMask.GetMask("Terrain");
 
-        Vector3 Point_dir = body.TransformDirection(Vector3.down);
+        Vector3 Point_dir = param.bodyMesh.transform.TransformDirection(Vector3.down);
 
-        if (Physics.Raycast(body.position, Point_dir, out hit, 50.0f, Rmask))
+        if (Physics.Raycast(param.bodyMesh.transform.position, Point_dir, out hit, 50.0f, Rmask))
         {
 
             Quaternion NextRot = Quaternion.LookRotation(Vector3.Cross(hit.normal, Vector3.Cross(transform.forward, hit.normal)), hit.normal);
 
-            body.rotation = Quaternion.Lerp(body.rotation, NextRot, 0.1f);
+            param.bodyMesh.transform.rotation = Quaternion.Lerp(param.bodyMesh.transform.rotation, NextRot, 0.1f);
         }
     }
 

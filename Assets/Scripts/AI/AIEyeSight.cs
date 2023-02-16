@@ -32,6 +32,15 @@ public class AIEyeSight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LinesManager.isPlayingLines)
+        {
+            this.GetComponent<SphereCollider>().radius = range / 3;
+        }
+        else
+        {
+            this.GetComponent<SphereCollider>().radius = range;
+        }
+
         if (!isTriggerRange)
         {
             monster.playerInSphereTrigger = false;
@@ -44,14 +53,7 @@ public class AIEyeSight : MonoBehaviour
         }
 
 
-        if (LinesManager.isPlayingLines)
-        {
-            this.GetComponent<SphereCollider>().radius = range/3;
-        }
-        else
-        {
-            this.GetComponent<SphereCollider>().radius = range;
-        }
+
 
         List<Vector3> newVertices = new List<Vector3>();
         newVertices.Add(Vector3.zero);
