@@ -43,7 +43,15 @@ public class AIEyeSight : MonoBehaviour
             monster.playerInSphereTrigger = true;
         }
 
-        this.GetComponent<SphereCollider>().radius = range;
+
+        if (LinesManager.isPlayingLines)
+        {
+            this.GetComponent<SphereCollider>().radius = range/3;
+        }
+        else
+        {
+            this.GetComponent<SphereCollider>().radius = range;
+        }
 
         List<Vector3> newVertices = new List<Vector3>();
         newVertices.Add(Vector3.zero);
@@ -100,7 +108,7 @@ public class AIEyeSight : MonoBehaviour
 
     void CallBack(GameObject obj)
     {
-        Debug.Log("See:" + obj.name);
+        //Debug.Log("See:" + obj.name);
         monster.playerInSight = true;
     }
 
@@ -155,12 +163,22 @@ public class AIEyeSight : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isTriggerRange = true;
-            Debug.Log("Detect:" + other.gameObject.name);
+            //Debug.Log("Detect:" + other.gameObject.name);
             monster.playerFirstFound = true;
 
-            if (Random.Range(0, 500) == 0 && !monster.playerHeard)
+            if (LinesManager.isPlayingLines)
             {
-                monster.playerHeard = true;
+                if (Random.Range(0, 2000) == 0 && !monster.playerHeard)
+                {
+                    monster.playerHeard = true;
+                }
+            }
+            else
+            {
+                if (Random.Range(0, 500) == 0 && !monster.playerHeard)
+                {
+                    monster.playerHeard = true;
+                }
             }
         }
     }

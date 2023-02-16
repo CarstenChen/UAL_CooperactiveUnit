@@ -113,7 +113,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7944135822797271713
 MonoBehaviour:
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyAfterCollected: {fileID: 7944135822797271727}
   particle: {fileID: 2682592270365261}
+  blockInteractionWhenChased: 1
   plotID: 0
   hideGameObject: {fileID: 0}
   startDelay: 1

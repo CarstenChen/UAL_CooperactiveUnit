@@ -17,16 +17,17 @@ public class AIDirector : MonoBehaviour
     public int mainStoryNum;
     public GameObject finalSceneGate;
 
+    [System.NonSerialized] public bool onBeingCatched;
+    [System.NonSerialized] public bool onCatchingState;
     [System.NonSerialized]public static bool isGameOver=false;
     [System.NonSerialized] public static float playerSan;
 
 
     public int currentMainStoryIndex=0;
-    protected Coroutine currentTensiveTimeCoroutine;
     public bool tensiveTime;
+    public bool isInMainStoryTimeLine;
 
-    public bool goEnding;
-
+    protected Coroutine currentTensiveTimeCoroutine;
     protected bool hasRespawn;
 
     // Start is called before the first frame update
@@ -64,9 +65,6 @@ public class AIDirector : MonoBehaviour
                 StartCoroutine(SceneLoader.instance.LoadScene("MainScene", Color.black));
                 hasRespawn = true;
             }
-
-
-
         }
     }
 
@@ -93,8 +91,7 @@ public class AIDirector : MonoBehaviour
     //create tensive moment after player finding something important
     IEnumerator StartTensiveTime()
     {
-        yield return new WaitForSeconds(Random.Range(5f, 10f));
-        Debug.Log("Monster Raid");
+        yield return new WaitForSeconds(Random.Range(10f, 15f));
         tensiveTime = true;
     }
 

@@ -14,9 +14,11 @@ public class MainStoryTrigger : MonoBehaviour
             {
                 LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex, 0);
                 AIDirector.Instance.ReadMainStory();
+
+                StartCoroutine(MainStoryStateCount());
             }
 
-            StartCoroutine(LockMainStoryTrigger(3f));
+            StartCoroutine(LockMainStoryTrigger(10f));
         }
     }
 
@@ -25,5 +27,12 @@ public class MainStoryTrigger : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         this.gameObject.SetActive(false);
+    }
+
+    IEnumerator MainStoryStateCount()
+    {
+        AIDirector.Instance.isInMainStoryTimeLine = true;
+        yield return new WaitForSeconds(5f);
+        AIDirector.Instance.isInMainStoryTimeLine = false;
     }
 }

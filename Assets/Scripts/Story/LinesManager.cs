@@ -30,10 +30,14 @@ public class LinesManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+
+
     }
     // Start is called before the first frame update
     void Start()
     {
+        isPlayingLines = false;
+
         audio = GetComponent<AudioSource>();
         textMeshPro= lineUI.GetComponentInChildren<TextMeshProUGUI>();
         textAnimator = lineUI.GetComponent<Animator>();

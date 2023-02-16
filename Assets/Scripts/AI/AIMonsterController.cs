@@ -27,6 +27,9 @@ public class Parameter
     [Header("Effect Settings")]
     public GameObject raidFlashEffect;
 
+    [Header("Mesh Settings")]
+    public MeshRenderer bodyMesh;
+
     [NonSerialized] public float currentChaseSpeed;
 }
 
@@ -113,6 +116,12 @@ public class AIMonsterController : MonoBehaviour
             raidWhenSeePlayer = UnityEngine.Random.Range(0, 2) != 0 ? true : false;
         }
 
+        //if is in main story
+        if(AIDirector.Instance.isInMainStoryTimeLine && currentState.GetType() != typeof(MonsterIdleState) && currentState.GetType() != typeof(MonsterDizzyState))
+        {
+            SwitchToState(StateType.Idle);
+        }
+
         //attack first when meet
         if(!attackOver && playerInSphereTrigger && Vector3.Distance(param.chaseTarget.position,transform.position)<= param.catchDistance && currentState.GetType() == typeof(MonsterChaseState))
         {
@@ -126,7 +135,7 @@ public class AIMonsterController : MonoBehaviour
 
 
         //patrol if nothing to do
-        if ((!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
+        if (!AIDirector.Instance.isInMainStoryTimeLine && (!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
             (routeChanged && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Patrol);
@@ -134,8 +143,8 @@ public class AIMonsterController : MonoBehaviour
 
 
         //raid when in idle/patrol state and main story is triggered or player is found during patrol 
-        if ((AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState))) ||
-           (playerInSight && raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
+        if ((!AIDirector.Instance.isInMainStoryTimeLine && AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState))) 
+            ||(playerInSight && raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             playerFirstFound = true;//so it chase player ingnoring eyesight
             Debug.Log(playerFirstFound);
@@ -246,8 +255,8 @@ public class AIMonsterController : MonoBehaviour
         if (currentPatrolRoute != previousPatrolRoute)
         {
             routeChanged = true;
-            Debug.Log("ChangeRoute");
-            Debug.Log(currentPatrolRoute.root.name);
+            //Debug.Log("ChangeRoute");
+            //Debug.Log(currentPatrolRoute.root.name);
         }
     }
 

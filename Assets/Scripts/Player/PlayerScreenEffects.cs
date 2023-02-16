@@ -47,8 +47,6 @@ public class PlayerScreenEffects : MonoBehaviour
     public float originalAttackSize;
 
 
-
-
     protected RectTransform imageTransform;
 
     protected Vector3 originSize;
@@ -74,15 +72,13 @@ public class PlayerScreenEffects : MonoBehaviour
         if (instance == null)
             instance = this;
 
-        //vignetteMtl.SetFloat("_FullScreenIntensity", 0f);
-        attackModel.transform.localScale = new Vector3(1, 1, 1);
-        this.enabled = false;
+
     }
     // Start is called before the first frame update
     void Start()
     {
-        
-        //volume.profile.TryGet<Vignette>(out vignette);
+        attackModel.transform.localScale = new Vector3(1, 1, 1);
+        this.enabled = false;
     }
 
     // Update is called once per frame
@@ -110,6 +106,7 @@ public class PlayerScreenEffects : MonoBehaviour
         if (other.tag == "Monster")
         {
             if (this.enabled == false) return;
+            AIDirector.Instance.onCatchingState = true;
 
             float distance = Vector3.Distance(other.transform.position, transform.position);
             effectScaleValue = Mathf.Clamp(distance / monsterDetectRange, 0, 1);
@@ -189,6 +186,8 @@ public class PlayerScreenEffects : MonoBehaviour
 
             shieldModel.SetActive(false);
         }
+
+        AIDirector.Instance.onCatchingState = false;
     }
 
     public void ResetForwardRing()

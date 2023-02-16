@@ -7,6 +7,7 @@ public class Interactibes : MonoBehaviour
     [Header("Interactibe Settings")]
     public GameObject destroyAfterCollected;
     public GameObject particle;
+    public bool blockInteractionWhenChased;
     protected GameObject interactionUI;
     protected PlayerController player;
     protected Animator animator;
@@ -44,17 +45,20 @@ public class Interactibes : MonoBehaviour
     {
         if (other.tag == "Player"&& canInteract)
         {
-            if ( !LinesManager.isPlayingLines)
-                interactionUI.SetActive(true);
+            if (LinesManager.isPlayingLines|| (blockInteractionWhenChased&& (AIDirector.Instance.onCatchingState ||AIDirector.Instance.onBeingCatched)))
+                interactionUI.SetActive(false);
             else
-                interactionUI.SetActive(false);
-
-            if (player.playerInput.InteractInput)
             {
-                Interact();
-                interactionUI.SetActive(false);
-                canInteract = false;
+                interactionUI.SetActive(true);
+
+                if (player.playerInput.InteractInput)
+                {
+                    Interact();
+                    interactionUI.SetActive(false);
+                    canInteract = false;
+                }
             }
+
         }
 
     }

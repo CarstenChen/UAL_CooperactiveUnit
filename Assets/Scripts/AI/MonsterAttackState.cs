@@ -30,6 +30,8 @@ public class MonsterAttackState : State
         Debug.Log("Attack");
 
         param.animator.SetBool("Attack", true);
+
+        AIDirector.Instance.onBeingCatched = true;
     }
     public void OnStateStay()
     {
@@ -43,6 +45,7 @@ public class MonsterAttackState : State
     public void OnStateExit()
     {
         agent.acceleration = param.normalAcceleration;
+        AIDirector.Instance.onBeingCatched = false;
         AIDirector.isGameOver = true;
 
     }
