@@ -16,55 +16,220 @@ MonoBehaviour:
   - plotID: 0
     index: 0
     nextIndex: 1
-    text: This is a playtest!
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    text: "My head\u2026 hurts."
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 0
     index: 1
     nextIndex: 2
-    text: I hate writing and reading CSV,
+    text: I think it is some sort of malware.
     audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 0
     index: 2
     nextIndex: 3
-    text: Oh!
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    text: It's... Eroding my body.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 0
     index: 3
-    nextIndex: -1
-    text: Yeah~
+    nextIndex: 4
+    text: I need to finish the work immediately.
     audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
-  - plotID: 1
-    index: 0
-    nextIndex: 1
-    text: 1
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+  - plotID: 0
+    index: 4
+    nextIndex: -1
+    text: Or, I will be destroyed by this world.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 1
     index: 1
     nextIndex: 2
-    text: 2
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    text: I can feel it...
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 1
     index: 2
     nextIndex: 3
-    text: 3
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    text: It is combining with my body.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 1
     index: 3
     nextIndex: 4
-    text: 4
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    text: Something is different in my head.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 1
     index: 4
     nextIndex: -1
-    text: 5
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    text: I need to survive in this abnormal domain.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 2
     index: 0
     nextIndex: 1
-    text: Nice, everything is done.
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    text: Is my Neuroware still represents me?
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 2
     index: 1
+    nextIndex: 2
+    text: It is completely different from several times ago.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 2
+    index: 2
+    nextIndex: 3
+    text: But there is no doubt that it is my body.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 2
+    index: 3
     nextIndex: -1
-    text: My arm feels pain and my heart goes deep.
-    audio: {fileID: 8300000, guid: 7bea452bce148b24faabd58a2a230e90, type: 3}
+    text: "I need\u2026 more\u2026"
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 3
+    index: 0
+    nextIndex: 1
+    text: No matter what I need to do.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 3
+    index: 1
+    nextIndex: 2
+    text: I will ascend above the heights of the clouds.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 3
+    index: 2
+    nextIndex: 3
+    text: I will be like the Most High.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 3
+    index: 3
+    nextIndex: 4
+    text: This is why I called myself Phosphorus.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 3
+    index: 4
+    nextIndex: -1
+    text: With this increasing power, I could achieve it.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 4
+    index: 0
+    nextIndex: 1
+    text: It is the taste of holographic pumpkin cake.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 4
+    index: 1
+    nextIndex: 2
+    text: Reduced cream and sweetness.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 4
+    index: 2
+    nextIndex: 3
+    text: Not a popular flavour, but it is my favourite.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 4
+    index: 3
+    nextIndex: 4
+    text: "The first Halloween in the Another Eden\u2026"
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 5
+    index: 4
+    nextIndex: -1
+    text: I received such a cake from my "neighbours".
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 5
+    index: 0
+    nextIndex: 1
+    text: It was sent from my girlfriend.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 5
+    index: 1
+    nextIndex: 2
+    text: Please, stay neutral between them.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 5
+    index: 2
+    nextIndex: 3
+    text: It's their business, not yours.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 5
+    index: 3
+    nextIndex: 4
+    text: I am so glad that I listened to her that day.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 6
+    index: 4
+    nextIndex: -1
+    text: Because next day, the Infamous War happened.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 6
+    index: 0
+    nextIndex: 1
+    text: I heard their screams and cries.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 6
+    index: 1
+    nextIndex: 2
+    text: They were shattered into pieces in front of me.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 6
+    index: 2
+    nextIndex: 3
+    text: Then, those pieces gone into someone's body.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 6
+    index: 3
+    nextIndex: 4
+    text: A giant tentacle grown from his head.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 7
+    index: 4
+    nextIndex: -1
+    text: It twisted over his arm and became solid.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 7
+    index: 0
+    nextIndex: 1
+    text: M-Phi.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 7
+    index: 1
+    nextIndex: 2
+    text: Metamorphosis of the users.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 7
+    index: 2
+    nextIndex: 3
+    text: Penetration to their enemies.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 7
+    index: 3
+    nextIndex: 4
+    text: Hijacking enemies' codes to evolve.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 7
+    index: 4
+    nextIndex: -1
+    text: Infinite desire of mankind.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 8
+    index: 0
+    nextIndex: 1
+    text: It seems that there are survivors.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 8
+    index: 1
+    nextIndex: 2
+    text: They survived the Infamous War.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 8
+    index: 2
+    nextIndex: 3
+    text: But they did not stop fighting.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 8
+    index: 3
+    nextIndex: 4
+    text: They killed each other to evolve.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 8
+    index: 4
+    nextIndex: 5
+    text: Eventually, only one person survived.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 8
+    index: 5
+    nextIndex: -1
+    text: Lathyar.
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}

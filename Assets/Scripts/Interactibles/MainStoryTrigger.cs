@@ -26,7 +26,7 @@ public class MainStoryTrigger : MonoBehaviour
 
             if (!LinesManager.isPlayingLines)
             {
-                LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex, 0);
+                LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex+1, 0);
                 AIDirector.Instance.ReadMainStory();
 
                 StartCoroutine(MainStoryStateCount());
