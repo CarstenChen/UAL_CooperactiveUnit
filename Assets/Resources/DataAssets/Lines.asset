@@ -39,22 +39,22 @@ MonoBehaviour:
     text: Or, I will be destroyed by this world.
     audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 1
+    index: 0
+    nextIndex: 1
+    text: I can feel it...
+    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
+  - plotID: 1
     index: 1
     nextIndex: 2
-    text: I can feel it...
+    text: It is combining with my body.
     audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 1
     index: 2
     nextIndex: 3
-    text: It is combining with my body.
-    audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
-  - plotID: 1
-    index: 3
-    nextIndex: 4
     text: Something is different in my head.
     audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
   - plotID: 1
-    index: 4
+    index: 3
     nextIndex: -1
     text: I need to survive in this abnormal domain.
     audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}

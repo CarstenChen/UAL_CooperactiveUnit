@@ -27,6 +27,7 @@ public class AIDirector : MonoBehaviour
     public int currentMainStoryIndex=0;
     public bool tensiveTime;
     public bool isInMainStoryTimeLine;
+    public bool isInFinalSceneTimeLine;
 
     protected Coroutine currentTensiveTimeCoroutine;
     protected bool hasRespawn;
@@ -34,10 +35,17 @@ public class AIDirector : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if(instance==null)
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        if (instance==null)
         instance = this;
         isGameOver = false;
         hasRespawn = false;
+        onBeingCatched = false;
+        onCatchingState = false;
+        isInMainStoryTimeLine = false;
+        isInFinalSceneTimeLine=false;
     }
     private void Start()
     {

@@ -166,8 +166,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Interact
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3b7335508d249ab4da560780f3964507, type: 2}
+  m_sharedMaterial: {fileID: 8938702238341003498, guid: 3b7335508d249ab4da560780f3964507, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8532,7 +8532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetAngle: 0
   TPSCamera: {fileID: 0}
-  moveSpeed: 18
+  moveSpeed: 8
   maxRotateSpeed: 2000
   gravity: 10
   initialJumpSpeed: 10

@@ -116,7 +116,7 @@ public class AIMonsterController : MonoBehaviour
         }
 
         //if is in main story
-        if(AIDirector.Instance.isInMainStoryTimeLine && currentState.GetType() != typeof(MonsterIdleState) && currentState.GetType() != typeof(MonsterDizzyState))
+        if((AIDirector.Instance.isInFinalSceneTimeLine || AIDirector.Instance.isInMainStoryTimeLine) && currentState.GetType() != typeof(MonsterIdleState) && currentState.GetType() != typeof(MonsterDizzyState))
         {
             SwitchToState(StateType.Idle);
         }
@@ -134,7 +134,7 @@ public class AIMonsterController : MonoBehaviour
 
 
         //patrol if nothing to do
-        if (!AIDirector.Instance.isInMainStoryTimeLine && (!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
+        if (!AIDirector.Instance.isInFinalSceneTimeLine&&!AIDirector.Instance.isInMainStoryTimeLine && (!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
             (routeChanged && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Patrol);
@@ -142,7 +142,7 @@ public class AIMonsterController : MonoBehaviour
 
 
         //raid when in idle/patrol state and main story is triggered or player is found during patrol 
-        if ((!AIDirector.Instance.isInMainStoryTimeLine && AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState))) 
+        if ((!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState))) 
             ||(playerInSight && raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             playerFirstFound = true;//so it chase player ingnoring eyesight

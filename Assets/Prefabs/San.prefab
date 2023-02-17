@@ -74,9 +74,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38572d88575ce13428e12fec32eb082e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyAfterCollected: {fileID: 0}
+  destroyAfterCollected: {fileID: 3020945521598214570}
   particle: {fileID: 5063964249172007138}
   blockInteractionWhenChased: 0
+  blockInteractionWhenReading: 0
   sanRecoverParticle: {fileID: 0}
   sanRecover: 60
 --- !u!114 &7215526896635571565

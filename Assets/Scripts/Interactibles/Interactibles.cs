@@ -8,6 +8,7 @@ public class Interactibes : MonoBehaviour
     public GameObject destroyAfterCollected;
     public GameObject particle;
     public bool blockInteractionWhenChased;
+    public bool blockInteractionWhenReading;
     protected GameObject interactionUI;
     protected PlayerController player;
     protected Animator animator;
@@ -32,7 +33,11 @@ public class Interactibes : MonoBehaviour
     {
         if (destroyAfterCollected!=null)
         {
-            destroyAfterCollected.GetComponent<MeshRenderer>().enabled = false;
+            MeshRenderer renderer = destroyAfterCollected.GetComponent<MeshRenderer>();
+            if (renderer != null)
+                renderer.enabled = false;
+            else
+                destroyAfterCollected.SetActive(false);
         }
 
         if (particle != default)
@@ -45,7 +50,7 @@ public class Interactibes : MonoBehaviour
     {
         if (other.tag == "Player"&& canInteract)
         {
-            if (LinesManager.isPlayingLines|| (blockInteractionWhenChased&& (AIDirector.Instance.onCatchingState ||AIDirector.Instance.onBeingCatched)))
+            if ((LinesManager.isPlayingLines&& blockInteractionWhenReading )|| (blockInteractionWhenChased&& (AIDirector.Instance.onCatchingState ||AIDirector.Instance.onBeingCatched)))
                 interactionUI.SetActive(false);
             else
             {

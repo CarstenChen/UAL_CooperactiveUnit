@@ -130,6 +130,7 @@ MonoBehaviour:
   destroyAfterCollected: {fileID: 7944135822797271727}
   particle: {fileID: 2682592270365261}
   blockInteractionWhenChased: 1
+  blockInteractionWhenReading: 1
   plotID: 0
   hideGameObject: {fileID: 0}
   startDelay: 1

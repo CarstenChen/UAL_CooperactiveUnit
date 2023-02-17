@@ -50,6 +50,9 @@ public class FinalSceneAIDirector : MonoBehaviour
     protected bool hasEndGame;
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         if (instance == null)
             instance = this;
     }

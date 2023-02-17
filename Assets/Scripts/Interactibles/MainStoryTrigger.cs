@@ -16,27 +16,33 @@ public class MainStoryTrigger : MonoBehaviour
     {
         showCamera.Priority = 8;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            showCamera.Priority = 20;
-            freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
-            PlayerInput.inputBlock = true;
+
 
             if (!LinesManager.isPlayingLines)
             {
+                showCamera.Priority = 20;
+                freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
+                PlayerInput.inputBlock = true;
+
                 LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex+1, 0);
                 AIDirector.Instance.ReadMainStory();
 
                 StartCoroutine(MainStoryStateCount());
+                StartCoroutine(PlayerBodyChangeEffect(2.5f));
+
+                GetComponent<Collider>().enabled = false;
             }
 
-            StartCoroutine(LockMainStoryTrigger(2.5f));
+
         }
     }
 
-    IEnumerator LockMainStoryTrigger(float delay)
+    IEnumerator PlayerBodyChangeEffect(float delay)
     {
         effect.SetActive(false);
         yield return new WaitForSeconds(delay);
@@ -61,14 +67,18 @@ public class MainStoryTrigger : MonoBehaviour
 
         if (AIDirector.Instance.currentMainStoryIndex >= AIDirector.Instance.mainStoryNum)
         {
-            AIDirector.Instance.finalSceneTimeline.SetActive(true);
+            
             StartCoroutine(WaitTimeline());
         }
     }
 
     IEnumerator WaitTimeline()
     {
+        yield return new WaitUntil(() => LinesManager.isPlayingLines ==false);
+        AIDirector.Instance.finalSceneTimeline.SetActive(true);
+        AIDirector.Instance.isInFinalSceneTimeLine = true;
         yield return new WaitForSeconds((float)AIDirector.Instance.finalSceneTimeline.GetComponent<PlayableDirector>().duration);
         AIDirector.Instance.finalSceneGate.SetActive(true);
+        AIDirector.Instance.isInFinalSceneTimeLine = false;
     }
 }
