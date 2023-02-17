@@ -137,14 +137,10 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23129853534219802}
-  - screenRelativeHeight: 0.19628587
+  - screenRelativeHeight: 0.012940047
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23489311618269626}
-  - screenRelativeHeight: 0.03181222
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23124012619916156}
   m_Enabled: 1
 --- !u!1 &1419226630484764
 GameObject:
@@ -624,14 +620,10 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23543134761500988}
-  - screenRelativeHeight: 0.311568
+  - screenRelativeHeight: 0.013580887
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23467735030586508}
-  - screenRelativeHeight: 0.058134656
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23084015658199256}
   m_Enabled: 1
 --- !u!64 &3119466037607017913
 MeshCollider:

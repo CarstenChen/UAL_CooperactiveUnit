@@ -58,6 +58,10 @@ public class AIDirector : MonoBehaviour
     {
         if (playerSan > 0f)
         {
+            if (isInFinalSceneTimeLine || isInMainStoryTimeLine)
+            {
+                return;
+            }
             playerSan -= Time.deltaTime;
         }
         else
