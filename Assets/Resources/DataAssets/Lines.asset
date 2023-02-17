@@ -123,7 +123,7 @@ MonoBehaviour:
     nextIndex: 4
     text: "The first Halloween in the Another Eden\u2026"
     audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
-  - plotID: 5
+  - plotID: 4
     index: 4
     nextIndex: -1
     text: I received such a cake from my "neighbours".
@@ -148,7 +148,7 @@ MonoBehaviour:
     nextIndex: 4
     text: I am so glad that I listened to her that day.
     audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
-  - plotID: 6
+  - plotID: 5
     index: 4
     nextIndex: -1
     text: Because next day, the Infamous War happened.
@@ -173,7 +173,7 @@ MonoBehaviour:
     nextIndex: 4
     text: A giant tentacle grown from his head.
     audio: {fileID: 8300000, guid: b93ea619529fde842b4d9d0e8289f71b, type: 3}
-  - plotID: 7
+  - plotID: 6
     index: 4
     nextIndex: -1
     text: It twisted over his arm and became solid.
