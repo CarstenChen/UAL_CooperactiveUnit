@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AIDirector : MonoBehaviour
 {
@@ -56,6 +57,11 @@ public class AIDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.escapeKey.isPressed)
+        {
+            isGameOver = true;
+        }
+
         if (playerSan > 0f)
         {
             if (isInFinalSceneTimeLine || isInMainStoryTimeLine)
@@ -79,6 +85,8 @@ public class AIDirector : MonoBehaviour
                 hasRespawn = true;
             }
         }
+
+
     }
 
     public void ReadMainStory()
