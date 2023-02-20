@@ -9,9 +9,12 @@ public class Interactibes : MonoBehaviour
     public GameObject particle;
     public bool blockInteractionWhenChased;
     public bool blockInteractionWhenReading;
+    public bool recoverable;
+    public float recoverTime;
     protected GameObject interactionUI;
     protected PlayerController player;
     protected Animator animator;
+    protected float recoverCount;
 
     protected bool canInteract = true;
 
@@ -29,8 +32,32 @@ public class Interactibes : MonoBehaviour
         if (particle != null)
             particle.SetActive(true);
     }
+
+    private void Update()
+    {
+        if (recoverable)
+        {
+            if (recoverCount > 0)
+            {
+                recoverCount -= Time.deltaTime;
+
+                if (recoverCount <= 0)
+                {
+                    MeshRenderer renderer = destroyAfterCollected.GetComponent<MeshRenderer>();
+                    if (renderer != null)
+                        renderer.enabled = true;
+                    else
+                        destroyAfterCollected.SetActive(true);
+
+                    canInteract = true;
+                }
+            }
+        }
+    }
     public virtual void Interact()
     {
+
+
         if (destroyAfterCollected!=null)
         {
             MeshRenderer renderer = destroyAfterCollected.GetComponent<MeshRenderer>();
@@ -38,6 +65,11 @@ public class Interactibes : MonoBehaviour
                 renderer.enabled = false;
             else
                 destroyAfterCollected.SetActive(false);
+
+            if (recoverable)
+            {
+                recoverCount = recoverTime;
+            }
         }
 
         if (particle != default)

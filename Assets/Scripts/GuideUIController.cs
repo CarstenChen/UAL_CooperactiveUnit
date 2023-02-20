@@ -32,13 +32,14 @@ public class GuideUIController : MonoBehaviour
             }
             StartCoroutine(UIFadeIn(uiCanvasGroup));
         }
-        else
-        {
-            StopAllCoroutines();
-            StartCoroutine(Wait(uiCanvasGroup));
-        }
+        //else
+        //{
+        //    StopAllCoroutines();
+        //    StartCoroutine(Wait(uiCanvasGroup));
+        //}
 
     }
+
     IEnumerator Wait(CanvasGroup uiCanvasGroup)
     {
         yield return new WaitForSeconds(2f);

@@ -78,7 +78,12 @@ MonoBehaviour:
   particle: {fileID: 5063964249172007138}
   blockInteractionWhenChased: 0
   blockInteractionWhenReading: 0
+  recoverable: 1
+  recoverTime: 60
   sanRecoverParticle: {fileID: 0}
+  hideGameObject: {fileID: 0}
+  startDelay: 1
+  duration: 10
   sanRecover: 60
 --- !u!114 &7215526896635571565
 MonoBehaviour:
@@ -214,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2f51a8ce0bfb64db70fe18fd758861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  update: 0
 --- !u!4 &964949707557388087 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4cd8b0749bf93a84c9daaba1654a6ce1, type: 3}
@@ -689,6 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2f51a8ce0bfb64db70fe18fd758861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  update: 0
 --- !u!4 &6381161336608203561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f3a8bfd32fb196045bccbb8923d1699f, type: 3}

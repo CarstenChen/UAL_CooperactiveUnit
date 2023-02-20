@@ -408,38 +408,81 @@ public class PlayerController : MonoBehaviour
         {
             float offset = Mathf.Abs(playerScreenEffects.effectScaleValue - playerScreenEffects.ringScaleValue);
 
-            if (offset < 0.05f)
+            if (!AIDirector.Instance.monsterGuideFinished)
             {
-                if (offset < 0.025f)
+                if (offset < 0.08f)
                 {
-                    MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
-                    Debug.Log("Perffect, Monster Slow Down");
-                    playerInput.hasDealAttack = true;
-                    monster.hitTimes++;
+                    if (offset < 0.05f)
+                    {
+                        MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
+                        Debug.Log("Perffect, Monster Slow Down");
+                        playerInput.hasDealAttack = true;
+                        monster.hitTimes++;
+                        AIDirector.Instance.guideScreamCount++;
+                    }
+                    else
+                    {
+                        MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
+                        Debug.Log("Good, Monster Slow Down");
+                        playerInput.hasDealAttack = true;
+                        monster.hitTimes++;
+                        AIDirector.Instance.guideScreamCount++;
+                    }
+                    playerScreenEffects.DealWithRingDisplay();
+                    screamEffect.SetActive(false);
+                    screamEffect.SetActive(true);
+
+                    animator.SetBool("Scream", true);
+                    StartCoroutine(ResetScreamAnim());
                 }
                 else
                 {
-                    MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
-                    Debug.Log("Good, Monster Slow Down");
-                    playerInput.hasDealAttack = true;
-                    monster.hitTimes++;
-                }
-                playerScreenEffects.DealWithRingDisplay();
-                screamEffect.SetActive(false);
-                screamEffect.SetActive(true);
+                    Debug.Log("Failed");
 
-                animator.SetBool("Scream", true);
-                StartCoroutine(ResetScreamAnim());
+                    playerInput.hasDealAttack = true;
+                }
+
+                if (!AIDirector.Instance.monsterGuideFinished)
+                {
+                    AIDirector.Instance.bulletTime = false;
+                }
             }
             else
             {
-                Debug.Log("Failed");
+                if (offset < 0.05f)
+                {
+                    if (offset < 0.025f)
+                    {
+                        MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
+                        Debug.Log("Perffect, Monster Slow Down");
+                        playerInput.hasDealAttack = true;
+                        monster.hitTimes++;
+                    }
+                    else
+                    {
+                        MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
+                        Debug.Log("Good, Monster Slow Down");
+                        playerInput.hasDealAttack = true;
+                        monster.hitTimes++;
+                    }
+                    playerScreenEffects.DealWithRingDisplay();
+                    screamEffect.SetActive(false);
+                    screamEffect.SetActive(true);
 
-                playerInput.hasDealAttack = true;
+                    animator.SetBool("Scream", true);
+                    StartCoroutine(ResetScreamAnim());
+                }
+                else
+                {
+                    Debug.Log("Failed");
 
-                AIDirector.Instance.RandomDecreaseHitTimes();
+                    playerInput.hasDealAttack = true;
 
+                    AIDirector.Instance.RandomDecreaseHitTimes();
+
+                }
             }
+
         }
     }
 

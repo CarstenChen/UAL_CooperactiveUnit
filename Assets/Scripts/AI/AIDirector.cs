@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class AIDirector : MonoBehaviour
@@ -13,6 +14,7 @@ public class AIDirector : MonoBehaviour
     [Header("Player Settings")]
     public PlayerController player;
     public Transform playerPosCheck;
+    public float startPlayerSan = 150f;
     public float totalPlayerSan = 300f;
     [Header("Story Settings")]
     public int mainStoryNum;
@@ -21,11 +23,11 @@ public class AIDirector : MonoBehaviour
 
     [System.NonSerialized] public bool onBeingCatched;
     [System.NonSerialized] public bool onCatchingState;
-    [System.NonSerialized]public static bool isGameOver=false;
+    [System.NonSerialized] public static bool isGameOver = false;
     [System.NonSerialized] public static float playerSan;
 
 
-    public int currentMainStoryIndex=0;
+    public int currentMainStoryIndex = 0;
     public bool tensiveTime;
     public bool isInMainStoryTimeLine;
     public bool isInFinalSceneTimeLine;
@@ -33,35 +35,64 @@ public class AIDirector : MonoBehaviour
     protected Coroutine currentTensiveTimeCoroutine;
     protected bool hasRespawn;
 
+    [Header("Guide Settings")]
+    public bool playerInGuide;
+    public bool hasFinishedGuide;
+    public CanvasGroup guideMask;
+    public CanvasGroup moveGuideUI;
+    public CanvasGroup sanGuideUI;
+    public CanvasGroup screamGuideUI;
+    public GameObject runUI;
+
+    public bool isInAGuide;
+
+    protected bool moveGuideFinished;
+
+    public bool canTriggerSanGuide;
+    protected bool sanGuideFinished;
+
+    public bool canTriggerMonsterGuide;
+    public Vector3 monsterSpawnPos;
+    public bool monsterGuideFinished;
+    public bool bulletTime;
+    public int guideScreamCount;
+
+    protected Coroutine currentGuideCoroutine;
+    protected bool getKeyToHideGuideUI;
     // Start is called before the first frame update
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (instance==null)
-        instance = this;
+        if (instance == null)
+            instance = this;
         isGameOver = false;
         hasRespawn = false;
         onBeingCatched = false;
         onCatchingState = false;
         isInMainStoryTimeLine = false;
-        isInFinalSceneTimeLine=false;
+        isInFinalSceneTimeLine = false;
+
     }
     private void Start()
     {
-        playerSan = totalPlayerSan;
+        playerSan = startPlayerSan;
 
-        GuideUIController.instance.ShowGuideUI(GuideUIController.instance.guideUI[0]);
+        //enter guide
+        if (!hasFinishedGuide && !playerInGuide)
+        {
+            playerInGuide = true;
+        }
+
     }
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.escapeKey.isPressed)
-        {
-            isGameOver = true;
-        }
-
+        //if (Keyboard.current.escapeKey.isPressed)
+        //{
+        //    isGameOver = true;
+        //}
         if (playerSan > 0f)
         {
             if (isInFinalSceneTimeLine || isInMainStoryTimeLine)
@@ -74,10 +105,9 @@ public class AIDirector : MonoBehaviour
         {
             isGameOver = true;
         }
-
         if (isGameOver)
         {
-           Debug.Log("You lose");
+            Debug.Log("You lose");
 
             if (!hasRespawn)
             {
@@ -85,6 +115,16 @@ public class AIDirector : MonoBehaviour
                 hasRespawn = true;
             }
         }
+
+
+        if (playerInGuide && !hasFinishedGuide)
+        {
+            Guide();
+            return;
+        }
+
+
+
 
 
     }
@@ -131,7 +171,7 @@ public class AIDirector : MonoBehaviour
 
         for (int i = 0; i < routes.Length; i++)
         {
-            if(routes!=null && playerPosCheck != null)
+            if (routes != null && playerPosCheck != null)
             {
                 if (Vector3.Distance(playerPosCheck.position, routes[pickRoute].root.position) >= Vector3.Distance(playerPosCheck.position, routes[i].root.position))
                 {
@@ -150,5 +190,105 @@ public class AIDirector : MonoBehaviour
     public void AddSan(float num)
     {
         playerSan = Mathf.Clamp(playerSan + num, 0f, totalPlayerSan);
+    }
+
+    public void Guide()
+    {
+        if(!isInAGuide && !moveGuideFinished)
+        {
+            GuideUIController.instance.ShowGuideUI(moveGuideUI);
+            currentGuideCoroutine = StartCoroutine(WaitMoveGuide());
+        }
+
+        if (!moveGuideFinished) return;
+
+        if (!isInAGuide && !sanGuideFinished && canTriggerSanGuide)
+        {
+            GuideUIController.instance.ShowGuideUI(guideMask);
+            GuideUIController.instance.ShowGuideUI(sanGuideUI);
+            currentGuideCoroutine = StartCoroutine(WaitSanGuide());
+        }
+
+        if (!sanGuideFinished) return;
+
+        if(!isInAGuide && !monsterGuideFinished &&canTriggerMonsterGuide)
+        {
+            isInAGuide = true;
+        }
+
+        if (isInAGuide && !monsterGuideFinished)
+        {
+            if (bulletTime)
+            {
+                screamGuideUI.gameObject.SetActive(true);
+                runUI.SetActive(false);
+                Time.timeScale = 0.3f;
+            }
+
+            else
+            {
+                screamGuideUI.gameObject.SetActive(false);
+                runUI.SetActive(true);
+                Time.timeScale = 1f;
+
+            }
+        }
+
+        if (guideScreamCount == 2)
+        {
+            monsterGuideFinished = true;
+            screamGuideUI.gameObject.SetActive(false);
+            runUI.SetActive(false);
+        }
+
+        if (!monsterGuideFinished) return;
+
+        hasFinishedGuide = true;
+}
+
+IEnumerator WaitMoveGuide()
+    {
+        isInAGuide = true;
+        PlayerInput.inputBlock = true;
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(WaitKey());
+        yield return new WaitUntil(() => getKeyToHideGuideUI == true);
+        getKeyToHideGuideUI = false;
+        moveGuideUI.gameObject.SetActive(false);
+        isInAGuide = false;
+        moveGuideFinished = true;
+        PlayerInput.inputBlock = false;
+    }
+    IEnumerator WaitSanGuide()
+    {
+        isInAGuide = true;
+        PlayerInput.inputBlock = true;
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(WaitKey());
+        yield return new WaitUntil(() => getKeyToHideGuideUI == true);
+        getKeyToHideGuideUI = false;
+        guideMask.gameObject.SetActive(false);
+        sanGuideUI.gameObject.SetActive(false);
+        isInAGuide = false;
+        sanGuideFinished = true;
+        PlayerInput.inputBlock = false;
+    }
+
+    IEnumerator WaitKey()
+    {
+        yield return null;
+
+            if (Keyboard.current.anyKey.isPressed)
+            {
+                if (!Keyboard.current.escapeKey.isPressed)
+                {
+                    getKeyToHideGuideUI = true;
+                }
+            }
+        else
+        {
+            StartCoroutine(WaitKey());
+        }
+
     }
 }

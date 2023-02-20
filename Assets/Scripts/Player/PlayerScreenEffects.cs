@@ -148,6 +148,7 @@ public class PlayerScreenEffects : MonoBehaviour
 
             if (!ringLocked && !playerCannotScream)
             {
+
                 shieldModel.SetActive(true);
             }
         }
@@ -213,17 +214,41 @@ public class PlayerScreenEffects : MonoBehaviour
 
     protected void UpdateRingImage()
     {
-        if (Mathf.Abs(effectScaleValue - ringScaleValue) < 0.05f)
+        if (!AIDirector.Instance.monsterGuideFinished)
         {
-            //ringImage.sprite = highlightSprite;
-            shieldMaterial.SetColor("_FresnelColor", shieldColor2);
-            shieldMaterial.SetColor("_BackColor", shieldColor2);
+            if (Mathf.Abs(effectScaleValue - ringScaleValue) < 0.08f)
+            {
+                if (!AIDirector.Instance.monsterGuideFinished && shieldModel.activeSelf)
+                {
+                    AIDirector.Instance.bulletTime = true;
+                }
+
+                //ringImage.sprite = highlightSprite;
+                shieldMaterial.SetColor("_FresnelColor", shieldColor2);
+                shieldMaterial.SetColor("_BackColor", shieldColor2);
+            }
+            else
+            {
+                //ringImage.sprite = normalSprite;
+                shieldMaterial.SetColor("_FresnelColor", shieldColor1);
+                shieldMaterial.SetColor("_BackColor", shieldColor1);
+            }
         }
         else
         {
-            //ringImage.sprite = normalSprite;
-            shieldMaterial.SetColor("_FresnelColor", shieldColor1);
-            shieldMaterial.SetColor("_BackColor", shieldColor1);
+            if (Mathf.Abs(effectScaleValue - ringScaleValue) < 0.05f)
+            {
+                //ringImage.sprite = highlightSprite;
+                shieldMaterial.SetColor("_FresnelColor", shieldColor2);
+                shieldMaterial.SetColor("_BackColor", shieldColor2);
+            }
+            else
+            {
+                //ringImage.sprite = normalSprite;
+                shieldMaterial.SetColor("_FresnelColor", shieldColor1);
+                shieldMaterial.SetColor("_BackColor", shieldColor1);
+            }
         }
+
     }
 }

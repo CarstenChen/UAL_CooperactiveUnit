@@ -17,7 +17,7 @@ public class Parameter
     public float fastChaseSpeed = 15f;
     public float minSpeed;
     public float[] coolDown;
-    public int dizzyHitTimes=3;
+    public int dizzyHitTimes = 3;
     public float catchDistance = 2f;
 
     [Header("Animation Settings")]
@@ -64,15 +64,18 @@ public class AIMonsterController : MonoBehaviour
     //slowdown debuff (override)
     protected Coroutine currentSlowDownCoroutine;
 
+    protected bool blockAI;
+
     public enum StateType
     {
-        Idle, Chase, Attack, Patrol, Raid,Dizzy
+        Idle, Chase, Attack, Patrol, Raid, Dizzy
     }
 
     protected State currentState;
 
     public void Awake()
     {
+
         agent = GetComponent<NavMeshAgent>();
         param.animator = GetComponent<Animator>();
         param.animatorCache = new AnimatorInfo(param.animator);
@@ -85,8 +88,8 @@ public class AIMonsterController : MonoBehaviour
 
     private void Start()
     {
-        RegisterState();
 
+        RegisterState();
         //ÒÔIdle×´Ì¬½øÈë
         SwitchToState(StateType.Idle);
 
@@ -94,14 +97,58 @@ public class AIMonsterController : MonoBehaviour
 
         agent.speed = param.normalChaseSpeed;
         agent.acceleration = param.normalAcceleration;
+
+        blockAI = true;
     }
+
+
     private void Update()
     {
         CacheAnimatorState();
     }
+
+    void DealWithMonsterGuide()
+    {
+        if (AIDirector.Instance.canTriggerSanGuide)
+        {
+            AIDirector.Instance.canTriggerSanGuide = false;
+
+            //make sure agent has path
+            agent.enabled = true;
+            agent.destination = param.chaseTarget.position;
+            //make sure agent is static
+            agent.speed = 0f;
+            agent.acceleration = param.normalAcceleration;
+            agent.isStopped = true;
+
+            readyToChase = false;
+            StartCoroutine(OnSpawnBehindPlayer());
+
+            transform.position = AIDirector.Instance.monsterSpawnPos;
+            param.raidFlashEffect.SetActive(false);
+            param.raidFlashEffect.SetActive(true);
+            param.bodyMesh.SetActive(true);
+        }
+
+
+        if (readyToChase)
+        {
+            SwitchToState(StateType.Chase);
+            blockAI = false;
+
+        }
+    }
     private void FixedUpdate()
     {
         if (AIDirector.isGameOver) return;
+
+        if (AIDirector.Instance.canTriggerMonsterGuide && !AIDirector.Instance.monsterGuideFinished)
+        {
+            DealWithMonsterGuide();
+        }
+
+
+        if (blockAI) return;
 
         if (currentCoolDown > 0) currentCoolDown -= Time.fixedDeltaTime;
         else currentCoolDown = 0;
@@ -109,32 +156,32 @@ public class AIMonsterController : MonoBehaviour
         //ground rotation
         UpdateBodyYAxis();
 
-        bool raidWhenSeePlayer = false;
-        if(currentState.GetType() == typeof(MonsterPatrolState))
+        bool raidWhenHearPlayer = false;
+        if (currentState.GetType() == typeof(MonsterPatrolState))
         {
-            raidWhenSeePlayer = UnityEngine.Random.Range(0, 2) != 0 ? true : false;
+            raidWhenHearPlayer = UnityEngine.Random.Range(0, 2) != 0 ? true : false;
         }
 
         //if is in main story
-        if((AIDirector.Instance.isInFinalSceneTimeLine || AIDirector.Instance.isInMainStoryTimeLine) && currentState.GetType() != typeof(MonsterIdleState) && currentState.GetType() != typeof(MonsterDizzyState))
+        if ((AIDirector.Instance.isInFinalSceneTimeLine || AIDirector.Instance.isInMainStoryTimeLine) && currentState.GetType() != typeof(MonsterIdleState) && currentState.GetType() != typeof(MonsterDizzyState))
         {
             SwitchToState(StateType.Idle);
         }
 
         //attack first when meet
-        if(!attackOver && playerInSphereTrigger && Vector3.Distance(param.chaseTarget.position,transform.position)<= param.catchDistance && currentState.GetType() == typeof(MonsterChaseState))
+        if (!attackOver && playerInSphereTrigger && Vector3.Distance(param.chaseTarget.position, transform.position) <= param.catchDistance && currentState.GetType() == typeof(MonsterChaseState))
         {
             SwitchToState(StateType.Attack);
         }
         //if out of range during attack animation, chase player again
-        if(attackOver && currentState.GetType() == typeof(MonsterAttackState))
+        if (attackOver && currentState.GetType() == typeof(MonsterAttackState))
         {
             SwitchToState(StateType.Idle);
         }
 
 
         //patrol if nothing to do
-        if (!AIDirector.Instance.isInFinalSceneTimeLine&&!AIDirector.Instance.isInMainStoryTimeLine && (!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
+        if (!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && (!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
             (routeChanged && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Patrol);
@@ -142,8 +189,8 @@ public class AIMonsterController : MonoBehaviour
 
 
         //raid when in idle/patrol state and main story is triggered or player is found during patrol 
-        if ((!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState))) 
-            ||(playerInSight && raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
+        if ((!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))
+            || (playerHeard && raidWhenHearPlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             playerFirstFound = true;//so it chase player ingnoring eyesight
             Debug.Log(playerFirstFound);
@@ -154,23 +201,23 @@ public class AIMonsterController : MonoBehaviour
         }
 
         //dash after raid to player
-        if (readyToChase && currentState.GetType() == typeof(MonsterRaidState) || 
-            (((playerHeard&&!playerInSight) || playerInSight) && !raidWhenSeePlayer && currentState.GetType() == typeof(MonsterPatrolState)))
+        if (readyToChase && currentState.GetType() == typeof(MonsterRaidState) ||
+            (((playerHeard && !playerInSight && !raidWhenHearPlayer) || playerInSight) && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Chase);
         }
 
-        if(!playerInSphereTrigger && !playerFirstFound && hitTimes< param.dizzyHitTimes && currentState.GetType() == typeof(MonsterChaseState))
+        if (!playerInSphereTrigger && !playerFirstFound && hitTimes < param.dizzyHitTimes && currentState.GetType() == typeof(MonsterChaseState))
         {
             SwitchToState(StateType.Idle);
         }
 
-        if(playerInSphereTrigger && hitTimes >= param.dizzyHitTimes && currentState.GetType() == typeof(MonsterChaseState))
+        if (playerInSphereTrigger && hitTimes >= param.dizzyHitTimes && currentState.GetType() == typeof(MonsterChaseState))
         {
             SwitchToState(StateType.Dizzy);
         }
 
-        if(currentCoolDown<=0 && currentState.GetType() == typeof(MonsterDizzyState))
+        if (currentCoolDown <= 0 && currentState.GetType() == typeof(MonsterDizzyState))
         {
             SwitchToState(StateType.Idle);
         }
@@ -271,7 +318,7 @@ public class AIMonsterController : MonoBehaviour
 
     IEnumerator SlowDown(float slowDownRate)
     {
-        agent.speed = Mathf.Clamp(agent.speed * UnityEngine.Random.Range(slowDownRate/2, slowDownRate), param.minSpeed, param.currentChaseSpeed);
+        agent.speed = Mathf.Clamp(agent.speed * UnityEngine.Random.Range(slowDownRate / 2, slowDownRate), param.minSpeed, param.currentChaseSpeed);
         yield return new WaitForSeconds(3f);
         agent.speed = param.currentChaseSpeed;
     }
@@ -285,8 +332,8 @@ public class AIMonsterController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if(currentState.GetType() != typeof(MonsterRaidState))
-            playerFirstFound = false;
+            if (currentState.GetType() != typeof(MonsterRaidState))
+                playerFirstFound = false;
 
             if (currentState.GetType() != typeof(MonsterDizzyState))
                 hitTimes = 0;
