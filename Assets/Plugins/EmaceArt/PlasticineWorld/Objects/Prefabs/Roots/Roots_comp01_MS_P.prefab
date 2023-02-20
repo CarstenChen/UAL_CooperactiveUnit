@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4863706072429216}
-  - component: {fileID: 205396873539921834}
   m_Layer: 0
   m_Name: RootsUV2_8_3_MS_P (5)
   m_TagString: Untagged
@@ -119,37 +118,6 @@ Transform:
   m_Father: {fileID: 4249566260523870}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &205396873539921834
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099663867664056}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.91512007, y: 2.9121227, z: -1.3890891}
-  m_Size: 6.00051
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.25
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23963008184941198}
-  - screenRelativeHeight: 0.125
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23441755977393652}
-  - screenRelativeHeight: 0.0625
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23190314986656076}
-  - screenRelativeHeight: 0.01
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 23134896443687520}
-  m_Enabled: 1
 --- !u!1 &1311066139271730
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4249566260523870}
   - component: {fileID: 1876342846}
+  - component: {fileID: 974367832090155386}
   m_Layer: 0
   m_Name: Roots_comp01_MS_P
   m_TagString: Untagged
@@ -259,7 +228,7 @@ Transform:
   m_GameObject: {fileID: 1526882709108540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.04502, y: 1.0450202, z: 1.04502}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4863706072429216}
@@ -275,11 +244,42 @@ MeshCollider:
   m_GameObject: {fileID: 1526882709108540}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 346430d3acbc8804fb238606919df3a1, type: 3}
+--- !u!205 &974367832090155386
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526882709108540}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.91512007, y: 2.9121227, z: -1.3890891}
+  m_Size: 6.00051
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.25
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23963008184941198}
+  - screenRelativeHeight: 0.125
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23441755977393652}
+  - screenRelativeHeight: 0.0625
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23190314986656076}
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23134896443687520}
+  m_Enabled: 1
 --- !u!1 &1777392349707844
 GameObject:
   m_ObjectHideFlags: 0
