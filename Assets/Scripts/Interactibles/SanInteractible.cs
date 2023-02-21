@@ -11,7 +11,24 @@ public class SanInteractible : Interactibes
     public float duration;
     public float sanRecover = 60f;
 
+    [Header("DataSetting")]
+    public SanAppleSpawner sanAppleSpawner;
+    public int dataIndex;
+
+    
     protected bool hidden = false;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        recoverCount = sanAppleSpawner.GetRecoverCount(dataIndex);
+        canInteract = sanAppleSpawner.GetCanInteract(dataIndex);
+        destroyAfterCollected.SetActive(sanAppleSpawner.GetCanInteract(dataIndex));
+
+        if (particle != default)
+            particle.SetActive(sanAppleSpawner.GetCanInteract(dataIndex)); 
+    }
     public override void Interact()
     {
         base.Interact();
@@ -62,5 +79,10 @@ public class SanInteractible : Interactibes
     {
         yield return new WaitForSeconds(duration);
         hidden = true;
+    }
+
+    private void OnDestroy()
+    {
+        sanAppleSpawner.SaveData(dataIndex,recoverCount,canInteract,destroyAfterCollected.activeSelf);
     }
 }

@@ -131,10 +131,12 @@ MonoBehaviour:
   particle: {fileID: 2682592270365261}
   blockInteractionWhenChased: 1
   blockInteractionWhenReading: 1
-  plotID: 0
-  hideGameObject: {fileID: 0}
-  startDelay: 1
-  duration: 10
+  recoverable: 0
+  recoverTime: 0
+  recoverCount: 0
+  plotID: 4
+  storySpawner: {fileID: 11400000, guid: 6c3dcc5bff2e1854eb95d846e31212bd, type: 2}
+  dataIndex: 0
 --- !u!1001 &1899931324
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -59,9 +59,34 @@ public class AIDirector : MonoBehaviour
 
     protected Coroutine currentGuideCoroutine;
     protected bool getKeyToHideGuideUI;
+
+    [Header("Data Settings")]
+    public GameObject initializer;
+    public GameDataSpawner gameDataSpawner;
+
     // Start is called before the first frame update
     void Awake()
     {
+        Time.timeScale = 1;
+        playerSan = startPlayerSan;
+
+        hasFinishedGuide = gameDataSpawner.GetHasFinishedGuide();
+
+        if (!GameObject.Find("Spawner(Clone)") || !hasFinishedGuide)
+        {
+            gameDataSpawner.ResetData();
+            Initrializer i = Instantiate(initializer).GetComponent<Initrializer>();
+            i.sanAppleSpawner.RecordOriginalData();
+            i.storySpawner.RecordOriginalData();
+            i.mainFragmentSpawner.RecordOriginalData();
+            i.sanAppleSpawner.ResetData();
+            i.storySpawner.ResetData();
+            i.mainFragmentSpawner.ResetData();
+        }
+        hasFinishedGuide = gameDataSpawner.GetHasFinishedGuide();
+        currentMainStoryIndex = gameDataSpawner.GetCurrentMainStoryIndex();
+        playerSan = gameDataSpawner.GetPlayerSan();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -74,10 +99,14 @@ public class AIDirector : MonoBehaviour
         isInMainStoryTimeLine = false;
         isInFinalSceneTimeLine = false;
 
+
+
     }
     private void Start()
     {
-        playerSan = startPlayerSan;
+
+
+
 
         //enter guide
         if (!hasFinishedGuide && !playerInGuide)
@@ -290,5 +319,10 @@ IEnumerator WaitMoveGuide()
             StartCoroutine(WaitKey());
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        gameDataSpawner.SaveData(currentMainStoryIndex, playerSan, hasFinishedGuide);
     }
 }

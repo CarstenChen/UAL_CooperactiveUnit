@@ -64,6 +64,8 @@ MonoBehaviour:
   freeLookCamera: {fileID: 0}
   effect: {fileID: 7388298700561119050}
   player: {fileID: 0}
+  mainFragmentSpawner: {fileID: 11400000, guid: e887cd44119ed1e4e8714c938e1821db, type: 2}
+  dataIndex: 0
 --- !u!1001 &7388298699378579818
 PrefabInstance:
   m_ObjectHideFlags: 0

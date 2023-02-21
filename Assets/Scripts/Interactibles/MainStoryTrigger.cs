@@ -12,14 +12,23 @@ public class MainStoryTrigger : MonoBehaviour
     public GameObject effect;
     public PlayerController player;
 
+    [Header("Data Setting")]
+    public MainFragmentSpawner mainFragmentSpawner;
+    public int dataIndex;
+
     private void Awake()
     {
         showCamera.Priority = 8;
     }
 
+    private void Start()
+    {
+        GetComponent<Collider>().enabled = mainFragmentSpawner.GetCanInteract(dataIndex);
+        effect.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
 
 
@@ -29,7 +38,7 @@ public class MainStoryTrigger : MonoBehaviour
                 freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
                 PlayerInput.inputBlock = true;
 
-                LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex+1, 0);
+                LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
                 AIDirector.Instance.ReadMainStory();
 
                 StartCoroutine(MainStoryStateCount());
@@ -67,18 +76,23 @@ public class MainStoryTrigger : MonoBehaviour
 
         if (AIDirector.Instance.currentMainStoryIndex >= AIDirector.Instance.mainStoryNum)
         {
-            
+
             StartCoroutine(WaitTimeline());
         }
     }
 
     IEnumerator WaitTimeline()
     {
-        yield return new WaitUntil(() => LinesManager.isPlayingLines ==false);
+        yield return new WaitUntil(() => LinesManager.isPlayingLines == false);
         AIDirector.Instance.finalSceneTimeline.SetActive(true);
         AIDirector.Instance.isInFinalSceneTimeLine = true;
         yield return new WaitForSeconds((float)AIDirector.Instance.finalSceneTimeline.GetComponent<PlayableDirector>().duration);
         AIDirector.Instance.finalSceneGate.SetActive(true);
         AIDirector.Instance.isInFinalSceneTimeLine = false;
+    }
+
+    private void OnDestroy()
+    {
+        mainFragmentSpawner.SaveData(dataIndex, effect.activeSelf);
     }
 }

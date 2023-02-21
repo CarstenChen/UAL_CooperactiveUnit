@@ -4,50 +4,29 @@ using UnityEngine;
 
 public class StoryInteractible : Interactibes
 {
+    [Header("Story Interactibe Settings")]
     public int plotID;
-    public GameObject hideGameObject;
-    public float startDelay;
-    public float duration;
 
-    protected bool hidden=false;
+    [Header("Data Setting")]
+    public StorySpawner storySpawner;
+    public int dataIndex;
 
-    public override void Interact()
+    protected override void Start()
     {
-        base.Interact();
+        base.Start();
 
-        LinesManager.Instance.DisplayLine(plotID, 0);
+        canInteract = storySpawner.GetCanInteract(dataIndex);
 
-        if (hideGameObject != null)
-        {
-            StartCoroutine(StartHideGameObject());
-            //hideGameObject.SetActive(false);
-        }
+        MeshRenderer renderer = destroyAfterCollected.GetComponent<MeshRenderer>();
+        if (renderer != null)
+            renderer.enabled = storySpawner.GetCanInteract(dataIndex);
+
+        if(particle!=default)
+        particle.SetActive(storySpawner.GetCanInteract(dataIndex));
     }
 
-    IEnumerator StartHideGameObject()
+    private void OnDestroy()
     {
-        yield return new WaitForSeconds(startDelay);
-        StartCoroutine(HideGameObject());
-        StartCoroutine(CountTime());
-    }
-    IEnumerator HideGameObject()
-    {
-        yield return null;
-        if (!hidden)
-        {
-            hideGameObject.transform.Translate(new Vector3(0, -0.04f, 0));
-            StartCoroutine(HideGameObject());
-        }
-        else
-        {
-            StopAllCoroutines();
-        }
-
-    }
-
-    IEnumerator CountTime()
-    {
-        yield return new WaitForSeconds(duration);
-        hidden = true;
+        storySpawner.SaveData(dataIndex, canInteract, destroyAfterCollected.activeSelf);
     }
 }

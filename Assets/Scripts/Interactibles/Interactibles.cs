@@ -14,9 +14,9 @@ public class Interactibes : MonoBehaviour
     protected GameObject interactionUI;
     protected PlayerController player;
     protected Animator animator;
-    protected float recoverCount;
 
-    protected bool canInteract = true;
+    public float recoverCount;
+    [System.NonSerialized] public bool canInteract = true;
 
 
     protected virtual void Awake()
@@ -29,8 +29,6 @@ public class Interactibes : MonoBehaviour
     protected virtual void Start()
     {
         interactionUI.SetActive(false);
-        if (particle != null)
-            particle.SetActive(true);
     }
 
     private void Update()
@@ -62,18 +60,25 @@ public class Interactibes : MonoBehaviour
         {
             MeshRenderer renderer = destroyAfterCollected.GetComponent<MeshRenderer>();
             if (renderer != null)
+            {
                 renderer.enabled = false;
+                if (particle != default)
+                    particle.SetActive(false);
+            }
+
             else
+            {
                 destroyAfterCollected.SetActive(false);
+                if (particle != default)
+                    particle.SetActive(false);
+            }
+
 
             if (recoverable)
             {
                 recoverCount = recoverTime;
             }
         }
-
-        if (particle != default)
-            particle.SetActive(false);
     }
 
 
