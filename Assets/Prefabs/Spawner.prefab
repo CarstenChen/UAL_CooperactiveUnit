@@ -48,3 +48,4 @@ MonoBehaviour:
   storySpawner: {fileID: 11400000, guid: 6c3dcc5bff2e1854eb95d846e31212bd, type: 2}
   mainFragmentSpawner: {fileID: 11400000, guid: e887cd44119ed1e4e8714c938e1821db, type: 2}
   gameDataSpawner: {fileID: 11400000, guid: ec7292e7a654b334abd73ca431f629eb, type: 2}
+  bodyMeshSpawner: {fileID: 11400000, guid: 35bf6fa3eca55a7408953e3d761e52f1, type: 2}

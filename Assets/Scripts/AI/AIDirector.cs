@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.Timeline;
+using UnityEngine.Playables;
 
 public class AIDirector : MonoBehaviour
 {
@@ -11,29 +13,18 @@ public class AIDirector : MonoBehaviour
 
     [Header("Monster Settings")]
     public AIMonsterController monster;
+    public AnimationCurve difficultyCurve;
+
     [Header("Player Settings")]
     public PlayerController player;
     public Transform playerPosCheck;
     public float startPlayerSan = 150f;
     public float totalPlayerSan = 300f;
+
     [Header("Story Settings")]
     public int mainStoryNum;
     public GameObject finalSceneGate;
     public GameObject finalSceneTimeline;
-
-    [System.NonSerialized] public bool onBeingCatched;
-    [System.NonSerialized] public bool onCatchingState;
-    [System.NonSerialized] public static bool isGameOver = false;
-    [System.NonSerialized] public static float playerSan;
-
-
-    public int currentMainStoryIndex = 0;
-    public bool tensiveTime;
-    public bool isInMainStoryTimeLine;
-    public bool isInFinalSceneTimeLine;
-
-    protected Coroutine currentTensiveTimeCoroutine;
-    protected bool hasRespawn;
 
     [Header("Guide Settings")]
     public bool playerInGuide;
@@ -43,30 +34,42 @@ public class AIDirector : MonoBehaviour
     public CanvasGroup sanGuideUI;
     public CanvasGroup screamGuideUI;
     public GameObject runUI;
-
-    public bool isInAGuide;
-
-    protected bool moveGuideFinished;
-
-    public bool canTriggerSanGuide;
-    protected bool sanGuideFinished;
-
-    public bool canTriggerMonsterGuide;
     public Vector3 monsterSpawnPos;
-    public bool monsterGuideFinished;
-    public bool bulletTime;
-    public int guideScreamCount;
-
-    protected Coroutine currentGuideCoroutine;
-    protected bool getKeyToHideGuideUI;
 
     [Header("Data Settings")]
     public GameObject initializer;
     public GameDataSpawner gameDataSpawner;
 
+    [System.NonSerialized] public bool onBeingCatched;
+    [System.NonSerialized] public bool onCatchingState;
+    [System.NonSerialized] public static bool isGameOver = false;
+    [System.NonSerialized] public static float playerSan;
+    [System.NonSerialized] public int currentMainStoryIndex = 0;
+    [System.NonSerialized] public bool tensiveTime;
+    [System.NonSerialized] public bool isInMainStoryTimeLine;
+    [System.NonSerialized] public bool isInFinalSceneTimeLine;
+    [System.NonSerialized] public Coroutine currentTensiveTimeCoroutine;
+    [System.NonSerialized] public bool hasRespawn;
+    [System.NonSerialized] public bool isInAGuide;
+    [System.NonSerialized] public bool moveGuideFinished;
+    [System.NonSerialized] public bool canTriggerSanGuide;
+    [System.NonSerialized] public bool sanGuideFinished;
+    [System.NonSerialized] public bool canTriggerMonsterGuide;
+    [System.NonSerialized] public bool monsterGuideFinished;
+    [System.NonSerialized] public bool bulletTime;
+    [System.NonSerialized] public int guideScreamCount;
+    [System.NonSerialized] public float playerSuccessToScream;
+    [System.NonSerialized] public float playerFailToScream;
+    public float currentDifficulty;
+
+    protected Coroutine currentGuideCoroutine;
+    protected bool getKeyToHideGuideUI;
+
     // Start is called before the first frame update
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Time.timeScale = 1;
         playerSan = startPlayerSan;
 
@@ -82,13 +85,16 @@ public class AIDirector : MonoBehaviour
             i.sanAppleSpawner.ResetData();
             i.storySpawner.ResetData();
             i.mainFragmentSpawner.ResetData();
+            i.bodyMeshSpawner.ResetData();
         }
+
         hasFinishedGuide = gameDataSpawner.GetHasFinishedGuide();
         currentMainStoryIndex = gameDataSpawner.GetCurrentMainStoryIndex();
         playerSan = gameDataSpawner.GetPlayerSan();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        DealWithFinalSceneGateTimeline();
+
+
 
         if (instance == null)
             instance = this;
@@ -151,11 +157,6 @@ public class AIDirector : MonoBehaviour
             Guide();
             return;
         }
-
-
-
-
-
     }
 
     public void ReadMainStory()
@@ -184,13 +185,18 @@ public class AIDirector : MonoBehaviour
     //give player a hidden chance to overcome chase 
     public void RandomDecreaseHitTimes()
     {
-        if (UnityEngine.Random.Range(0, 3) != 0)
+        if (Random.Range(0, 3) != 0)
         {
             if (monster.hitTimes > 0)
             {
                 monster.hitTimes--;
             }
         }
+    }
+
+    public void CalculateDifficulty()
+    {
+        currentDifficulty = difficultyCurve.Evaluate(Mathf.Clamp(playerFailToScream / (playerFailToScream + playerSuccessToScream), 0, 1f));
     }
 
     //calculate which is the route that is the most possible player destination for monster petrol
@@ -324,5 +330,33 @@ IEnumerator WaitMoveGuide()
     private void OnDestroy()
     {
         gameDataSpawner.SaveData(currentMainStoryIndex, playerSan, hasFinishedGuide);
+    }
+
+    public IEnumerator MainStoryStateCount()
+    {
+        isInMainStoryTimeLine = true;
+        yield return new WaitForSeconds(5f);
+        isInMainStoryTimeLine = false;
+
+        DealWithFinalSceneGateTimeline();
+
+    }
+
+    void DealWithFinalSceneGateTimeline()
+    {
+        if (currentMainStoryIndex >= mainStoryNum)
+        {
+            StartCoroutine(WaitFinalSceneGateTimeline());
+        }
+    }
+
+    IEnumerator WaitFinalSceneGateTimeline()
+    {
+        yield return new WaitUntil(() => LinesManager.isPlayingLines == false);
+        finalSceneTimeline.SetActive(true);
+        isInFinalSceneTimeLine = true;
+        yield return new WaitForSeconds((float)finalSceneTimeline.GetComponent<PlayableDirector>().duration);
+        Instance.finalSceneGate.SetActive(true);
+        Instance.isInFinalSceneTimeLine = false;
     }
 }

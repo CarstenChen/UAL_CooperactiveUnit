@@ -27,7 +27,10 @@ public class SanInteractible : Interactibes
         destroyAfterCollected.SetActive(sanAppleSpawner.GetCanInteract(dataIndex));
 
         if (particle != default)
-            particle.SetActive(sanAppleSpawner.GetCanInteract(dataIndex)); 
+            particle.SetActive(sanAppleSpawner.GetCanInteract(dataIndex));
+
+        if (AIDirector.Instance.hasFinishedGuide)
+            hideGameObject.SetActive(false);
     }
     public override void Interact()
     {
@@ -37,7 +40,7 @@ public class SanInteractible : Interactibes
         sanRecoverParticle.SetActive(false);
         sanRecoverParticle.SetActive(true);
 
-        if (hideGameObject != null)
+        if (hideGameObject != null&&hideGameObject.activeSelf)
         {
             StartCoroutine(StartHideGameObject());
             //hideGameObject.SetActive(false);
@@ -79,6 +82,8 @@ public class SanInteractible : Interactibes
     {
         yield return new WaitForSeconds(duration);
         hidden = true;
+        hideGameObject.SetActive(false);
+
     }
 
     private void OnDestroy()

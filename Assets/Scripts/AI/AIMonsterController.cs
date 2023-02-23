@@ -109,6 +109,7 @@ public class AIMonsterController : MonoBehaviour
 
     void DealWithMonsterGuide()
     {
+        if (AIDirector.Instance.hasFinishedGuide) return;
         if (AIDirector.Instance.canTriggerSanGuide)
         {
             AIDirector.Instance.canTriggerSanGuide = false;
@@ -312,14 +313,12 @@ public class AIMonsterController : MonoBehaviour
             StopCoroutine(currentSlowDownCoroutine);
 
         currentSlowDownCoroutine = StartCoroutine(SlowDown(slowDownRate));
-
-        Debug.Log(string.Format("Hit {0} Times", hitTimes));
     }
 
     IEnumerator SlowDown(float slowDownRate)
     {
         agent.speed = Mathf.Clamp(agent.speed * UnityEngine.Random.Range(slowDownRate / 2, slowDownRate), param.minSpeed, param.currentChaseSpeed);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f/AIDirector.Instance.currentDifficulty);
         agent.speed = param.currentChaseSpeed;
     }
 

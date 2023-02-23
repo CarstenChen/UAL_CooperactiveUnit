@@ -6,12 +6,22 @@ using UnityEngine;
 public class MeshCollection : MonoBehaviour
 {
     public GameObject[] meshLists;
+    public bool isActive;
 
-    private void Awake()
+    public void SetActive(bool isActive)
     {
         foreach (var go in meshLists)
         {
-            go.SetActive(false);
+                    if (isActive)
+        {
+                go.SetActive(true);
+            }
+            else
+            {
+                go.SetActive(false);
+            }
+
         }
+
     }
 }

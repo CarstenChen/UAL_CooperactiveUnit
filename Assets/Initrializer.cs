@@ -8,6 +8,7 @@ public class Initrializer : MonoBehaviour
     public StorySpawner storySpawner;
     public MainFragmentSpawner mainFragmentSpawner;
     public GameDataSpawner gameDataSpawner;
+    public BodyMeshSpawner bodyMeshSpawner;
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);

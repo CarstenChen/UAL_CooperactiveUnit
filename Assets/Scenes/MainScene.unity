@@ -33606,6 +33606,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 401978256}
+  difficultyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6
+      value: 0.4
+      inSlope: -0.9800251
+      outSlope: -0.9800251
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3609286
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.3
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   player: {fileID: 1114930100}
   playerPosCheck: {fileID: 1004607661}
   startPlayerSan: 260
@@ -33613,10 +33646,6 @@ MonoBehaviour:
   mainStoryNum: 3
   finalSceneGate: {fileID: 1042842749}
   finalSceneTimeline: {fileID: 489263708}
-  currentMainStoryIndex: 0
-  tensiveTime: 0
-  isInMainStoryTimeLine: 0
-  isInFinalSceneTimeLine: 0
   playerInGuide: 0
   hasFinishedGuide: 0
   guideMask: {fileID: 412230009}
@@ -33624,15 +33653,10 @@ MonoBehaviour:
   sanGuideUI: {fileID: 2081510345}
   screamGuideUI: {fileID: 985388397}
   runUI: {fileID: 1490688496}
-  isInAGuide: 0
-  canTriggerSanGuide: 0
-  canTriggerMonsterGuide: 0
   monsterSpawnPos: {x: 140, y: 25, z: 115}
-  monsterGuideFinished: 0
-  bulletTime: 0
-  guideScreamCount: 0
   initializer: {fileID: 7133613570388216924, guid: 8aa0a1e3aa84f2e48b84a1dfaaaa811b, type: 3}
   gameDataSpawner: {fileID: 11400000, guid: ec7292e7a654b334abd73ca431f629eb, type: 2}
+  currentDifficulty: 0
 --- !u!4 &1591287526
 Transform:
   m_ObjectHideFlags: 0
@@ -46408,23 +46432,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523954089884117, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.194
+      value: 27.994
       objectReference: {fileID: 0}
     - target: {fileID: 4287523954089884117, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 111.24
+      value: 115.14
       objectReference: {fileID: 0}
     - target: {fileID: 4287523954089884117, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9996619
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4287523954089884117, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.026001962
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4287523954089884117, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5713640381824884349, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_Follow
@@ -47483,6 +47507,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1114930107, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: bodyMeshSpawner
+      value: 
+      objectReference: {fileID: 11400000, guid: 35bf6fa3eca55a7408953e3d761e52f1, type: 2}
     - target: {fileID: 1165760478, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: m_SortingOrder
       value: -1
@@ -47491,6 +47519,10 @@ PrefabInstance:
       propertyPath: monster
       value: 
       objectReference: {fileID: 401978256}
+    - target: {fileID: 1767493555074866365, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: monsterDetectRange
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5757089391599193240, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: m_Name
       value: Player
@@ -47546,6 +47578,10 @@ PrefabInstance:
     - target: {fileID: 5757089391599193246, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: moveSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757089391599193246, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: minMonsterSpeedDecreaseRate
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 195b7f579d7116c458498fde69073473, type: 3}

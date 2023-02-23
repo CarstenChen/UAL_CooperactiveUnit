@@ -41,7 +41,7 @@ public class MainStoryTrigger : MonoBehaviour
                 LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
                 AIDirector.Instance.ReadMainStory();
 
-                StartCoroutine(MainStoryStateCount());
+                StartCoroutine(AIDirector.Instance.MainStoryStateCount());
                 StartCoroutine(PlayerBodyChangeEffect(2.5f));
 
                 GetComponent<Collider>().enabled = false;
@@ -67,29 +67,7 @@ public class MainStoryTrigger : MonoBehaviour
         freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = true;
         PlayerInput.inputBlock = false;
     }
-    IEnumerator MainStoryStateCount()
-    {
-        AIDirector.Instance.isInMainStoryTimeLine = true;
-        yield return new WaitForSeconds(5f);
-        AIDirector.Instance.isInMainStoryTimeLine = false;
 
-
-        if (AIDirector.Instance.currentMainStoryIndex >= AIDirector.Instance.mainStoryNum)
-        {
-
-            StartCoroutine(WaitTimeline());
-        }
-    }
-
-    IEnumerator WaitTimeline()
-    {
-        yield return new WaitUntil(() => LinesManager.isPlayingLines == false);
-        AIDirector.Instance.finalSceneTimeline.SetActive(true);
-        AIDirector.Instance.isInFinalSceneTimeLine = true;
-        yield return new WaitForSeconds((float)AIDirector.Instance.finalSceneTimeline.GetComponent<PlayableDirector>().duration);
-        AIDirector.Instance.finalSceneGate.SetActive(true);
-        AIDirector.Instance.isInFinalSceneTimeLine = false;
-    }
 
     private void OnDestroy()
     {

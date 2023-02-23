@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public float maxMonsterSpeedDecreaseRate = 0.8f;
     public GameObject screamEffect;
 
-    [NonSerialized]public Animator animator;
+    [NonSerialized] public Animator animator;
     public PlayerInput playerInput;
     protected CharacterController playerController;
 
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         //后续尖叫可能用得上
         //DealWithScreamAttackAnimation();
         if (canScream)
-        Scream();
+            Scream();
 
         CalculateHorizontalMovement();
         CalculateVerticalMovement();
@@ -404,7 +404,7 @@ public class PlayerController : MonoBehaviour
 
     private void Scream()
     {
-        if (playerInput.ScreamInput&&!playerInput.hasDealAttack&&!playerScreenEffects.ringLocked)
+        if (playerInput.ScreamInput && !playerInput.hasDealAttack && !playerScreenEffects.ringLocked)
         {
             float offset = Mathf.Abs(playerScreenEffects.effectScaleValue - playerScreenEffects.ringScaleValue);
 
@@ -412,23 +412,15 @@ public class PlayerController : MonoBehaviour
             {
                 if (offset < 0.08f)
                 {
-                    if (offset < 0.05f)
-                    {
-                        MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
-                        Debug.Log("Perffect, Monster Slow Down");
-                        playerInput.hasDealAttack = true;
-                        monster.hitTimes++;
-                        AIDirector.Instance.guideScreamCount++;
-                    }
-                    else
-                    {
-                        MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
-                        Debug.Log("Good, Monster Slow Down");
-                        playerInput.hasDealAttack = true;
-                        monster.hitTimes++;
-                        AIDirector.Instance.guideScreamCount++;
-                    }
+                    MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
+                    monster.hitTimes++;
+
+                    playerInput.hasDealAttack = true;
+
+                    AIDirector.Instance.guideScreamCount++;
+
                     playerScreenEffects.DealWithRingDisplay();
+
                     screamEffect.SetActive(false);
                     screamEffect.SetActive(true);
 
@@ -437,8 +429,6 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Failed");
-
                     playerInput.hasDealAttack = true;
                 }
 
@@ -454,17 +444,26 @@ public class PlayerController : MonoBehaviour
                     if (offset < 0.025f)
                     {
                         MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
+                        monster.hitTimes++;
+
                         Debug.Log("Perffect, Monster Slow Down");
                         playerInput.hasDealAttack = true;
-                        monster.hitTimes++;
+
+                        AIDirector.Instance.playerSuccessToScream++;
+                        AIDirector.Instance.CalculateDifficulty();
                     }
                     else
                     {
                         MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
+                        monster.hitTimes++;
+
                         Debug.Log("Good, Monster Slow Down");
                         playerInput.hasDealAttack = true;
-                        monster.hitTimes++;
+
+                        AIDirector.Instance.playerSuccessToScream++;
+                        AIDirector.Instance.CalculateDifficulty();
                     }
+
                     playerScreenEffects.DealWithRingDisplay();
                     screamEffect.SetActive(false);
                     screamEffect.SetActive(true);
@@ -475,11 +474,11 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     Debug.Log("Failed");
-
                     playerInput.hasDealAttack = true;
 
                     AIDirector.Instance.RandomDecreaseHitTimes();
-
+                    AIDirector.Instance.playerFailToScream++;
+                    AIDirector.Instance.CalculateDifficulty();
                 }
             }
 
@@ -507,7 +506,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   IEnumerator ResetMovement()
+    IEnumerator ResetMovement()
     {
         yield return new WaitForSeconds(1f);
         onSpawn = false;
@@ -516,7 +515,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator ResetScreamAnim()
     {
         yield return null;
-        if(animatorCacheExtraLayer.currentStateInfo.IsName("Scream")&& animatorCache.currentStateInfo.normalizedTime >= 1)
+        if (animatorCacheExtraLayer.currentStateInfo.IsName("Scream") && animatorCache.currentStateInfo.normalizedTime >= 1)
         {
             animator.SetBool("Scream", false);
         }
