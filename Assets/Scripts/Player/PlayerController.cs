@@ -404,6 +404,7 @@ public class PlayerController : MonoBehaviour
 
     private void Scream()
     {
+        if (AIDirector.Instance.playerScreamOnce) AIDirector.Instance.playerScreamOnce = false;
         if (playerInput.ScreamInput && !playerInput.hasDealAttack && !playerScreenEffects.ringLocked)
         {
             float offset = Mathf.Abs(playerScreenEffects.effectScaleValue - playerScreenEffects.ringScaleValue);
@@ -426,11 +427,14 @@ public class PlayerController : MonoBehaviour
 
                     animator.SetBool("Scream", true);
                     StartCoroutine(ResetScreamAnim());
+
+                    AIDirector.Instance.playerScreamOnce = true;
                 }
                 else
                 {
                     playerInput.hasDealAttack = true;
                 }
+
 
                 if (!AIDirector.Instance.monsterGuideFinished)
                 {
@@ -470,6 +474,8 @@ public class PlayerController : MonoBehaviour
 
                     animator.SetBool("Scream", true);
                     StartCoroutine(ResetScreamAnim());
+
+                    AIDirector.Instance.playerScreamOnce = true;
                 }
                 else
                 {

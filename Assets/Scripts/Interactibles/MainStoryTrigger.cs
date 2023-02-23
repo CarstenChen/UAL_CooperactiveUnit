@@ -30,8 +30,7 @@ public class MainStoryTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-
-
+            SoundManager.Instance.PlayMainStoryTriggerSound();
             if (!LinesManager.isPlayingLines)
             {
                 showCamera.Priority = 20;

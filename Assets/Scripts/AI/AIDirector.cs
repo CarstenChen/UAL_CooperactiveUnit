@@ -60,6 +60,7 @@ public class AIDirector : MonoBehaviour
     [System.NonSerialized] public int guideScreamCount;
     [System.NonSerialized] public float playerSuccessToScream;
     [System.NonSerialized] public float playerFailToScream;
+    [System.NonSerialized] public bool playerScreamOnce;
     public float currentDifficulty;
 
     protected Coroutine currentGuideCoroutine;

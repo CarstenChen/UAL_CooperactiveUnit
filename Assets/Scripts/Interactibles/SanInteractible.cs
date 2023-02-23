@@ -46,6 +46,8 @@ public class SanInteractible : Interactibes
             //hideGameObject.SetActive(false);
         }
 
+        SoundManager.Instance.PlaySanCollectSound();
+
     }
 
     private void OnTriggerEnter(Collider other)
