@@ -19,7 +19,7 @@ public class LinesManager : MonoBehaviour
 
     protected TextMeshProUGUI textMeshPro;
     protected Animator textAnimator;
-    protected AudioSource audio;
+    protected AudioSource audioSource;
     protected PlotManager plotManager;
     protected Lines[] allLines;
     protected Lines currentLine;
@@ -38,7 +38,7 @@ public class LinesManager : MonoBehaviour
     {
         isPlayingLines = false;
 
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         textMeshPro= lineUI.GetComponentInChildren<TextMeshProUGUI>();
         textAnimator = lineUI.GetComponent<Animator>();
 
@@ -73,10 +73,10 @@ public class LinesManager : MonoBehaviour
     IEnumerator WaitSoundEndToNextLine(Lines line)
     {
 
-        audio.clip = line.audio;
-        audio.Play();
+        audioSource.clip = line.audio;
+        audioSource.Play();
 
-        yield return new WaitForSeconds(audio.clip.length);
+        yield return new WaitForSeconds(audioSource.clip.length);
         
         if(line.nextIndex != -1)
         {
