@@ -56,6 +56,10 @@ public class PlayerScreenEffects : MonoBehaviour
     public bool playerCannotScream;
 
     protected bool firstTimeToScream;
+
+    public Volume volume;
+    protected Vignette vignette;
+
     private void OnEnable()
     {
         ringLocked = false;
@@ -73,7 +77,9 @@ public class PlayerScreenEffects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        volume.profile.TryGet(out vignette);
         this.enabled = false;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -120,6 +126,7 @@ public class PlayerScreenEffects : MonoBehaviour
             EnableEffect();
 
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize*effectScaleValue;
+            vignette.intensity.value = 1 - effectScaleValue;
 
             if (effectScaleValue - ringScaleValue < -0.05f || (playerCannotScream && effectScaleValue - ringScaleValue>0.1f))
             {
@@ -154,7 +161,7 @@ public class PlayerScreenEffects : MonoBehaviour
         }
 
         attackModel.SetActive(true);
-
+        vignette.active = true;
 
     }
 
@@ -167,7 +174,7 @@ public class PlayerScreenEffects : MonoBehaviour
         {
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
             attackModel.SetActive(false);
-
+            vignette.active = false;
         }
 
         if (shieldModel != null)
@@ -180,6 +187,7 @@ public class PlayerScreenEffects : MonoBehaviour
 
     private void OnDisable()
     {
+        
         DisableEffect();
 
         AIDirector.Instance.onCatchingState = false;

@@ -29,10 +29,13 @@ public class MonsterChaseState : State
 
         //make sure agent is not static
         agent.isStopped = false;
+        agent.autoBraking = false;
 
         PlayerScreenEffects.Instance.enabled = true;
 
         Debug.Log("Chase");
+
+        SoundManager.Instance.PlayMonsterSound();
     }
     public void OnStateStay()
     {
@@ -47,6 +50,7 @@ public class MonsterChaseState : State
         monster.playerInSphereTrigger = false;
         monster.playerHeard = false;
         agent.speed = param.normalChaseSpeed;
+        agent.autoBraking = true;
         PlayerScreenEffects.Instance.enabled = false;
     }
 }

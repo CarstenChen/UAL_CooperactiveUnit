@@ -30,7 +30,13 @@ public class SanInteractible : Interactibes
             particle.SetActive(sanAppleSpawner.GetCanInteract(dataIndex));
 
         if (AIDirector.Instance.hasFinishedGuide)
-            hideGameObject.SetActive(false);
+        {
+            if (hideGameObject != null)
+            {
+                hideGameObject.SetActive(false);
+            }
+        }
+
     }
     public override void Interact()
     {

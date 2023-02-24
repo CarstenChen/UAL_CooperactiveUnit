@@ -23,6 +23,8 @@ public class PlayerChangeBody : MonoBehaviour
     }
     public void UpdatePlayerBodyMesh()
     {
+        SoundManager.Instance.PlayBodyChangeSound();
+
         if (AIDirector.Instance.currentMainStoryIndex > meshListGroups.Length) return;
 
         foreach (var go in meshListGroups[AIDirector.Instance.currentMainStoryIndex-1].meshLists)

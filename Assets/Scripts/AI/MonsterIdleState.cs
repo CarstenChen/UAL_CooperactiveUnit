@@ -21,7 +21,7 @@ public class MonsterIdleState : State
         agent.speed = 0f;
         agent.isStopped = true;
 
-
+        SoundManager.Instance.StopMonsterSound();
         Debug.Log("Idle");
     }
     public void OnStateStay()

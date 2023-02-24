@@ -354,6 +354,7 @@ IEnumerator WaitMoveGuide()
     IEnumerator WaitFinalSceneGateTimeline()
     {
         yield return new WaitUntil(() => LinesManager.isPlayingLines == false);
+        SoundManager.Instance.PlayMainGateSound();
         finalSceneTimeline.SetActive(true);
         isInFinalSceneTimeLine = true;
         yield return new WaitForSeconds((float)finalSceneTimeline.GetComponent<PlayableDirector>().duration);

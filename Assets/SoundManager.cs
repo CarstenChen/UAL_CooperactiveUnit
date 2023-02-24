@@ -12,10 +12,14 @@ public class SoundManager : MonoBehaviour
     public SoundClip horrorClip;
     public SoundClip[] screamClip;
     public SoundClip sanClip;
+    public SoundClip bodyChangeClip;
     public SoundClip mainStoryClip;
+    public SoundClip mainGateClip;
+    public SoundClip monsterClip;
     public AudioSource bgmAudioSource;
     public AudioSource playerAudioSource;
     public AudioSource collectibleAudioSource;
+    public AudioSource monsterAudioSource;
 
     protected bool previousOnCatchingState;
     protected bool bgmChanged = true;
@@ -30,6 +34,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         PlayBgm(bgmAudioSource);
+
     }
     // Update is called once per frame
     void Update()
@@ -40,7 +45,7 @@ public class SoundManager : MonoBehaviour
         PlayPlayerSound(playerAudioSource);
 
 
-            previousOnCatchingState = AIDirector.Instance.onCatchingState;
+        previousOnCatchingState = AIDirector.Instance.onCatchingState;
     }
 
     void PlayBgm(AudioSource audio)
@@ -53,15 +58,33 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            SoundPlayer.PlaySound(audio, bgmClip, previousbgmTime,true);
+            SoundPlayer.PlaySound(audio, bgmClip, previousbgmTime, true);
         }
     }
+    public void PlayMonsterSound()
+    {
+        SoundPlayer.PlaySound(monsterAudioSource, monsterClip, true);
+    }
 
+    public void StopMonsterSound()
+    {
+        SoundPlayer.StopSound(monsterAudioSource);
+    }
+
+    public void PlayBodyChangeSound()
+    {
+        SoundPlayer.PlaySound(playerAudioSource, bodyChangeClip, true);
+    }
+
+    public void PlayMainGateSound()
+    {
+        SoundPlayer.PlaySound(collectibleAudioSource, mainGateClip, true);
+    }
     void PlayPlayerSound(AudioSource audio)
     {
         if (AIDirector.Instance.playerScreamOnce)
         {
-            SoundPlayer.PlaySound(audio, screamClip[Random.Range(0,screamClip.Length)],0, true);
+            SoundPlayer.PlaySound(audio, screamClip[Random.Range(0, screamClip.Length)], 0, true);
         }
     }
 

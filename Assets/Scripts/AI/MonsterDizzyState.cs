@@ -26,6 +26,8 @@ public class MonsterDizzyState : State
         Debug.Log("Dizzy");
 
         monster.currentCoolDown = param.coolDown[Mathf.Clamp(monster.dizzyTimes++, 0, param.coolDown.Length - 1)];
+
+        SoundManager.Instance.StopMonsterSound();
     }
     public void OnStateStay()
     {

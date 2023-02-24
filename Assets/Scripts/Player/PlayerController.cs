@@ -497,7 +497,6 @@ public class PlayerController : MonoBehaviour
         {
             canScream = false;
             //Debug.Log("Can scream now");
-
         }
     }
 

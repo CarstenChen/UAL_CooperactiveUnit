@@ -48,6 +48,8 @@ public class MonsterPatrolState : State
         }
 
         Debug.Log("Patrol");
+
+        SoundManager.Instance.PlayMonsterSound();
     }
     public void OnStateStay()
     {

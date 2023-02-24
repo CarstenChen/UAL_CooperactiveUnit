@@ -183,6 +183,8 @@ public class AIEyeSight : MonoBehaviour
                 }
             }
         }
+
+
     }
     private void OnTriggerExit(Collider other)
     {
@@ -191,6 +193,5 @@ public class AIEyeSight : MonoBehaviour
             isTriggerRange = false;
             monster.playerHeard = false;
         }
-
     }
 }
