@@ -15,6 +15,9 @@ public class MainStoryTrigger : Interactibes
     public MainFragmentSpawner mainFragmentSpawner;
     public int dataIndex;
 
+    [Header("Timeline Setting")]
+    public GameObject timeline;
+
     protected override void Awake()
     {
         base.Awake();
@@ -33,20 +36,28 @@ public class MainStoryTrigger : Interactibes
 
         if (!LinesManager.isPlayingLines)
         {
-            SoundManager.Instance.PlayMainStoryTriggerSound();
+            
 
-            showCamera.Priority = 20;
-            freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
-            PlayerInput.inputBlock = true;
+            //showCamera.Priority = 20;
+            //freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
+
+
 
             LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
             AIDirector.Instance.ReadMainStory();
 
-            StartCoroutine(AIDirector.Instance.MainStoryStateCount());
-            StartCoroutine(PlayerBodyChangeEffect(2.5f));
+            StartCoroutine(PlayMainStoryTriggerSound());
+            StartCoroutine(AIDirector.Instance.MainStoryStateCount(timeline));
+            StartCoroutine(PlayerBodyChangeEffect(9f));
 
-            GetComponent<Collider>().enabled = false;
+            //GetComponent<Collider>().enabled = false;
         }
+    }
+
+    IEnumerator PlayMainStoryTriggerSound()
+    {
+        yield return new WaitForSeconds(0.6f);
+    SoundManager.Instance.PlayMainStoryTriggerSound();
     }
 
     //private void OnTriggerEnter(Collider other)
@@ -77,8 +88,8 @@ public class MainStoryTrigger : Interactibes
         yield return new WaitForSeconds(delay);
         player.GetComponent<PlayerChangeBody>().UpdatePlayerBodyMesh();
         yield return new WaitForSeconds(delay);
-        showCamera.Priority = 8;
-        StartCoroutine(ResetCamera());
+        //showCamera.Priority = 8;
+        //StartCoroutine(ResetCamera());
     }
 
     IEnumerator ResetCamera()

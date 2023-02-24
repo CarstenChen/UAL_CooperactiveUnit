@@ -1870,6 +1870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshLists:
   - {fileID: 4838031058377730200}
+  isActive: 0
 --- !u!1 &654533531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,6 +2799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshLists:
   - {fileID: 673660617002166330}
+  isActive: 0
 --- !u!1 &841027549
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,6 +3955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshLists:
   - {fileID: 1096989318964772584}
+  isActive: 0
 --- !u!1 &1136561693
 GameObject:
   m_ObjectHideFlags: 0
@@ -8635,6 +8638,7 @@ MonoBehaviour:
   originalAttackSize: 4.3
   ringLocked: 0
   playerCannotScream: 0
+  volume: {fileID: 0}
 --- !u!135 &7077066666571862855
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8664,6 +8668,7 @@ MonoBehaviour:
   - {fileID: 840380103}
   - {fileID: 599919702}
   - {fileID: 1110533032}
+  bodyMeshSpawner: {fileID: 0}
 --- !u!1 &5757089391671880360
 GameObject:
   m_ObjectHideFlags: 0
@@ -9427,6 +9432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: branchuv
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 351210faef91291428db95c0fe56925e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 351210faef91291428db95c0fe56925e, type: 3}
 --- !u!1 &580301007978155607 stripped
@@ -9651,6 +9660,10 @@ PrefabInstance:
     - target: {fileID: -6993686787579217472, guid: fb110c0ed8f217747946d1ea9198a967, type: 3}
       propertyPath: m_Name
       value: Group
+      objectReference: {fileID: 0}
+    - target: {fileID: -6993686787579217472, guid: fb110c0ed8f217747946d1ea9198a967, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6101329737984996327, guid: fb110c0ed8f217747946d1ea9198a967, type: 3}
       propertyPath: m_Name

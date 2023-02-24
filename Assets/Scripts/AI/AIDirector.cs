@@ -25,6 +25,7 @@ public class AIDirector : MonoBehaviour
     public int mainStoryNum;
     public GameObject finalSceneGate;
     public GameObject finalSceneTimeline;
+    public GameObject timelineCamera;
 
     [Header("Guide Settings")]
     public bool playerInGuide;
@@ -333,14 +334,20 @@ IEnumerator WaitMoveGuide()
         gameDataSpawner.SaveData(currentMainStoryIndex, playerSan, hasFinishedGuide);
     }
 
-    public IEnumerator MainStoryStateCount()
+    public IEnumerator MainStoryStateCount(GameObject timeline)
     {
+        
+        PlayerInput.inputBlock = true;
         isInMainStoryTimeLine = true;
-        yield return new WaitForSeconds(5f);
+        timelineCamera.SetActive(true);
+        timeline.SetActive (true);
+        yield return new WaitForSeconds((float)timeline.GetComponent<PlayableDirector>().duration);
         isInMainStoryTimeLine = false;
+        timeline.SetActive(false);
+        timelineCamera.SetActive(false);
+        PlayerInput.inputBlock = false;
 
         DealWithFinalSceneGateTimeline();
-
     }
 
     void DealWithFinalSceneGateTimeline()
@@ -354,11 +361,15 @@ IEnumerator WaitMoveGuide()
     IEnumerator WaitFinalSceneGateTimeline()
     {
         yield return new WaitUntil(() => LinesManager.isPlayingLines == false);
+        PlayerInput.inputBlock = true;
         SoundManager.Instance.PlayMainGateSound();
+        timelineCamera.SetActive(true);
         finalSceneTimeline.SetActive(true);
         isInFinalSceneTimeLine = true;
         yield return new WaitForSeconds((float)finalSceneTimeline.GetComponent<PlayableDirector>().duration);
-        Instance.finalSceneGate.SetActive(true);
+        PlayerInput.inputBlock = false;
+        finalSceneGate.SetActive(true);
+        timelineCamera.SetActive(false);
         Instance.isInFinalSceneTimeLine = false;
     }
 }
