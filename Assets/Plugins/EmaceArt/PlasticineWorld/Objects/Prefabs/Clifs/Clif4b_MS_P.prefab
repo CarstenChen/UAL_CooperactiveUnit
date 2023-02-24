@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4991344759246996}
   - component: {fileID: 205690957399174966}
+  - component: {fileID: 3491813702080862169}
   m_Layer: 0
   m_Name: Clif4b_MS_P
   m_TagString: Untagged
@@ -150,6 +151,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23950802127375144}
   m_Enabled: 1
+--- !u!135 &3491813702080862169
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119174562067456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.76
+  m_Center: {x: 0, y: 2.64, z: 0}
 --- !u!1 &1471659225997460
 GameObject:
   m_ObjectHideFlags: 0

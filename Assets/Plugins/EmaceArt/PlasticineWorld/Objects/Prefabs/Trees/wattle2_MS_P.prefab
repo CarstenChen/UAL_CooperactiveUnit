@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4105423649027602}
   - component: {fileID: 205641659739438036}
+  - component: {fileID: 6811968952982738800}
   m_Layer: 0
   m_Name: wattle2_MS_P
   m_TagString: Untagged
@@ -62,6 +63,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23311091804542756}
   m_Enabled: 1
+--- !u!136 &6811968952982738800
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017995221257464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 20.832584
+  m_Direction: 1
+  m_Center: {x: 0, y: 9.916292, z: 0}
 --- !u!1 &1118521105477684
 GameObject:
   m_ObjectHideFlags: 0

@@ -259,7 +259,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4253940327880024}
   - component: {fileID: 205695688580199012}
-  - component: {fileID: 383090497990160155}
   m_Layer: 0
   m_Name: RockGroundClif1_S_MS_P
   m_TagString: Untagged
@@ -317,20 +316,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23544415097148850}
   m_Enabled: 1
---- !u!64 &383090497990160155
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324757849357322}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: b2ca577e082608442a9269c5c3858eca, type: 3}
 --- !u!1 &1364509662906366
 GameObject:
   m_ObjectHideFlags: 0

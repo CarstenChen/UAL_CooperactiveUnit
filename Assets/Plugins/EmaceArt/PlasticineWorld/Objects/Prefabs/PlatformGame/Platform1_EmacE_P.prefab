@@ -429,7 +429,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4616447931904610}
   - component: {fileID: 205024562096628304}
-  - component: {fileID: 4212289806675167838}
   m_Layer: 0
   m_Name: moss2_MS_P
   m_TagString: Untagged
@@ -444,9 +443,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054035677783392}
-  m_LocalRotation: {x: 0.30274603, y: 0.7328781, z: -0.0027270112, w: -0.60928416}
-  m_LocalPosition: {x: 4.204092, y: -1.788729, z: -3.9197714}
-  m_LocalScale: {x: 1.2648354, y: 1.2648343, z: 1.2648357}
+  m_LocalRotation: {x: 0.2046009, y: 0.97565717, z: 0.075095445, w: 0.024335325}
+  m_LocalPosition: {x: 3.7421513, y: -0.80453634, z: 1.0717055}
+  m_LocalScale: {x: 1.0297508, y: 1.029749, z: 1.0297507}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4820147733202404}
@@ -487,20 +486,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23503840858858136}
   m_Enabled: 1
---- !u!64 &4212289806675167838
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054035677783392}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 24540bffbfcb2c042ae3db808a15221c, type: 3}
 --- !u!1 &1059696351163500
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +496,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4554217978860106}
   - component: {fileID: 205692761215262274}
-  - component: {fileID: 8300143600769690433}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -526,9 +510,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059696351163500}
-  m_LocalRotation: {x: -0.19717029, y: 0.88558674, z: -0.36958924, w: 0.20065883}
-  m_LocalPosition: {x: 0.3518008, y: -1.917807, z: -5.204007}
-  m_LocalScale: {x: 1.0583899, y: 1.0583898, z: 1.0583901}
+  m_LocalRotation: {x: -0.01857425, y: 0.5000984, z: -0.45273793, w: 0.7379601}
+  m_LocalPosition: {x: 4.236365, y: -1.6652807, z: -2.0835106}
+  m_LocalScale: {x: 0.8616753, y: 0.8616751, z: 0.86167556}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4960755365639776}
@@ -569,20 +553,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23304877151621804}
   m_Enabled: 1
---- !u!64 &8300143600769690433
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059696351163500}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
 --- !u!1 &1063770554547516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,7 +1654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4016689607619510}
-  - component: {fileID: 5745295898739554004}
+  - component: {fileID: 7502205609021573849}
   m_Layer: 0
   m_Name: Platform1_EmacE_P
   m_TagString: Untagged
@@ -1701,7 +1671,7 @@ Transform:
   m_GameObject: {fileID: 1158357966305370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4772776, y: 1.4772776, z: 1.4772776}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4832173115345040}
@@ -1730,8 +1700,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &5745295898739554004
-MeshCollider:
+--- !u!135 &7502205609021573849
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1740,10 +1710,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Radius: 4.3738775
+  m_Center: {x: 2.1538782, y: -2.34, z: -0.96999955}
 --- !u!1 &1183119234757660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,7 +2059,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4048400525546128}
   - component: {fileID: 205337353332648940}
-  - component: {fileID: 7314456715799997297}
   m_Layer: 0
   m_Name: moss1_MS_P
   m_TagString: Untagged
@@ -2105,9 +2073,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224969053525768}
-  m_LocalRotation: {x: 0.017887183, y: 0.71971756, z: -0.11194661, w: 0.6849487}
-  m_LocalPosition: {x: 1.5473216, y: -0.28967622, z: -1.9393346}
-  m_LocalScale: {x: 0.9962445, y: 0.9962453, z: 0.99624443}
+  m_LocalRotation: {x: -0.03791801, y: 0.10651064, z: -0.05910882, w: 0.99182856}
+  m_LocalPosition: {x: 1.7139853, y: -0.17679158, z: -0.992293}
+  m_LocalScale: {x: 0.8110807, y: 0.8110805, z: 0.8110804}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4617748198008488}
@@ -2148,20 +2116,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23036583894218978}
   m_Enabled: 1
---- !u!64 &7314456715799997297
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224969053525768}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: c9d3ce03b6207c042b20d37fde369036, type: 3}
 --- !u!1 &1228076696456408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,7 +2377,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4309605476384650}
   - component: {fileID: 205615123082562622}
-  - component: {fileID: 4995944549075950582}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -2438,9 +2391,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265184136401200}
-  m_LocalRotation: {x: 0.12798035, y: 0.9338975, z: 0.00069887657, w: -0.33385032}
-  m_LocalPosition: {x: 2.4308767, y: -0.36535108, z: -1.1000605}
-  m_LocalScale: {x: 1.3622866, y: 1.362289, z: 1.3622876}
+  m_LocalRotation: {x: 0.028737955, y: 0.93658674, z: -0.020841822, w: 0.3486333}
+  m_LocalPosition: {x: 1.169449, y: -0.068425596, z: -0.16775927}
+  m_LocalScale: {x: 1.1090891, y: 1.1090902, z: 1.1090899}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4718643474188922}
@@ -2481,20 +2434,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23403684327195200}
   m_Enabled: 1
---- !u!64 &4995944549075950582
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265184136401200}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
 --- !u!1 &1267237786208060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,7 +2528,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4173102255616904}
   - component: {fileID: 205551201589004410}
-  - component: {fileID: 2281267467381156199}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -2647,20 +2585,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23559678546141656}
   m_Enabled: 1
---- !u!64 &2281267467381156199
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275895450374444}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
 --- !u!1 &1289873183666298
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,7 +2595,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4534563651486158}
   - component: {fileID: 205852110400695544}
-  - component: {fileID: 6727609110190286578}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -2729,20 +2652,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23153134218552864}
   m_Enabled: 1
---- !u!64 &6727609110190286578
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289873183666298}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
 --- !u!1 &1304783623644906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,7 +2914,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4512578403238174}
   - component: {fileID: 205678795093240014}
-  - component: {fileID: 9111080792154150185}
   m_Layer: 0
   m_Name: moss2_MS_P
   m_TagString: Untagged
@@ -3020,9 +2928,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319609756375896}
-  m_LocalRotation: {x: -0.3093048, y: -0.17381886, z: 0.097142, w: 0.9298823}
-  m_LocalPosition: {x: 0.45586225, y: -1.1566535, z: -4.430384}
-  m_LocalScale: {x: 1.1268716, y: 1.1268711, z: 1.126872}
+  m_LocalRotation: {x: -0.349198, y: -0.7470852, z: -0.016903495, w: 0.5653661}
+  m_LocalPosition: {x: 3.5959442, y: -1.0524037, z: -2.0374568}
+  m_LocalScale: {x: 0.9174285, y: 0.91742826, z: 0.9174292}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4227077552207868}
@@ -3063,20 +2971,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23797270017149314}
   m_Enabled: 1
---- !u!64 &9111080792154150185
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319609756375896}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 24540bffbfcb2c042ae3db808a15221c, type: 3}
 --- !u!1 &1323121606365972
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,7 +2981,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4150974384430524}
   - component: {fileID: 205968619792256298}
-  - component: {fileID: 64659451031704720}
   m_Layer: 0
   m_Name: Clif6_MS_P (1)
   m_TagString: Untagged
@@ -3145,20 +3038,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23721316045606696}
   m_Enabled: 1
---- !u!64 &64659451031704720
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323121606365972}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: 015f263b8f5ea9844a49b7aefe593277, type: 3}
 --- !u!1 &1331578873062072
 GameObject:
   m_ObjectHideFlags: 0
@@ -3588,7 +3467,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4380252220156944}
   - component: {fileID: 205979868090958890}
-  - component: {fileID: 8845321863324747327}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -3646,20 +3524,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23357964088044062}
   m_Enabled: 1
---- !u!64 &8845321863324747327
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390572380737540}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
 --- !u!1 &1392727939944992
 GameObject:
   m_ObjectHideFlags: 0
@@ -4257,7 +4121,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4731677454046784}
   - component: {fileID: 205793040484855146}
-  - component: {fileID: 7528994569936323575}
   m_Layer: 0
   m_Name: moss1_MS_P
   m_TagString: Untagged
@@ -4272,9 +4135,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414375261797424}
-  m_LocalRotation: {x: -0.063679144, y: 0.47137982, z: -0.08782321, w: 0.8752333}
-  m_LocalPosition: {x: 1.300717, y: -0.28016508, z: -2.0963244}
-  m_LocalScale: {x: 0.7331921, y: 0.73319227, z: 0.733192}
+  m_LocalRotation: {x: -0.104774304, y: -0.20999335, z: -0.055131596, w: 0.970508}
+  m_LocalPosition: {x: 1.8046558, y: -0.21704619, z: -1.2087699}
+  m_LocalScale: {x: 0.59691966, y: 0.5969193, z: 0.5969195}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4268585046861180}
@@ -4315,20 +4178,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23553234559007210}
   m_Enabled: 1
---- !u!64 &7528994569936323575
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414375261797424}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: c9d3ce03b6207c042b20d37fde369036, type: 3}
 --- !u!1 &1421857221898298
 GameObject:
   m_ObjectHideFlags: 0
@@ -4339,7 +4188,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4705647392146220}
   - component: {fileID: 205644325712795248}
-  - component: {fileID: 8152701224101538609}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -4397,20 +4245,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23580527285065126}
   m_Enabled: 1
---- !u!64 &8152701224101538609
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421857221898298}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
 --- !u!1 &1432241442878060
 GameObject:
   m_ObjectHideFlags: 0
@@ -4673,7 +4507,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4886601753707828}
   - component: {fileID: 205744666660066038}
-  - component: {fileID: 2114925858056429803}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -4688,9 +4521,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488134287793174}
-  m_LocalRotation: {x: 0.15946662, y: 0.7193258, z: -0.39348656, w: -0.54982656}
-  m_LocalPosition: {x: 0.2877912, y: -1.4513775, z: -4.779769}
-  m_LocalScale: {x: 1.0974804, y: 1.0974803, z: 1.09748}
+  m_LocalRotation: {x: 0.34072053, y: 0.8842046, z: -0.30677083, w: 0.0893498}
+  m_LocalPosition: {x: 3.8658998, y: -1.3148061, z: -2.161854}
+  m_LocalScale: {x: 0.8935005, y: 0.8935002, z: 0.89350003}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4714999395547866}
@@ -4731,20 +4564,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23611190455087524}
   m_Enabled: 1
---- !u!64 &2114925858056429803
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488134287793174}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
 --- !u!1 &1494861763156128
 GameObject:
   m_ObjectHideFlags: 0
@@ -4755,7 +4574,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4646183680867050}
   - component: {fileID: 205420805733156866}
-  - component: {fileID: 634120599041577683}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -4770,9 +4588,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494861763156128}
-  m_LocalRotation: {x: 0.093395405, y: 0.9776435, z: -0.1202291, w: -0.14503658}
-  m_LocalPosition: {x: 1.4180479, y: -0.2850213, z: -2.061752}
-  m_LocalScale: {x: 1.0572519, y: 1.0572526, z: 1.0572517}
+  m_LocalRotation: {x: 0.060847446, y: 0.8374743, z: -0.1193834, w: 0.5297943}
+  m_LocalPosition: {x: 1.7936505, y: -0.19771293, z: -1.1116216}
+  m_LocalScale: {x: 0.8607492, y: 0.86074877, z: 0.8607491}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4820405698480212}
@@ -4813,20 +4631,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23555280225093696}
   m_Enabled: 1
---- !u!64 &634120599041577683
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494861763156128}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
 --- !u!1 &1510759813952394
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,7 +4809,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4006698207341862}
   - component: {fileID: 205238788913750924}
-  - component: {fileID: 4511746979992873438}
   m_Layer: 0
   m_Name: moss1_MS_P
   m_TagString: Untagged
@@ -5020,9 +4823,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532580321141970}
-  m_LocalRotation: {x: 0.21502869, y: 0.94893754, z: -0.22037719, w: -0.06866059}
-  m_LocalPosition: {x: 3.0371313, y: -1.4061825, z: -4.184666}
-  m_LocalScale: {x: 0.98019564, y: 0.980196, z: 0.98019576}
+  m_LocalRotation: {x: 0.21436384, y: 0.7717465, z: -0.1086318, w: 0.5887738}
+  m_LocalPosition: {x: 3.7727365, y: -0.7339885, z: 0.05179708}
+  m_LocalScale: {x: 0.79801446, y: 0.79801434, z: 0.7980148}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4141329256685300}
@@ -5063,20 +4866,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23360926288983226}
   m_Enabled: 1
---- !u!64 &4511746979992873438
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532580321141970}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: c9d3ce03b6207c042b20d37fde369036, type: 3}
 --- !u!1 &1544393743735714
 GameObject:
   m_ObjectHideFlags: 0
@@ -6095,7 +5884,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4591350458213698}
   - component: {fileID: 205617027731891272}
-  - component: {fileID: 2880904990975621933}
   m_Layer: 0
   m_Name: moss2_MS_P
   m_TagString: Untagged
@@ -6153,20 +5941,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23608395584530744}
   m_Enabled: 1
---- !u!64 &2880904990975621933
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622982939996094}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 24540bffbfcb2c042ae3db808a15221c, type: 3}
 --- !u!1 &1626435526496348
 GameObject:
   m_ObjectHideFlags: 0
@@ -6345,7 +6119,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4088232946738466}
   - component: {fileID: 205141337684336030}
-  - component: {fileID: 7871400574885755419}
   m_Layer: 0
   m_Name: moss2_MS_P
   m_TagString: Untagged
@@ -6403,20 +6176,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23657933124454432}
   m_Enabled: 1
---- !u!64 &7871400574885755419
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642517888682280}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 24540bffbfcb2c042ae3db808a15221c, type: 3}
 --- !u!1 &1647608572049268
 GameObject:
   m_ObjectHideFlags: 0
@@ -6511,7 +6270,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4106656944588890}
   - component: {fileID: 205335800583120750}
-  - component: {fileID: 5798735456287471407}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -6526,9 +6284,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659535040804666}
-  m_LocalRotation: {x: 0.02335289, y: 0.8725168, z: -0.043766145, w: 0.48605925}
-  m_LocalPosition: {x: 0.74032897, y: -0.0199329, z: -0.72097945}
-  m_LocalScale: {x: 1.1356983, y: 1.1356994, z: 1.1356983}
+  m_LocalRotation: {x: -0.07754423, y: 0.3549589, z: -0.034880057, w: 0.9310073}
+  m_LocalPosition: {x: 0.61280215, y: -0.13932343, z: -1.4920423}
+  m_LocalScale: {x: 0.92461514, y: 0.92461544, z: 0.924615}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4779302478495342}
@@ -6569,20 +6327,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23298538023031134}
   m_Enabled: 1
---- !u!64 &5798735456287471407
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659535040804666}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
 --- !u!1 &1661772700092032
 GameObject:
   m_ObjectHideFlags: 0
@@ -7013,7 +6757,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4869810288535090}
   - component: {fileID: 205083427086986422}
-  - component: {fileID: 3539859693738840411}
   m_Layer: 0
   m_Name: moss1_MS_P
   m_TagString: Untagged
@@ -7028,9 +6771,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693611718719514}
-  m_LocalRotation: {x: -0, y: -0, z: 0.0000000018626451, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.07433106, y: -0.63558006, z: 0.09974077, w: 0.761948}
+  m_LocalPosition: {x: -0.069131866, y: -0.280091, z: -1.9645283}
+  m_LocalScale: {x: 0.8141379, y: 0.8141375, z: 0.8141381}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4244914670344314}
@@ -7071,20 +6814,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23963445804428832}
   m_Enabled: 1
---- !u!64 &3539859693738840411
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693611718719514}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: c9d3ce03b6207c042b20d37fde369036, type: 3}
 --- !u!1 &1694888658848648
 GameObject:
   m_ObjectHideFlags: 0
@@ -7095,7 +6824,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4138659882310028}
   - component: {fileID: 205323342423265694}
-  - component: {fileID: 7732922742081711344}
   m_Layer: 0
   m_Name: moss1_MS_P
   m_TagString: Untagged
@@ -7110,9 +6838,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694888658848648}
-  m_LocalRotation: {x: 0.023720266, y: 0.91913474, z: -0.051050402, w: -0.38990083}
-  m_LocalPosition: {x: 0.12309016, y: -0.06916097, z: -1.477566}
-  m_LocalScale: {x: 1.1718273, y: 1.171827, z: 1.1718267}
+  m_LocalRotation: {x: -0.012173248, y: 0.9467172, z: -0.1310309, w: 0.29395446}
+  m_LocalPosition: {x: 1.1343178, y: -0.2936984, z: -2.073199}
+  m_LocalScale: {x: 0.9540295, y: 0.95402807, z: 0.95402896}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4754545234051978}
@@ -7153,20 +6881,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23771757136423944}
   m_Enabled: 1
---- !u!64 &7732922742081711344
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694888658848648}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: c9d3ce03b6207c042b20d37fde369036, type: 3}
 --- !u!1 &1707302619459686
 GameObject:
   m_ObjectHideFlags: 0
@@ -7765,7 +7479,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4448038236620196}
   - component: {fileID: 205371683748018454}
-  - component: {fileID: 5902756814074475477}
   m_Layer: 0
   m_Name: moss2_MS_P
   m_TagString: Untagged
@@ -7823,20 +7536,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23020479261352306}
   m_Enabled: 1
---- !u!64 &5902756814074475477
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773979806763702}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 24540bffbfcb2c042ae3db808a15221c, type: 3}
 --- !u!1 &1782856952645420
 GameObject:
   m_ObjectHideFlags: 0
@@ -8267,7 +7966,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4832173115345040}
   - component: {fileID: 205314424690917440}
-  - component: {fileID: 3620471632947460197}
   m_Layer: 0
   m_Name: moss1_MS_P
   m_TagString: Untagged
@@ -8282,9 +7980,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811043460195948}
-  m_LocalRotation: {x: 0.03971147, y: 0.9577973, z: -0.14697188, w: 0.24381706}
-  m_LocalPosition: {x: 1.6758947, y: -0.4890844, z: -2.6587117}
-  m_LocalScale: {x: 1.0396006, y: 1.0396017, z: 1.0396007}
+  m_LocalRotation: {x: 0.039711423, y: 0.9577972, z: -0.14697188, w: 0.24381712}
+  m_LocalPosition: {x: 1.6759043, y: -0.4890872, z: -2.6587076}
+  m_LocalScale: {x: 1.0396008, y: 1.0396017, z: 1.039601}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4842780010850718}
@@ -8325,20 +8023,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23292902864133434}
   m_Enabled: 1
---- !u!64 &3620471632947460197
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811043460195948}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: c9d3ce03b6207c042b20d37fde369036, type: 3}
 --- !u!1 &1817948418953922
 GameObject:
   m_ObjectHideFlags: 0
@@ -8517,7 +8201,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4798933931812660}
   - component: {fileID: 205024496955728846}
-  - component: {fileID: 7562387277882005314}
   m_Layer: 0
   m_Name: moss1_MS_P
   m_TagString: Untagged
@@ -8532,9 +8215,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897526459523596}
-  m_LocalRotation: {x: 0.22599941, y: 0.9392707, z: -0.19262314, w: -0.17202115}
-  m_LocalPosition: {x: 3.874387, y: -1.525494, z: -3.7011104}
-  m_LocalScale: {x: 1.2176049, y: 1.2176048, z: 1.2176044}
+  m_LocalRotation: {x: 0.21373013, y: 0.83323205, z: -0.090102606, w: 0.5019217}
+  m_LocalPosition: {x: 3.508544, y: -0.6654264, z: 0.7964817}
+  m_LocalScale: {x: 0.9912983, y: 0.9912978, z: 0.99129814}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4881609867638198}
@@ -8575,20 +8258,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23612228277721556}
   m_Enabled: 1
---- !u!64 &7562387277882005314
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897526459523596}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: c9d3ce03b6207c042b20d37fde369036, type: 3}
 --- !u!1 &1911596254845050
 GameObject:
   m_ObjectHideFlags: 0
@@ -9019,7 +8688,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4224193248564020}
   - component: {fileID: 205351671004887950}
-  - component: {fileID: 3871022523150988684}
   m_Layer: 0
   m_Name: moss2_MS_P
   m_TagString: Untagged
@@ -9034,9 +8702,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946322799641536}
-  m_LocalRotation: {x: 0.11638181, y: 0.98765546, z: -0.05324223, w: 0.090317935}
-  m_LocalPosition: {x: 2.505513, y: -0.3679615, z: -0.91762275}
-  m_LocalScale: {x: 1.0399172, y: 1.0399178, z: 1.0399175}
+  m_LocalRotation: {x: 0.017293645, y: 0.70278823, z: -0.031002931, w: 0.71051294}
+  m_LocalPosition: {x: 1.0339698, y: -0.057515126, z: -0.08239909}
+  m_LocalScale: {x: 0.84663606, y: 0.8466359, z: 0.84663665}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4584470800319886}
@@ -9077,20 +8745,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23138760958106938}
   m_Enabled: 1
---- !u!64 &3871022523150988684
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946322799641536}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 24540bffbfcb2c042ae3db808a15221c, type: 3}
 --- !u!1 &1954677216037102
 GameObject:
   m_ObjectHideFlags: 0

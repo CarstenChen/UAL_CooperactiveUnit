@@ -259,6 +259,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4940526906660714}
   - component: {fileID: 205597046673239836}
+  - component: {fileID: 8470669949300099201}
+  - component: {fileID: 6382184433177821923}
   m_Layer: 0
   m_Name: BigShroom7_MS_P
   m_TagString: Untagged
@@ -311,3 +313,31 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23788991766398402}
   m_Enabled: 1
+--- !u!136 &8470669949300099201
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950634253459844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30620453
+  m_Height: 3.3663473
+  m_Direction: 1
+  m_Center: {x: 0.058570027, y: 1.6751275, z: 0}
+--- !u!136 &6382184433177821923
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950634253459844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.86704665
+  m_Height: 2.2483222
+  m_Direction: 1
+  m_Center: {x: -0.36704668, y: 2.9386115, z: 0}

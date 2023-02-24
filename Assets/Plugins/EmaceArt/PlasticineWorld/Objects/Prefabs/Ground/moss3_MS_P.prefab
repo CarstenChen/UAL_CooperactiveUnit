@@ -346,7 +346,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4733902055114148}
   - component: {fileID: 205575149514686060}
-  - component: {fileID: 6206356326819872737}
   m_Layer: 0
   m_Name: moss3_MS_P
   m_TagString: Untagged
@@ -404,17 +403,3 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23542000400128984}
   m_Enabled: 1
---- !u!64 &6206356326819872737
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814363996596684}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8bac9e39ef33e7d469feb9c83f384b48, type: 3}
