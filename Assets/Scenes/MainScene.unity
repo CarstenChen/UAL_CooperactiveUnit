@@ -1888,6 +1888,14 @@ PrefabInstance:
       propertyPath: destroyAfterCollected
       value: 
       objectReference: {fileID: 205016174}
+    - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
+      propertyPath: blockInteractionWhenChased
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
+      propertyPath: blockInteractionWhenReading
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931790, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: m_Name
       value: San (1)
@@ -2310,6 +2318,10 @@ PrefabInstance:
       propertyPath: interactibleSpawner
       value: 
       objectReference: {fileID: 11400000, guid: 5cea8d1499cdb3145998ca7c8349e83f, type: 2}
+    - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
+      propertyPath: blockInteractionWhenReading
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931790, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: m_Name
       value: StartSan
@@ -9429,7 +9441,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 2
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -11612,7 +11624,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749997977}
   m_LocalRotation: {x: 0.00080299977, y: -0.95849407, z: -0.00023885831, w: 0.28511125}
-  m_LocalPosition: {x: 87.71, y: 34.28, z: 78.52}
+  m_LocalPosition: {x: 82.13, y: 40.08, z: 69.99}
   m_LocalScale: {x: 1, y: 1.02, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12082,6 +12094,14 @@ PrefabInstance:
       propertyPath: destroyAfterCollected
       value: 
       objectReference: {fileID: 815527412}
+    - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
+      propertyPath: blockInteractionWhenChased
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
+      propertyPath: blockInteractionWhenReading
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931790, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: m_Name
       value: San (2)
@@ -14072,6 +14092,14 @@ PrefabInstance:
       propertyPath: destroyAfterCollected
       value: 
       objectReference: {fileID: 1124301225}
+    - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
+      propertyPath: blockInteractionWhenChased
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
+      propertyPath: blockInteractionWhenReading
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931790, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: m_Name
       value: San (3)
@@ -18501,6 +18529,14 @@ PrefabInstance:
       propertyPath: sanRecoverParticle
       value: 
       objectReference: {fileID: 1316432009}
+    - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
+      propertyPath: blockInteractionWhenChased
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
+      propertyPath: blockInteractionWhenReading
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931790, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: m_Name
       value: San
@@ -32361,15 +32397,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953238994378, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.051846575
+      value: -0.05184658
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953238994378, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000001771208
+      value: 0.000000017712074
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953238994378, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -9.195475e-10
+      value: 9.1954727e-10
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953301268270, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_RootOrder

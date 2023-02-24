@@ -32,7 +32,7 @@ public class AIEyeSight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LinesManager.isPlayingLines)
+        if (LinesManager.isPlayingLines && !LinesManager.isReadingStartPlot)
         {
             this.GetComponent<SphereCollider>().radius = range / 3;
         }

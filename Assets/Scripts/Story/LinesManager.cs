@@ -16,6 +16,7 @@ public class LinesManager : MonoBehaviour
     public Color LerpColorB;
 
     [SerializeField] public static bool isPlayingLines;
+    [SerializeField] public static bool isReadingStartPlot;
 
     protected TextMeshProUGUI textMeshPro;
     protected Animator textAnimator;
@@ -37,6 +38,7 @@ public class LinesManager : MonoBehaviour
     void Start()
     {
         isPlayingLines = false;
+        isReadingStartPlot = false;
 
         audioSource = GetComponent<AudioSource>();
         textMeshPro= lineUI.GetComponentInChildren<TextMeshProUGUI>();
@@ -55,6 +57,15 @@ public class LinesManager : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(SetLineUI(true, 0f));
             isPlayingLines = true;
+
+            if(plotID == 0)
+            {
+                isReadingStartPlot = true;
+            }
+            else
+            {
+                isReadingStartPlot = false;
+            }
 
             //textAnimator.SetBool("FadeIn", true);
             //textAnimator.SetBool("FadeOut", false);
