@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneGateTrigger : MonoBehaviour
 {
+    private void OnEnable()
+    {
+        GetComponent<Collider>().enabled = true;
+    }
     public string finalSceneName = "FinalScene";
 
     private void OnTriggerEnter(Collider other)

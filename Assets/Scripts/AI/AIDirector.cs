@@ -44,7 +44,7 @@ public class AIDirector : MonoBehaviour
     [System.NonSerialized] public bool onCatchingState;
     [System.NonSerialized] public static bool isGameOver = false;
     [System.NonSerialized] public static float playerSan;
-    [System.NonSerialized] public int currentMainStoryIndex = 0;
+    /*[System.NonSerialized]*/ public int currentMainStoryIndex = 0;
     [System.NonSerialized] public bool tensiveTime;
     [System.NonSerialized] public bool isInMainStoryTimeLine;
     [System.NonSerialized] public bool isInFinalSceneTimeLine;

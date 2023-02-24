@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PlayerChangeBody : MonoBehaviour
@@ -11,10 +12,14 @@ public class PlayerChangeBody : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < meshListGroups.Length; i++)
+        if(SceneManager.GetActiveScene().name == "MainScene")
         {
-            meshListGroups[i].SetActive( bodyMeshSpawner.GetIsActive(i));
+            for (int i = 0; i < meshListGroups.Length; i++)
+            {
+                meshListGroups[i].SetActive(bodyMeshSpawner.GetIsActive(i));
+            }
         }
+
     }
     public void UpdatePlayerBodyMesh()
     {
@@ -30,9 +35,12 @@ public class PlayerChangeBody : MonoBehaviour
 
     private void OnDestroy()
     {
-        for (int i = 0; i < meshListGroups.Length; i++)
+        if (SceneManager.GetActiveScene().name == "MainScene")
         {
-            bodyMeshSpawner.SaveData(i,meshListGroups[i].isActive);
+            for (int i = 0; i < meshListGroups.Length; i++)
+            {
+                bodyMeshSpawner.SaveData(i, meshListGroups[i].isActive);
+            }
         }
     }
 }
