@@ -25,6 +25,16 @@ public class StoryInteractible : Interactibes
         particle.SetActive(storySpawner.GetCanInteract(dataIndex));
     }
 
+    public override void Interact()
+    {
+        base.Interact();
+
+        if (!LinesManager.isPlayingLines)
+        {
+            LinesManager.Instance.DisplayLine(plotID, 0);
+        }
+    }
+
     private void OnDestroy()
     {
         storySpawner.SaveData(dataIndex, canInteract, destroyAfterCollected.activeSelf);
