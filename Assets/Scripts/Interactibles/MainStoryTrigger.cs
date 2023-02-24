@@ -5,54 +5,75 @@ using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using Cinemachine;
 
-public class MainStoryTrigger : MonoBehaviour
+public class MainStoryTrigger : Interactibes
 {
     public CinemachineVirtualCamera showCamera;
     public CinemachineFreeLook freeLookCamera;
-    public GameObject effect;
     public PlayerController player;
 
     [Header("Data Setting")]
     public MainFragmentSpawner mainFragmentSpawner;
     public int dataIndex;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         showCamera.Priority = 8;
     }
 
-    private void Start()
+    protected override void Start()
     {
         GetComponent<Collider>().enabled = mainFragmentSpawner.GetCanInteract(dataIndex);
-        effect.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
+        destroyAfterCollected.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
     }
-    private void OnTriggerEnter(Collider other)
+
+    public override void Interact()
     {
-        if (other.tag == "Player")
+        base.Interact();
+
+        if (!LinesManager.isPlayingLines)
         {
             SoundManager.Instance.PlayMainStoryTriggerSound();
-            if (!LinesManager.isPlayingLines)
-            {
-                showCamera.Priority = 20;
-                freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
-                PlayerInput.inputBlock = true;
 
-                LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
-                AIDirector.Instance.ReadMainStory();
+            showCamera.Priority = 20;
+            freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
+            PlayerInput.inputBlock = true;
 
-                StartCoroutine(AIDirector.Instance.MainStoryStateCount());
-                StartCoroutine(PlayerBodyChangeEffect(2.5f));
+            LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
+            AIDirector.Instance.ReadMainStory();
 
-                GetComponent<Collider>().enabled = false;
-            }
+            StartCoroutine(AIDirector.Instance.MainStoryStateCount());
+            StartCoroutine(PlayerBodyChangeEffect(2.5f));
 
-
+            GetComponent<Collider>().enabled = false;
         }
     }
 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {    
+    //        if (!LinesManager.isPlayingLines)
+    //        {
+    //            showCamera.Priority = 20;
+    //            freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
+    //            PlayerInput.inputBlock = true;
+
+    //            LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
+    //            AIDirector.Instance.ReadMainStory();
+
+    //            StartCoroutine(AIDirector.Instance.MainStoryStateCount());
+    //            StartCoroutine(PlayerBodyChangeEffect(2.5f));
+
+    //            GetComponent<Collider>().enabled = false;
+    //        }
+
+
+    //    }
+    //}
+
     IEnumerator PlayerBodyChangeEffect(float delay)
     {
-        effect.SetActive(false);
         yield return new WaitForSeconds(delay);
         player.GetComponent<PlayerChangeBody>().UpdatePlayerBodyMesh();
         yield return new WaitForSeconds(delay);
@@ -70,6 +91,6 @@ public class MainStoryTrigger : MonoBehaviour
 
     private void OnDestroy()
     {
-        mainFragmentSpawner.SaveData(dataIndex, effect.activeSelf);
+        mainFragmentSpawner.SaveData(dataIndex, destroyAfterCollected.activeSelf);
     }
 }

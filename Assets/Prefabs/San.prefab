@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6162420755824931790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -27.92, y: 0, z: -0.67}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2497067179495353104}
@@ -80,11 +80,14 @@ MonoBehaviour:
   blockInteractionWhenReading: 0
   recoverable: 1
   recoverTime: 60
+  recoverCount: 0
   sanRecoverParticle: {fileID: 0}
   hideGameObject: {fileID: 0}
   startDelay: 1
   duration: 10
   sanRecover: 60
+  sanAppleSpawner: {fileID: 11400000, guid: 5cea8d1499cdb3145998ca7c8349e83f, type: 2}
+  dataIndex: 2
 --- !u!114 &7215526896635571565
 MonoBehaviour:
   m_ObjectHideFlags: 0

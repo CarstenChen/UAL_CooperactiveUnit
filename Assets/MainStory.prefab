@@ -1,50 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7259653572759892405
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 673096351873549639}
-  - component: {fileID: 5503251187707559257}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &673096351873549639
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7259653572759892405}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.112091, y: 0.841259, z: 4.97}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7944135822797271726}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5503251187707559257
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7259653572759892405}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 20, y: 20, z: 20}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7944135822797271727
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,9 +13,9 @@ GameObject:
   - component: {fileID: 7944135822797271715}
   - component: {fileID: 7944135822797271724}
   - component: {fileID: 7944135822797271725}
-  - component: {fileID: 7944135822797271713}
+  - component: {fileID: 3081539514512019716}
   m_Layer: 0
-  m_Name: Story
+  m_Name: MainStory
   m_TagString: Interactibles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +33,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 673096351873549639}
   - {fileID: 8707568201850561}
   - {fileID: 543450651833909591}
   m_Father: {fileID: 0}
@@ -99,7 +53,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7944135822797271727}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -161,7 +115,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7944135822797271713
+--- !u!114 &3081539514512019716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,11 +124,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7944135822797271727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92c1d8f386803a7439d3e99fbf9da4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 389486a6ba0b530428bc51b9c7181442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plotID: 4
-  storySpawner: {fileID: 11400000, guid: 6c3dcc5bff2e1854eb95d846e31212bd, type: 2}
+  showCamera: {fileID: 0}
+  freeLookCamera: {fileID: 0}
+  effect: {fileID: 0}
+  player: {fileID: 0}
+  mainFragmentSpawner: {fileID: 11400000, guid: e887cd44119ed1e4e8714c938e1821db, type: 2}
   dataIndex: 0
 --- !u!1001 &1899931324
 PrefabInstance:
@@ -185,7 +142,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b937f2b2be6712b46815d0b17d0b07e9, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b937f2b2be6712b46815d0b17d0b07e9, type: 3}
       propertyPath: m_LocalScale.x
@@ -247,10 +204,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: handuv
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: b937f2b2be6712b46815d0b17d0b07e9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b937f2b2be6712b46815d0b17d0b07e9, type: 3}
 --- !u!4 &543450651833909591 stripped
@@ -290,13 +243,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fragment_StoryFragment
       objectReference: {fileID: 0}
-    - target: {fileID: 1764714084802792, guid: 3ac333f98121d2b4fb4f98f9a0dba361, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4833790790388836, guid: 3ac333f98121d2b4fb4f98f9a0dba361, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4833790790388836, guid: 3ac333f98121d2b4fb4f98f9a0dba361, type: 3}
       propertyPath: m_LocalPosition.x
