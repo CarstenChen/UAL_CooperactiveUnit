@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7944135822797271724}
   - component: {fileID: 7944135822797271725}
   - component: {fileID: 3081539514512019716}
+  - component: {fileID: 3015761069149529136}
   m_Layer: 0
   m_Name: MainStory
   m_TagString: Interactibles
@@ -127,12 +128,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389486a6ba0b530428bc51b9c7181442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyAfterCollected: {fileID: 0}
+  particle: {fileID: 0}
+  blockInteractionWhenChased: 0
+  blockInteractionWhenReading: 0
+  recoverable: 0
+  recoverTime: 0
+  recoverCount: 0
   showCamera: {fileID: 0}
   freeLookCamera: {fileID: 0}
-  effect: {fileID: 0}
   player: {fileID: 0}
   mainFragmentSpawner: {fileID: 11400000, guid: e887cd44119ed1e4e8714c938e1821db, type: 2}
   dataIndex: 0
+--- !u!95 &3015761069149529136
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7944135822797271727}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d49c155fc8045d54899fe83f663f0709, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1899931324
 PrefabInstance:
   m_ObjectHideFlags: 0
