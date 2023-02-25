@@ -57,6 +57,7 @@ public class AIDirector : MonoBehaviour
     [System.NonSerialized] public bool sanGuideFinished;
     [System.NonSerialized] public bool canTriggerMonsterGuide;
     [System.NonSerialized] public bool monsterGuideFinished;
+    [System.NonSerialized] public bool monsterAppearTimelineFinished;
     [System.NonSerialized] public bool bulletTime;
     [System.NonSerialized] public int guideScreamCount;
     [System.NonSerialized] public float playerSuccessToScream;
@@ -248,7 +249,7 @@ public class AIDirector : MonoBehaviour
 
         if (!sanGuideFinished) return;
 
-        if(!isInAGuide && !monsterGuideFinished &&canTriggerMonsterGuide)
+        if(!isInAGuide && !monsterGuideFinished &&canTriggerMonsterGuide&& monsterAppearTimelineFinished)
         {
             isInAGuide = true;
         }

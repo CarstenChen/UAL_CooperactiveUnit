@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Playables;
 public class MonsterDizzyState : State
 {
     private AIMonsterController monster;
@@ -9,6 +10,7 @@ public class MonsterDizzyState : State
     private Parameter param;
 
     protected float tick;
+    protected bool firstDizzy = true;
     public MonsterDizzyState(AIMonsterController monster)
     {
         this.monster = monster;
@@ -28,11 +30,15 @@ public class MonsterDizzyState : State
         monster.currentCoolDown = param.coolDown[Mathf.Clamp(monster.dizzyTimes++, 0, param.coolDown.Length - 1)];
 
         SoundManager.Instance.StopMonsterSound();
+
+        param.dizzyObj.SetActive(true);
     }
     public void OnStateStay()
     {
 
     }
+
+
 
     public void OnStateExit()
     {
@@ -41,5 +47,7 @@ public class MonsterDizzyState : State
         agent.isStopped = false;
 
         monster.hitTimes = 0;
+
+        param.dizzyObj.SetActive(false);
     }
 }

@@ -14,9 +14,11 @@ public class PlayerChangeBody : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().name == "MainScene")
         {
+
             for (int i = 0; i < meshListGroups.Length; i++)
             {
-                meshListGroups[i].SetActive(bodyMeshSpawner.GetIsActive(i));
+                meshListGroups[i].isActive = bodyMeshSpawner.GetIsActive(i);
+                meshListGroups[i].EnableMesh();
             }
         }
 
@@ -27,12 +29,15 @@ public class PlayerChangeBody : MonoBehaviour
 
         if (AIDirector.Instance.currentMainStoryIndex > meshListGroups.Length) return;
 
-        foreach (var go in meshListGroups[AIDirector.Instance.currentMainStoryIndex-1].meshLists)
-        {
-            go.SetActive(true);
-        }
 
         meshListGroups[AIDirector.Instance.currentMainStoryIndex - 1].isActive = true;
+        meshListGroups[AIDirector.Instance.currentMainStoryIndex - 1].EnableMesh();
+
+        //foreach (var go in meshListGroups[AIDirector.Instance.currentMainStoryIndex-1].meshLists)
+        //{
+        //    go.SetActive(true);
+        //}
+
     }
 
     private void OnDestroy()

@@ -8,19 +8,18 @@ public class MeshCollection : MonoBehaviour
     public GameObject[] meshLists;
     public bool isActive;
 
-    public void SetActive(bool isActive)
+    public void EnableMesh()
     {
-        foreach (var go in meshLists)
+        for(int i = 0; i < meshLists.Length; i++)
         {
-                    if (isActive)
-        {
-                go.SetActive(true);
+            if (isActive)
+            {
+                meshLists[i].SetActive(true);
             }
             else
             {
-                go.SetActive(false);
+                meshLists[i].SetActive(false);
             }
-
         }
 
     }

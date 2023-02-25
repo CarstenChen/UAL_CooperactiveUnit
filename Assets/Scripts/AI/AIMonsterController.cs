@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using UnityEngine.Playables;
 
 [Serializable]
 public class Parameter
@@ -26,6 +27,7 @@ public class Parameter
 
     [Header("Effect Settings")]
     public GameObject raidFlashEffect;
+    public GameObject dizzyObj;
 
     [Header("Mesh Settings")]
     public GameObject bodyMesh;
@@ -64,7 +66,11 @@ public class AIMonsterController : MonoBehaviour
     //slowdown debuff (override)
     protected Coroutine currentSlowDownCoroutine;
 
+    [Header("Guide Relevant Settings")]
+    public GameObject appearanceTimeline;
+    public GameObject firstDizzyTimeline;
     protected bool blockAI;
+
 
     public enum StateType
     {
@@ -110,6 +116,7 @@ public class AIMonsterController : MonoBehaviour
     void DealWithMonsterGuide()
     {
         if (AIDirector.Instance.hasFinishedGuide) return;
+
         if (AIDirector.Instance.canTriggerSanGuide)
         {
             AIDirector.Instance.canTriggerSanGuide = false;
@@ -123,12 +130,16 @@ public class AIMonsterController : MonoBehaviour
             agent.isStopped = true;
 
             readyToChase = false;
-            StartCoroutine(OnSpawnBehindPlayer());
+            StartCoroutine(OnSpawnBehindPlayer((float)appearanceTimeline.GetComponent<PlayableDirector>().duration));
+
 
             transform.position = AIDirector.Instance.monsterSpawnPos;
             param.raidFlashEffect.SetActive(false);
             param.raidFlashEffect.SetActive(true);
             param.bodyMesh.SetActive(true);
+
+            StartCoroutine(PlayAppearanceTimeline());
+
         }
 
 
@@ -137,7 +148,28 @@ public class AIMonsterController : MonoBehaviour
             SwitchToState(StateType.Chase);
             blockAI = false;
 
+            StartCoroutine(PlayDizzyTimeline());
         }
+    }
+
+    IEnumerator PlayAppearanceTimeline()
+    {
+        appearanceTimeline.SetActive(true);
+        PlayerInput.inputBlock = true;
+        yield return new WaitForSeconds ((float)appearanceTimeline.GetComponent<PlayableDirector>().duration);
+        appearanceTimeline.SetActive(false);
+        AIDirector.Instance.monsterAppearTimelineFinished = true;
+        PlayerInput.inputBlock = false;
+    }
+
+    IEnumerator PlayDizzyTimeline()
+    {
+        yield return new WaitUntil(() => hitTimes == 2 && currentState.GetType() == typeof(MonsterDizzyState));
+        firstDizzyTimeline.SetActive(true);
+        PlayerInput.inputBlock = true;
+        yield return new WaitForSeconds((float)firstDizzyTimeline.GetComponent<PlayableDirector>().duration);
+        firstDizzyTimeline.SetActive(false);
+        PlayerInput.inputBlock = false;
     }
     private void FixedUpdate()
     {
@@ -196,7 +228,7 @@ public class AIMonsterController : MonoBehaviour
             playerFirstFound = true;//so it chase player ingnoring eyesight
             Debug.Log(playerFirstFound);
             SwitchToState(StateType.Raid);
-            StartCoroutine(OnSpawnBehindPlayer());
+            StartCoroutine(OnSpawnBehindPlayer(0.2f));
 
             AIDirector.Instance.tensiveTime = false;
         }
@@ -284,10 +316,10 @@ public class AIMonsterController : MonoBehaviour
         }
     }
 
-    IEnumerator OnSpawnBehindPlayer()
+    IEnumerator OnSpawnBehindPlayer(float delay)
     {
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(delay);
         readyToChase = true;
     }
 
