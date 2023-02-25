@@ -31,7 +31,6 @@ public class StoryInteractible : MonoBehaviour
         if (!LinesManager.isPlayingLines && canInteract)
         {
             LinesManager.Instance.DisplayLine(plotID, 0);
-            if (!LinesManager.isPlayingLines && canInteract)
                 canInteract = false;
         }
     }

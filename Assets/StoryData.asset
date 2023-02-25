@@ -12,11 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760e2ce9568261544bb8e46a38c3ac8e, type: 3}
   m_Name: StoryData
   m_EditorClassIdentifier: 
-  numberOfPrefabsToCreate: 4
-  recoverCounts:
-  - 0
-  - 0
-  - 0
-  - 0
-  canInteracts: 01010101
-  isItemActives: 01010101
+  numberOfPrefabsToCreate: 6
+  canInteracts: 010101010101
+  isItemActives: 010101010101

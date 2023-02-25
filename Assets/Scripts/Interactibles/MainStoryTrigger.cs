@@ -17,7 +17,7 @@ public class MainStoryTrigger : Interactibes
 
     [Header("Timeline Setting")]
     public GameObject timeline;
-
+    protected MeshRenderer renderer;
     protected override void Awake()
     {
         base.Awake();
@@ -27,7 +27,10 @@ public class MainStoryTrigger : Interactibes
     protected override void Start()
     {
         GetComponent<Collider>().enabled = mainFragmentSpawner.GetCanInteract(dataIndex);
-        destroyAfterCollected.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
+
+        renderer = destroyAfterCollected.GetComponent<MeshRenderer>();
+        renderer.enabled = mainFragmentSpawner.GetCanInteract(dataIndex);
+        particle.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
     }
 
     public override void Interact()
@@ -102,6 +105,6 @@ public class MainStoryTrigger : Interactibes
 
     private void OnDestroy()
     {
-        mainFragmentSpawner.SaveData(dataIndex, destroyAfterCollected.activeSelf);
+        mainFragmentSpawner.SaveData(dataIndex, renderer.enabled);
     }
 }
