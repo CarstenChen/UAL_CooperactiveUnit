@@ -7,6 +7,8 @@ TagManager:
   - Monster
   - PlayerBody
   - Interactibles
+  - CanHide
+  - CanHide2
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Terrain
-  - 
+  - Title
   - 
   - 
   - 

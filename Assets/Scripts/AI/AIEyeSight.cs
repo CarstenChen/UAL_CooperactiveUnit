@@ -101,7 +101,7 @@ public class AIEyeSight : MonoBehaviour
             if (light.type == LightType.Spot)
             {
                 angle = light.spotAngle / 2;
-                radius = light.spotAngle/2;
+                radius = light.spotAngle;
                 range = light.range;
             }
         }
@@ -110,7 +110,7 @@ public class AIEyeSight : MonoBehaviour
 
     void CallBack(GameObject obj)
     {
-        //Debug.Log("See:" + obj.name);
+        Debug.Log("See:" + obj.name);
         monster.playerInSight = true;
     }
 
@@ -170,16 +170,18 @@ public class AIEyeSight : MonoBehaviour
 
             if (LinesManager.isPlayingLines)
             {
-                if (Random.Range(0, 2000) == 0 && !monster.playerHeard)
+                if (Random.Range(0, 1000) == 0 && !monster.playerHeard)
                 {
                     monster.playerHeard = true;
+                    Debug.Log("Heard:" + other.gameObject.name);
                 }
             }
             else
             {
-                if (Random.Range(0, 500) == 0 && !monster.playerHeard)
+                if (Random.Range(0, 300) == 0 && !monster.playerHeard)
                 {
                     monster.playerHeard = true;
+                    Debug.Log("Heard:" + other.gameObject.name);
                 }
             }
         }

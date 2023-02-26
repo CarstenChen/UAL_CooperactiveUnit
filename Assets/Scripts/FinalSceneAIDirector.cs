@@ -135,12 +135,13 @@ public class FinalSceneAIDirector : MonoBehaviour
 
     IEnumerator EndGame()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         if (!hasEndGame)
         {
-            StartCoroutine(SceneLoader.instance.LoadScene("MainScene", Color.white));
+            StartCoroutine(SceneLoader.instance.LoadScene("StartScene", Color.white));
             hasEndGame = true;
+            PlayerPrefs.SetInt("GamePassed", 1);
         }
 
     }

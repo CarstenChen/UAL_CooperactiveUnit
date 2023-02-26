@@ -404,7 +404,6 @@ public class PlayerController : MonoBehaviour
 
     private void Scream()
     {
-        if (AIDirector.Instance.playerScreamOnce) AIDirector.Instance.playerScreamOnce = false;
         if (playerInput.ScreamInput && !playerInput.hasDealAttack && !playerScreenEffects.ringLocked)
         {
             float offset = Mathf.Abs(playerScreenEffects.effectScaleValue - playerScreenEffects.ringScaleValue);

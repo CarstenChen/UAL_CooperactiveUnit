@@ -85,6 +85,7 @@ public class SoundManager : MonoBehaviour
         if (AIDirector.Instance.playerScreamOnce)
         {
             SoundPlayer.PlaySound(audio, screamClip[Random.Range(0, screamClip.Length)], 0, true);
+            AIDirector.Instance.playerScreamOnce = false;
         }
     }
 

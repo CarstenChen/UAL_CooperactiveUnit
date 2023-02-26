@@ -116,8 +116,6 @@ public class AIDirector : MonoBehaviour
     {
 
 
-
-
         //enter guide
         if (!hasFinishedGuide && !playerInGuide)
         {
@@ -128,10 +126,10 @@ public class AIDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Keyboard.current.escapeKey.isPressed)
-        //{
-        //    isGameOver = true;
-        //}
+        if (Keyboard.current.pauseKey.isPressed)
+        {
+            StartCoroutine(SceneLoader.instance.LoadScene("StartScene", Color.black));
+        }
         if (playerSan > 0f)
         {
             if (isInFinalSceneTimeLine || isInMainStoryTimeLine)

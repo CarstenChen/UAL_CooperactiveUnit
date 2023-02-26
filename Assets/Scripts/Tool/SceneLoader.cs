@@ -10,6 +10,7 @@ public class SceneLoader : MonoBehaviour
     public Animator sceneFadeAnimator;
     public PlayerController player;
     public GameObject eventSystem;
+    public static bool isLoadingScene;
 
     private void Awake()
     {
@@ -41,6 +42,8 @@ public class SceneLoader : MonoBehaviour
 
     public IEnumerator LoadScene(string name, Color fadeColor)
     {
+        isLoadingScene = true;
+
         GameObject.Find("SceneLoaderCanvas").GetComponentInChildren<Image>().color = fadeColor;
 
         sceneFadeAnimator.ResetTrigger("FadeIn");
@@ -72,6 +75,8 @@ public class SceneLoader : MonoBehaviour
         {
             sceneFadeAnimator.SetTrigger("FadeOut");
         }
+
+        isLoadingScene = false;
     }
 
     public IEnumerator QuitLevel()
