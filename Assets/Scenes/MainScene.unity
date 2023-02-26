@@ -18682,14 +18682,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 563546477, guid: 195b7f579d7116c458498fde69073473, type: 3}
-      propertyPath: maxYOffset
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 563546477, guid: 195b7f579d7116c458498fde69073473, type: 3}
-      propertyPath: minYOffset
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 1767493555074866365, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: volume
       value: 
@@ -30780,7 +30772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953558958575, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 1.4630207e-16
+      value: 1.9666928e-15
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953558958575, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
@@ -30788,7 +30780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953558958575, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.0090264e-15
+      value: -5.825618e-16
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953769657057, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_Lens.FieldOfView
