@@ -128,6 +128,8 @@ public class AIDirector : MonoBehaviour
     {
         if (Keyboard.current.pauseKey.isPressed)
         {
+            Destroy(GameObject.Find("Spawner(Clone)"));
+            hasFinishedGuide = false;
             StartCoroutine(SceneLoader.instance.LoadScene("StartScene", Color.black));
         }
         if (playerSan > 0f)
@@ -140,7 +142,9 @@ public class AIDirector : MonoBehaviour
         }
         else
         {
-            isGameOver = true;
+            Destroy(GameObject.Find("Spawner(Clone)"));
+            hasFinishedGuide = false;
+            StartCoroutine(SceneLoader.instance.LoadScene("StartScene", Color.black));
         }
         if (isGameOver)
         {
