@@ -102,10 +102,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyAfterCollected: {fileID: 0}
   particle: {fileID: 843342766542131878}
+  blockInteractionWhenChased: 0
+  blockInteractionWhenReading: 0
+  recoverable: 0
+  recoverTime: 0
+  recoverCount: 0
   virtualCamera: {fileID: 0}
   freeLookCamera: {fileID: 0}
   standPoint: {fileID: 0}
   cameraCenter: {fileID: 0}
+  autoWritingGuideUI: {fileID: 0}
 --- !u!65 &1834779444907511658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -137,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1834779445434215882
 Transform:
   m_ObjectHideFlags: 0

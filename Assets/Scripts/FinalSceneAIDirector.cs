@@ -14,7 +14,9 @@ public class FinalSceneAIDirector : MonoBehaviour
     public static event WinEvent emittedObjectEvent;
 
     public Material playerBodyMtl;
+    public float dissolveRange;
     public Material[] monsterBodyMtls;
+    public float[] dissolveRanges;
 
     public float winRate;
     public int currentPhase;
@@ -35,6 +37,7 @@ public class FinalSceneAIDirector : MonoBehaviour
     public PlayerController player;
     public float playerWritingAnimTick;
     protected float tick;
+    protected float stopForceTick;
 
 
     [System.NonSerialized] protected bool canPress = false;
@@ -105,13 +108,22 @@ public class FinalSceneAIDirector : MonoBehaviour
         {
             //type in
             DealWithAutoWriting();
-            DealWithSystemForce();
+
+            if (stopForceTick > 0)
+            {
+                stopForceTick -= Time.deltaTime;
+            }
+            if (stopForceTick <= 0)
+            {
+                DealWithSystemForce();
+            }
         }
         DealWithSkyExposureChange();
         DealWithSkyColorChange();
         if (phaseRaised)
         {
-            if(currentPhase!=phaseWinrates.Length)
+            stopForceTick = 1f;
+            if (currentPhase!=phaseWinrates.Length)
             PlayScreamEffect();
         }
 
@@ -180,20 +192,20 @@ public class FinalSceneAIDirector : MonoBehaviour
     // add input force to players so players have to crazily tap the key board.
     void DealWithSystemForce()
     {
-        if(Random.Range(0,25)==0)
-        currentKeyNum=Mathf.Clamp(currentKeyNum- Random.Range(1, 2), 0,winKeyNum);
-        
+        if (Random.Range(0, 20) == 0)
+            currentKeyNum = Mathf.Clamp(currentKeyNum - Random.Range(1, 2), 0, winKeyNum);
     }
 
     void DealWithDissolveModel()
     {
         //model dissolve
-        Vector3 offset = new Vector3(0, 2f - 4f * winRate, 0);
+        Vector3 offset = new Vector3(0, dissolveRange - 2f* dissolveRange * winRate, 0);
         playerBodyMtl.SetVector("_DissolveOffset", -offset);
 
         for (int i = 0; i < monsterBodyMtls.Length; i++)
         {
-            monsterBodyMtls[i].SetVector("_DissolveOffset", offset);
+            Vector3 newOffset = new Vector3(0, dissolveRanges[i] - 2f* dissolveRanges[i] * winRate, 0);
+            monsterBodyMtls[i].SetVector("_DissolveOffset", newOffset);
         }
     }
 
