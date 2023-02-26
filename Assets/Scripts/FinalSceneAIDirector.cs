@@ -14,7 +14,7 @@ public class FinalSceneAIDirector : MonoBehaviour
     public static event WinEvent emittedObjectEvent;
 
     public Material playerBodyMtl;
-    public Material monsterBodyMtl;
+    public Material[] monsterBodyMtls;
 
     public float winRate;
     public int currentPhase;
@@ -188,9 +188,13 @@ public class FinalSceneAIDirector : MonoBehaviour
     void DealWithDissolveModel()
     {
         //model dissolve
-        Vector3 offset = new Vector3(0, 2 - 4 * winRate, 0);
-        playerBodyMtl.SetVector("_DissolveOffset", offset);
-        monsterBodyMtl.SetVector("_DissolveOffset", offset);
+        Vector3 offset = new Vector3(0, 2f - 4f * winRate, 0);
+        playerBodyMtl.SetVector("_DissolveOffset", -offset);
+
+        for (int i = 0; i < monsterBodyMtls.Length; i++)
+        {
+            monsterBodyMtls[i].SetVector("_DissolveOffset", offset);
+        }
     }
 
     void DealWithSkyRotationChange()
