@@ -205,6 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7479911769086164344}
+  - component: {fileID: 625395186}
   m_Layer: 0
   m_Name: BodyTransfer
   m_TagString: Untagged
@@ -231,6 +232,28 @@ Transform:
   m_Father: {fileID: 5212020512628351336}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &625395186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540432929809496011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3b94a6c5cad9e47b23635aa22c7a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pictures:
+  - {fileID: 2473133428283463181}
+  - {fileID: 7870925094526168280}
+  - {fileID: 2647457945922238093}
+  animator: {fileID: 1115404387}
+  animationStateNames:
+  - Portal_Transfer0-1
+  - Portal_Transfer1-2
+  - Portal_Transfer2-3
+  pictureStateSpawner: {fileID: 11400000, guid: 7488c47785ea05741b1925bf666f857f, type: 2}
 --- !u!1 &2453522869690370975
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8582674459590791145
 Transform:
   m_ObjectHideFlags: 0
@@ -700,6 +723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5212020512628351336}
   - component: {fileID: 1115404387}
+  - component: {fileID: 1115404388}
   m_Layer: 0
   m_Name: PortalGroup
   m_TagString: Untagged
@@ -746,6 +770,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1115404388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5212020512628351337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694ee6be3a0d0b54c9032eaf8f92d1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animCount: 0
+  isPlay: 0
+  stage01: {fileID: 0}
 --- !u!1 &5212020513682723182
 GameObject:
   m_ObjectHideFlags: 0

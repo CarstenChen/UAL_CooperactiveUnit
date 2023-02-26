@@ -48,11 +48,13 @@ public class MainStoryTrigger : Interactibes
 
             LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
             AIDirector.Instance.ReadMainStory();
+            PortalAnimStateChange.Instance.animCount++;
+            PortalAnimStateChange.Instance.isPlay = true;
 
             StartCoroutine(PlayMainStoryTriggerSound());
             StartCoroutine(AIDirector.Instance.MainStoryStateCount(timeline));
             StartCoroutine(PlayerBodyChangeEffect(9f));
-
+            
             //GetComponent<Collider>().enabled = false;
         }
     }
@@ -94,6 +96,8 @@ public class MainStoryTrigger : Interactibes
         //showCamera.Priority = 8;
         //StartCoroutine(ResetCamera());
     }
+
+
 
     IEnumerator ResetCamera()
     {
