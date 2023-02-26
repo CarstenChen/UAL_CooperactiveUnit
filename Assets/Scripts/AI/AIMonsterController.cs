@@ -104,7 +104,8 @@ public class AIMonsterController : MonoBehaviour
         agent.speed = param.normalChaseSpeed;
         agent.acceleration = param.normalAcceleration;
 
-        blockAI = true;
+
+        if (!AIDirector.Instance.hasFinishedGuide) blockAI = true;
     }
 
 

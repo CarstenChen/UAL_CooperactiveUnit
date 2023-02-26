@@ -89,6 +89,7 @@ public class AIDirector : MonoBehaviour
             i.storySpawner.ResetData();
             i.mainFragmentSpawner.ResetData();
             i.bodyMeshSpawner.ResetData();
+            i.pictureStateSpawner.ResetData();
         }
 
         hasFinishedGuide = gameDataSpawner.GetHasFinishedGuide();

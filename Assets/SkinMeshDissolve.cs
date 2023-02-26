@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeshDissolve : MonoBehaviour
+public class SkinMeshDissolve : MonoBehaviour
 {
     public float minYOffset;
     public float maxYOffset;
@@ -12,12 +12,12 @@ public class MeshDissolve : MonoBehaviour
 
     private void OnEnable()
     {
-        dissolveMtl = GetComponent<MeshRenderer>().material;
+        dissolveMtl = GetComponent<SkinnedMeshRenderer>().material;
 
         currentYOffset = minYOffset;
         StartCoroutine(DealWithMeshDissolve());
     }
-    
+
     IEnumerator DealWithMeshDissolve()
     {
         yield return null;
@@ -36,7 +36,7 @@ public class MeshDissolve : MonoBehaviour
 
             StartCoroutine(DealWithMeshDissolve());
 
-            
+
         }
         else
         {
