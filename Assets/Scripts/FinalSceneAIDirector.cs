@@ -39,6 +39,9 @@ public class FinalSceneAIDirector : MonoBehaviour
     protected float tick;
     protected float stopForceTick;
 
+    [Header("Data Settings")]
+    public GameDataSpawner gameDataSpawner;
+
 
     [System.NonSerialized] protected bool canPress = false;
     [System.NonSerialized] public bool autoWriting;
@@ -135,13 +138,14 @@ public class FinalSceneAIDirector : MonoBehaviour
 
     IEnumerator EndGame()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         if (!hasEndGame)
         {
             StartCoroutine(SceneLoader.instance.LoadScene("StartScene", Color.white));
             hasEndGame = true;
             PlayerPrefs.SetInt("GamePassed", 1);
+            gameDataSpawner.SaveHasFinishedGuide(false);
         }
 
     }

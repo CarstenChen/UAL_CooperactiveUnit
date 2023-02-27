@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26794994, g: 0.1286782, b: 0.24402541, a: 1}
+  m_IndirectSpecularColor: {r: 3.0362966, g: 3.5134025, b: 3.8842552, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1201,6 +1201,7 @@ MonoBehaviour:
   screamEffect: {fileID: 170508426}
   player: {fileID: 6727009993124762894}
   playerWritingAnimTick: 0.35
+  gameDataSpawner: {fileID: 11400000, guid: ec7292e7a654b334abd73ca431f629eb, type: 2}
 --- !u!4 &742129052
 Transform:
   m_ObjectHideFlags: 0

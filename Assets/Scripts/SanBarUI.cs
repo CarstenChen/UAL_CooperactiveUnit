@@ -7,12 +7,12 @@ public class SanBarUI : MonoBehaviour
     public Color normalColor;
     public Color alertColor;
     public Color dangerousColor;
-    protected Image img;
+    public Image img;
 
     // Start is called before the first frame update
     void Start()
     {
-        img = GetComponent<Image>();
+
     }
 
     // Update is called once per frame

@@ -27,6 +27,10 @@ public class GameDataSpawner : SpawnManagerScriptableObject
         this.hasFinishedGuide = hasFinishedGuide;
     }
 
+    public void SaveHasFinishedGuide(bool isTrue)
+    {
+        hasFinishedGuide = isTrue;
+    }
     public int GetCurrentMainStoryIndex()
     {
         return currentMainStoryIndex;
