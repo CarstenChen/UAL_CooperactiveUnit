@@ -197,7 +197,7 @@ public class FinalSceneAIDirector : MonoBehaviour
     // add input force to players so players have to crazily tap the key board.
     void DealWithSystemForce()
     {
-        if (Random.Range(0, 20) == 0)
+        if (Random.Range(0, 50) == 0)
             currentKeyNum = Mathf.Clamp(currentKeyNum - Random.Range(1, 2), 0, winKeyNum);
     }
 

@@ -214,15 +214,13 @@ public class AIDirector : MonoBehaviour
         {
             if (routes != null && playerPosCheck != null)
             {
-                if (Vector3.Distance(playerPosCheck.position, routes[pickRoute].root.position) >= Vector3.Distance(playerPosCheck.position, routes[i].root.position))
+                if (Vector3.Distance(playerPosCheck.position, routes[pickRoute].root.position) 
+                    >= Vector3.Distance(playerPosCheck.position, routes[i].root.position))
                 {
                     pickRoute = i;
                 }
             }
-
-
         }
-
         return pickRoute;
     }
 

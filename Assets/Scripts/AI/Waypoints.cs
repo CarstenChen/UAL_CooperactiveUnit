@@ -59,9 +59,11 @@ public class Waypoints : MonoBehaviour
                 continue;
             }
 
-            Ray ray = new Ray(wayPoints[i].position + new Vector3(0, 1f, 0), player.transform.position - (wayPoints[i].position + new Vector3(0, 1f, 0)));
+            Ray ray = new Ray(wayPoints[i].position + new Vector3(0, 1f, 0),
+                player.transform.position - (wayPoints[i].position + new Vector3(0, 1f, 0)));
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Vector3.Distance(wayPoints[i].position + new Vector3(0, 1f, 0), player.transform.position)))
+            if (Physics.Raycast(ray, out hit, Vector3.Distance(wayPoints[i].position 
+                + new Vector3(0, 1f, 0), player.transform.position)))
             {
                 if (hit.transform.tag != "Player")
                 {

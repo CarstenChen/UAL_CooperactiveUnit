@@ -9,13 +9,13 @@ public class MonsterChaseState : State
     private Parameter param;
 
     protected float tick;
+
     public MonsterChaseState(AIMonsterController monster)
     {
         this.monster = monster;
         this.agent = monster.agent;
         this.param = monster.param;
     }
-
     public void OnStateEnter()
     {
 
@@ -43,7 +43,6 @@ public class MonsterChaseState : State
         agent.SetDestination(param.chaseTarget.position);
 
     }
-
     public void OnStateExit()
     {
         monster.readyToChase = false;
@@ -53,4 +52,7 @@ public class MonsterChaseState : State
         agent.autoBraking = true;
         PlayerScreenEffects.Instance.enabled = false;
     }
+
 }
+
+
