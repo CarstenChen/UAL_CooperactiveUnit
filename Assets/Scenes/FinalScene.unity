@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3.0362966, g: 3.5134025, b: 3.8842552, a: 1}
+  m_IndirectSpecularColor: {r: 0.26794994, g: 0.1286782, b: 0.24402541, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2111,11 +2111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolRoot: {fileID: 1392306729}
---- !u!1 &1430603925 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
-  m_PrefabInstance: {fileID: 2963039099051572618}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1430603926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
@@ -3790,12 +3785,10 @@ MonoBehaviour:
   ringScaleValue: 1
   monster: {fileID: 0}
   isGetingClose: 0
-  shieldModel: {fileID: 1430603925}
   originalShieldSize: 2
   minShieldSize: 0.05
   shieldColor1: {r: 0, g: 1, b: 1, a: 0.1764706}
   shieldColor2: {r: 1, g: 0.5958981, b: 0, a: 1}
-  shieldMaterial: {fileID: 2100000, guid: 16dcb61846b97184ea53f7b45c8e17d9, type: 2}
   attackModel: {fileID: 1350633204310986681}
   originalAttackSize: 4.3
   ringLocked: 0
@@ -14386,7 +14379,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4287523953102095826}
-  m_LocalRotation: {x: -0.23454402, y: -0.000000008363208, z: -0.0000000020178266, w: 0.9721055}
+  m_LocalRotation: {x: -0.23454402, y: 0.00000000836321, z: 0.0000000020178272, w: 0.9721055}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14808,7 +14801,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4287523953690597877}
-  m_LocalRotation: {x: -0.18910751, y: -0.000000008447955, z: -0.0000000016269276, w: 0.9819564}
+  m_LocalRotation: {x: -0.18910751, y: 0.0000000084479606, z: 0.0000000016269286, w: 0.9819564}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15073,7 +15066,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4287523954230923721}
-  m_LocalRotation: {x: -0.23454405, y: -0.000000016726418, z: -0.000000004035654, w: 0.97210556}
+  m_LocalRotation: {x: -0.23454405, y: 0.00000001672642, z: 0.0000000040356545, w: 0.97210556}
   m_LocalPosition: {x: 0, y: 1, z: -2.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17687,7 +17680,7 @@ MonoBehaviour:
   initialJumpSpeed: 10
   minMonsterSpeedDecreaseRate: 0.7
   maxMonsterSpeedDecreaseRate: 0.9
-  screamEffect: {fileID: 0}
+  screamEffect: {fileID: 170508426}
   playerInput: {fileID: 6727009993124762893}
 --- !u!114 &6727009993124762895
 MonoBehaviour:
