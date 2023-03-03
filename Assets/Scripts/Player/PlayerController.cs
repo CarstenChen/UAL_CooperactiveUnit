@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour
         faceCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         TPSCamera = GameObject.Find("TPS FreeLook").GetComponent<CinemachineFreeLook>();
         //SceneManager.activeSceneChanged += Spawn;
+
+        ObjectPool.instance.PreLoadGameObject(screamEffect, 10);
     }
 
     // Update is called once per frame
@@ -93,7 +95,7 @@ public class PlayerController : MonoBehaviour
         //后续尖叫可能用得上
         //DealWithScreamAttackAnimation();
         if (canScream)
-            Scream();
+            NewScream();
 
         CalculateHorizontalMovement();
         CalculateVerticalMovement();
@@ -491,7 +493,77 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+    private void NewScream()
+    {
+        if (playerInput.ScreamInput && !playerInput.hasDealAttack&&!playerScreenEffects.ringLocked)
+        {
+            if (!AIDirector.Instance.monsterGuideFinished)
+            {
+                MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
+                monster.hitTimes++;
 
+                playerInput.hasDealAttack = true;
+
+                AIDirector.Instance.guideScreamCount++;
+
+                playerScreenEffects.DealWithRingDisplay();
+
+                GameObject newSoundWave = ObjectPool.instance.GetGameObject(screamEffect, transform.position, Quaternion.identity, ObjectPool.instance.poolRoot);
+                ObjectPool.instance.SetGameObject(newSoundWave, 1f);
+
+                animator.SetBool("Scream", false);
+                animator.SetBool("Scream", true);
+                StartCoroutine(ResetScreamAnim());
+
+                AIDirector.Instance.playerScreamOnce = true;
+
+                if (!AIDirector.Instance.monsterGuideFinished)
+                {
+                    AIDirector.Instance.bulletTime = false;
+                }
+            }
+            else
+            {
+                int random = UnityEngine.Random.Range(0, 500);
+                if(random == 500)
+                {
+                    monster.hitTimes+=1000;
+                }
+                else if (random < 100)
+                {
+                    MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
+                    monster.hitTimes++;
+
+                    Debug.Log("Perffect, Monster Slow Down");
+                    playerInput.hasDealAttack = true;
+
+                    //AIDirector.Instance.playerSuccessToScream++;
+                    //AIDirector.Instance.CalculateDifficulty();
+                }
+                else
+                {
+                    MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
+                    monster.hitTimes++;
+
+                    Debug.Log("Good, Monster Slow Down");
+                    playerInput.hasDealAttack = true;
+
+                    //AIDirector.Instance.playerSuccessToScream++;
+                    //AIDirector.Instance.CalculateDifficulty();
+                }
+
+                playerScreenEffects.DealWithRingDisplay();
+                GameObject newSoundWave= ObjectPool.instance.GetGameObject(screamEffect, transform.position, Quaternion.identity, ObjectPool.instance.poolRoot);
+                ObjectPool.instance.SetGameObject(newSoundWave, 1f);
+                animator.SetBool("Scream", false);
+                animator.SetBool("Scream", true);
+                StartCoroutine(ResetScreamAnim());
+
+                AIDirector.Instance.playerScreamOnce = true;
+            }
+
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Monster")
@@ -521,7 +593,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator ResetScreamAnim()
     {
         yield return null;
-        if (animatorCacheExtraLayer.currentStateInfo.IsName("Scream") && animatorCache.currentStateInfo.normalizedTime >= 1)
+        if (animatorCacheExtraLayer.currentStateInfo.IsName("Scream") && animatorCacheExtraLayer.currentStateInfo.normalizedTime >= 1)
         {
             animator.SetBool("Scream", false);
         }

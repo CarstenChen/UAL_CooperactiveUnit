@@ -351,8 +351,8 @@ public class AIMonsterController : MonoBehaviour
 
     IEnumerator SlowDown(float slowDownRate)
     {
-        agent.speed = Mathf.Clamp(agent.speed * UnityEngine.Random.Range(slowDownRate / 2, slowDownRate), param.minSpeed, param.currentChaseSpeed);
-        yield return new WaitForSeconds(2.5f/AIDirector.Instance.currentDifficulty);
+        agent.speed = Mathf.Clamp(agent.speed * UnityEngine.Random.Range(slowDownRate / 1.2f, slowDownRate), param.minSpeed, param.currentChaseSpeed);
+        yield return new WaitForSeconds(1/*2.5f/AIDirector.Instance.currentDifficulty*/);
         agent.speed = param.currentChaseSpeed;
     }
 

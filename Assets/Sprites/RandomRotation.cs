@@ -9,7 +9,7 @@ public class RandomRotation : MonoBehaviour
     public bool zRandom;
     public float range;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         float x = xRandom ? Random.Range(-range, range) : 0;
         float y = yRandom ? Random.Range(-range, range) : 0;

@@ -6,10 +6,10 @@ using UnityEngine.Rendering.Universal;
 using System;
 using UnityEngine.UI;
 
-public class PlayerScreenEffects : MonoBehaviour
+public class OldPlayerScreenEffects : MonoBehaviour
 {
-    protected static PlayerScreenEffects instance;
-    public static PlayerScreenEffects Instance { get { return instance; } private set { } }
+    protected static OldPlayerScreenEffects instance;
+    public static OldPlayerScreenEffects Instance { get { return instance; } private set { } }
 
 
 
@@ -37,12 +37,12 @@ public class PlayerScreenEffects : MonoBehaviour
 
 
     [Header("Model Settings")]
-    //public GameObject shieldModel;
+    public GameObject shieldModel;
     public float originalShieldSize;
     public float minShieldSize;
     public Color shieldColor1;
     public Color shieldColor2;
-    //public Material shieldMaterial;
+    public Material shieldMaterial;
     public GameObject attackModel;
     public float originalAttackSize;
 
@@ -64,7 +64,9 @@ public class PlayerScreenEffects : MonoBehaviour
     {
         ringLocked = false;
 
+        shieldModel.SetActive(false);
         attackModel.SetActive(false);
+        //attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
     }
 
     private void Awake()
@@ -88,7 +90,11 @@ public class PlayerScreenEffects : MonoBehaviour
 
             EnableEffect();
 
+            shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize;
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
+
+            shieldMaterial.SetColor("_FresnelColor", shieldColor1);
+            shieldMaterial.SetColor("_BackColor", shieldColor1);
         }
     }
 
@@ -121,11 +127,39 @@ public class PlayerScreenEffects : MonoBehaviour
 
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize*effectScaleValue;
             vignette.intensity.value = 1 - effectScaleValue;
+
+            if (effectScaleValue - ringScaleValue < -0.05f || (playerCannotScream && effectScaleValue - ringScaleValue>0.1f))
+            {
+                ResetForwardRing();
+            }
+
+            if (ringScaleValue> minShieldSize / originalShieldSize)
+            {
+                playerCannotScream = false;
+                shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize * ringScaleValue;
+                UpdateRingImage();
+            }
+            else
+            {
+                playerCannotScream = true;
+                shieldModel.SetActive(false);
+            }
         }
     }
 
     protected void EnableEffect()
     {
+        if (!shieldModel.activeSelf)
+        {
+            ResetForwardRing();
+
+            if (!ringLocked && !playerCannotScream)
+            {
+
+                shieldModel.SetActive(true);
+            }
+        }
+
         attackModel.SetActive(true);
         vignette.active = true;
 
@@ -141,6 +175,13 @@ public class PlayerScreenEffects : MonoBehaviour
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
             attackModel.SetActive(false);
             vignette.active = false;
+        }
+
+        if (shieldModel != null)
+        {
+            shieldModel.transform.localScale = new Vector3(1, 1, 1) * originalShieldSize;
+
+            shieldModel.SetActive(false);
         }
     }
 
@@ -170,9 +211,52 @@ public class PlayerScreenEffects : MonoBehaviour
     IEnumerator AfterScream()
     {
         ringLocked = true;
-        yield return new WaitForSeconds(0.3f);
+        //ringImage.enabled = false;
+        shieldModel.SetActive(false);
+        yield return new WaitForSeconds(3f);
+        //ringImage.enabled = true;
+        shieldModel.SetActive(true);
         ringLocked = false;
         ResetForwardRing();
     }
 
+    protected void UpdateRingImage()
+    {
+        if (!AIDirector.Instance.monsterGuideFinished)
+        {
+            if (Mathf.Abs(effectScaleValue - ringScaleValue) < 0.08f)
+            {
+                if (!AIDirector.Instance.monsterGuideFinished && shieldModel.activeSelf)
+                {
+                    AIDirector.Instance.bulletTime = true;
+                }
+
+                //ringImage.sprite = highlightSprite;
+                shieldMaterial.SetColor("_FresnelColor", shieldColor2);
+                shieldMaterial.SetColor("_BackColor", shieldColor2);
+            }
+            else
+            {
+                //ringImage.sprite = normalSprite;
+                shieldMaterial.SetColor("_FresnelColor", shieldColor1);
+                shieldMaterial.SetColor("_BackColor", shieldColor1);
+            }
+        }
+        else
+        {
+            if (Mathf.Abs(effectScaleValue - ringScaleValue) < 0.05f)
+            {
+                //ringImage.sprite = highlightSprite;
+                shieldMaterial.SetColor("_FresnelColor", shieldColor2);
+                shieldMaterial.SetColor("_BackColor", shieldColor2);
+            }
+            else
+            {
+                //ringImage.sprite = normalSprite;
+                shieldMaterial.SetColor("_FresnelColor", shieldColor1);
+                shieldMaterial.SetColor("_BackColor", shieldColor1);
+            }
+        }
+
+    }
 }

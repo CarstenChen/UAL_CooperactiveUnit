@@ -42,7 +42,8 @@ public class SoundManager : MonoBehaviour
         bgmChanged = AIDirector.Instance.onCatchingState == previousOnCatchingState ? false : transform;
 
         PlayBgm(bgmAudioSource);
-        PlayPlayerSound(playerAudioSource);
+        
+        PlayPlayerSound();
 
 
         previousOnCatchingState = AIDirector.Instance.onCatchingState;
@@ -80,12 +81,26 @@ public class SoundManager : MonoBehaviour
     {
         SoundPlayer.PlaySound(collectibleAudioSource, mainGateClip, true);
     }
-    void PlayPlayerSound(AudioSource audio)
+    void PlayPlayerSound()
     {
+        Debug.Log(AIDirector.Instance.playerScreamOnce);
         if (AIDirector.Instance.playerScreamOnce)
         {
-            SoundPlayer.PlaySound(audio, screamClip[Random.Range(0, screamClip.Length)], 0, true);
+            //AIDirector.Instance.playerScreamOnce = false;
+            //SoundPlayer.PlaySound(playerAudioSource, screamClip[Random.Range(0, screamClip.Length)], 0, true);
+            AudioSource.PlayClipAtPoint(screamClip[Random.Range(0, screamClip.Length)].clip, player.transform.position);
             AIDirector.Instance.playerScreamOnce = false;
+            //for (int i = 0; i < playerAudioSources.Length; i++)
+            //{
+            //    if (!playerAudioSources[i].isPlaying)
+            //    {
+            //        SoundPlayer.PlaySound(playerAudioSources[i], screamClip[Random.Range(0, screamClip.Length)], 0, true);
+            //        return;
+            //    }
+
+            //    SoundPlayer.PlaySound(playerAudioSources[0], screamClip[Random.Range(0, screamClip.Length)], 0, true);
+
+            //}
         }
     }
 
