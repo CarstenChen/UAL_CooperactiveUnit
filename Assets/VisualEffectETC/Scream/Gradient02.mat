@@ -59,7 +59,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 1.0498604, g: 0.39215684, b: 1.3254902, a: 1}
+    - _Color: {r: 4.1864443, g: 1.1520557, b: 5.387557, a: 1}
     - _Offset1: {r: 0, g: 0, b: 0, a: 0}
     - _Offset2: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling1: {r: 10, g: 1, b: 0, a: 0}
