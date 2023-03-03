@@ -223,7 +223,8 @@ public class AIMonsterController : MonoBehaviour
 
 
         //raid when in idle/patrol state and main story is triggered or player is found during patrol 
-        if ((!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && AIDirector.Instance.tensiveTime && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))
+        if ((!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && AIDirector.Instance.tensiveTime 
+            && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))
             || (playerHeard && raidWhenHearPlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             playerFirstFound = true;//so it chase player ingnoring eyesight

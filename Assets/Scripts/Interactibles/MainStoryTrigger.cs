@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class MainStoryTrigger : Interactibes
 {
@@ -11,13 +12,17 @@ public class MainStoryTrigger : Interactibes
     public CinemachineFreeLook freeLookCamera;
     public PlayerController player;
 
-    [Header("Data Setting")]
+    [Header("Data Settings")]
     public MainFragmentSpawner mainFragmentSpawner;
     public int dataIndex;
 
-    [Header("Timeline Setting")]
+    [Header("Timeline Settings")]
     public GameObject timeline;
     protected MeshRenderer renderer;
+
+    [Header("UI Settings")]
+    public CanvasGroup autoWritingGuideUI;
+    protected bool getKeyToHideGuideUI;
     protected override void Awake()
     {
         base.Awake();
@@ -39,64 +44,57 @@ public class MainStoryTrigger : Interactibes
 
         if (!LinesManager.isPlayingLines)
         {
-            
-
-            //showCamera.Priority = 20;
-            //freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
-
-
-
-            LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
             AIDirector.Instance.ReadMainStory();
-            PortalAnimStateChange.Instance.animCount++;
-            PortalAnimStateChange.Instance.isPlay = true;
+            GuideUIController.instance.ShowGuideUI(autoWritingGuideUI);
+            StartCoroutine(WaitAutoWritingGuide());
+            //LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
+            //AIDirector.Instance.ReadMainStory();
+            //PortalAnimStateChange.Instance.animCount++;
+            //PortalAnimStateChange.Instance.isPlay = true;
 
-            StartCoroutine(PlayMainStoryTriggerSound());
-            StartCoroutine(AIDirector.Instance.MainStoryStateCount(timeline));
+            //StartCoroutine(PlayMainStoryTriggerSound());
+            //StartCoroutine(AIDirector.Instance.MainStoryStateCount(timeline));
             StartCoroutine(PlayerBodyChangeEffect(9f));
-            
-            //GetComponent<Collider>().enabled = false;
+           
         }
     }
 
+    public override void HideObject()
+    {
+        StartCoroutine(HideSelf());
+    }
     IEnumerator PlayMainStoryTriggerSound()
     {
         yield return new WaitForSeconds(0.6f);
-    SoundManager.Instance.PlayMainStoryTriggerSound();
+        SoundManager.Instance.PlayMainStoryTriggerSound();
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {    
-    //        if (!LinesManager.isPlayingLines)
-    //        {
-    //            showCamera.Priority = 20;
-    //            freeLookCamera.GetComponent<CinemachineInputProvider>().enabled = false;
-    //            PlayerInput.inputBlock = true;
-
-    //            LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
-    //            AIDirector.Instance.ReadMainStory();
-
-    //            StartCoroutine(AIDirector.Instance.MainStoryStateCount());
-    //            StartCoroutine(PlayerBodyChangeEffect(2.5f));
-
-    //            GetComponent<Collider>().enabled = false;
-    //        }
-
-
-    //    }
-    //}
+    IEnumerator HideSelf()
+    {
+        yield return new WaitUntil(() => PlayerChangeBody.playerCompleteAutomaticWriting == true);
+        yield return new WaitForSeconds(0.5f);
+        base.HideObject();
+    }
 
     IEnumerator PlayerBodyChangeEffect(float delay)
     {
-        yield return new WaitForSeconds(delay);
+        PlayerController.ChangeToFaceCamera();
+        PlayerChangeBody.playerCompleteAutomaticWriting = false;
+        //yield return new WaitForSeconds(delay);
         player.GetComponent<PlayerChangeBody>().UpdatePlayerBodyMesh();
-        yield return new WaitForSeconds(delay);
-        //showCamera.Priority = 8;
-        //StartCoroutine(ResetCamera());
+        yield return new WaitUntil(()=> PlayerChangeBody.playerCompleteAutomaticWriting ==true);
+        PlayerController.ChangeToFPSCamera();
+        DealWithMainStoryMovie();
     }
 
+    void DealWithMainStoryMovie()
+    {
+        StartCoroutine(PlayMainStoryTriggerSound());
+        LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
+        PortalAnimStateChange.Instance.animCount++;
+        PortalAnimStateChange.Instance.isPlay = true;
+        StartCoroutine(AIDirector.Instance.MainStoryStateCount(timeline));
+    }
 
 
     IEnumerator ResetCamera()
@@ -110,5 +108,34 @@ public class MainStoryTrigger : Interactibes
     private void OnDestroy()
     {
         mainFragmentSpawner.SaveData(dataIndex, renderer.enabled);
+    }
+
+    IEnumerator WaitAutoWritingGuide()
+    {
+        PlayerInput.inputBlock = true;
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(WaitKey());
+        yield return new WaitUntil(() => getKeyToHideGuideUI == true);
+        getKeyToHideGuideUI = false;
+        GuideUIController.instance.HideGuideUI(autoWritingGuideUI);
+        //autoWritingGuideUI.gameObject.SetActive(false);
+    }
+
+    IEnumerator WaitKey()
+    {
+        yield return null;
+
+        if (Keyboard.current.anyKey.isPressed)
+        {
+            if (!Keyboard.current.escapeKey.isPressed)
+            {
+                getKeyToHideGuideUI = true;
+            }
+        }
+        else
+        {
+            StartCoroutine(WaitKey());
+        }
+
     }
 }

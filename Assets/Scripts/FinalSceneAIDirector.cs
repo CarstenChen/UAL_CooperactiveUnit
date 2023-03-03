@@ -98,7 +98,7 @@ public class FinalSceneAIDirector : MonoBehaviour
             phaseRaised = false;
         }
 
-        if (winRate >= 1)
+        if (winRate >= 0.92)
         {
             emittedObjectEvent();
             finalCamera.Priority = 30;
@@ -128,6 +128,7 @@ public class FinalSceneAIDirector : MonoBehaviour
             stopForceTick = 1f;
             if (currentPhase!=phaseWinrates.Length)
             PlayScreamEffect();
+            FinalSceneSoundManager.Instance.PlayPlayerSound();
         }
 
         DealWithSkyRotationChange();
@@ -167,20 +168,11 @@ public class FinalSceneAIDirector : MonoBehaviour
 
         if (Keyboard.current.anyKey.isPressed && canPress)
         {
-            //InputSystem.onAnyButtonPress.CallOnce(ctrl => { currentKey = ctrl.name; });
-            //if (currentKey == previousKey)
-            //{
-            //    return;
-            //}
-
             currentKeyNum++;
             Debug.Log(canPress);
             EmitterManager.Instance.RandomArrangeEmitter();
             currentCoolDown = coolDown * (1-winRate);
-            tick = playerWritingAnimTick;
-
-            //InputSystem.onAnyButtonPress.CallOnce(ctrl => { previousKey = ctrl.name; });
-            
+            tick = playerWritingAnimTick;            
         }
 
         if (tick > 0)
@@ -197,7 +189,7 @@ public class FinalSceneAIDirector : MonoBehaviour
     // add input force to players so players have to crazily tap the key board.
     void DealWithSystemForce()
     {
-        if (Random.Range(0, 50) == 0)
+        if (Random.Range(0, 15) == 0)
             currentKeyNum = Mathf.Clamp(currentKeyNum - Random.Range(1, 2), 0, winKeyNum);
     }
 

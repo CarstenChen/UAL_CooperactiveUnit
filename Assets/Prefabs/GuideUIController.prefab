@@ -552,7 +552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quickly <color=#D20073><b>CODE</b></color>in something
+  m_text: Wait for <color=#D20073><b>CODE</b></color> ... ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b7335508d249ab4da560780f3964507, type: 2}
   m_sharedMaterial: {fileID: 8938702238341003498, guid: 3b7335508d249ab4da560780f3964507, type: 2}
@@ -714,7 +714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7998525472453292159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -842,7 +842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7998525472664040677
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1299,7 +1299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7998525473326677275
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1482,7 +1482,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7998525473536826379}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

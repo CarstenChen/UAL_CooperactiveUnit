@@ -10,6 +10,8 @@ public class FinalSceneSoundManager : MonoBehaviour
     public PlayerController player;
     public SoundClip bgmClip;
     public AudioSource bgmAudioSource;
+    public AudioSource playerAudioSource;
+    public SoundClip[] screamClip;
 
     private void Awake()
     {
@@ -31,5 +33,10 @@ public class FinalSceneSoundManager : MonoBehaviour
     void PlayBgm(AudioSource audio)
     {
         SoundPlayer.PlaySound(audio, bgmClip, true);
+    }
+
+    public void PlayPlayerSound()
+    {
+        SoundPlayer.PlaySound(playerAudioSource, screamClip[Random.Range(0, screamClip.Length)], 0, true);
     }
 }

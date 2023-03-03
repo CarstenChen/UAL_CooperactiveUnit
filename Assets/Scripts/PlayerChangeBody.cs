@@ -13,6 +13,7 @@ public class PlayerChangeBody : MonoBehaviour
     public GameObject[] bodies;
     public int currentBodyIndex;
 
+    public static bool playerCompleteAutomaticWriting;
     private void Start()
     {
         if (SceneManager.GetActiveScene().name == "MainScene")
@@ -50,7 +51,6 @@ public class PlayerChangeBody : MonoBehaviour
     public void UpdatePlayerBodyMesh()
     {
         SoundManager.Instance.PlayBodyChangeSound();
-
         if (AIDirector.Instance.currentMainStoryIndex > 3) return;
 
         if (AIDirector.Instance.currentMainStoryIndex == 3)

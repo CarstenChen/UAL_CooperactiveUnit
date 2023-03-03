@@ -20,6 +20,12 @@ public class GuideUIController : MonoBehaviour
         StartCoroutine(UIFadeIn(uiCanvasGroup));
         
     }
+
+    public void HideGuideUI(CanvasGroup uiCanvasGroup)
+    {
+        StartCoroutine(UIFadeOut(uiCanvasGroup));
+
+    }
     IEnumerator UIFadeIn(CanvasGroup uiCanvasGroup)
     {
         yield return null;

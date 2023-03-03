@@ -58,20 +58,7 @@ public class Interactibes : MonoBehaviour
 
         if (destroyAfterCollected!=null)
         {
-            MeshRenderer renderer = destroyAfterCollected.GetComponent<MeshRenderer>();
-            if (renderer != null)
-            {
-                renderer.enabled = false;
-                if (particle != default)
-                    particle.SetActive(false);
-            }
-
-            else
-            {
-                destroyAfterCollected.SetActive(false);
-                if (particle != default)
-                    particle.SetActive(false);
-            }
+            HideObject();
 
 
             if (recoverable)
@@ -81,7 +68,23 @@ public class Interactibes : MonoBehaviour
         }
     }
 
+    public virtual void HideObject()
+    {
+        MeshRenderer renderer = destroyAfterCollected.GetComponent<MeshRenderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = false;
+            if (particle != default)
+                particle.SetActive(false);
+        }
 
+        else
+        {
+            destroyAfterCollected.SetActive(false);
+            if (particle != default)
+                particle.SetActive(false);
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {

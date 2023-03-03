@@ -16,13 +16,14 @@ public class PlayerController : MonoBehaviour
     public static event ScreamEvent MonsterSlowDownEvent;
 
     [Header("Movement Setting")]
-    [SerializeField] protected CinemachineFreeLook TPSCamera;
+    [SerializeField] protected static CinemachineFreeLook TPSCamera;
+    [SerializeField] protected static CinemachineVirtualCamera faceCamera;
     [SerializeField] protected float moveSpeed;  //最大速度
     [SerializeField] protected float maxRotateSpeed;  //旋转的最大速度
     [SerializeField] protected float gravity = 10f;  //重力
     [SerializeField] protected float initialJumpSpeed = 0f;  //起跳初速度
 
-    [Header("Cream Setting")]
+    [Header("Scream Setting")]
     public float minMonsterSpeedDecreaseRate = 0.5f;
     public float maxMonsterSpeedDecreaseRate = 0.8f;
     public GameObject screamEffect;
@@ -75,7 +76,8 @@ public class PlayerController : MonoBehaviour
         animatorCache = new AnimatorInfo(animator);
         animatorCacheExtraLayer = new AnimatorInfo(animator);
         playerScreenEffects = GetComponent<PlayerScreenEffects>();
-
+        faceCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+        TPSCamera = GameObject.Find("TPS FreeLook").GetComponent<CinemachineFreeLook>();
         //SceneManager.activeSceneChanged += Spawn;
     }
 
@@ -528,5 +530,19 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ResetScreamAnim());
         }
 
+    }
+
+    public static void ChangeToFaceCamera()
+    {
+        TPSCamera.GetComponent<CinemachineInputProvider>().enabled = false;
+        PlayerInput.inputBlock = true;
+        faceCamera.Priority = 50;
+    }
+
+    public static void ChangeToFPSCamera()
+    {
+        faceCamera.Priority = 5;
+        PlayerInput.inputBlock = false;
+        TPSCamera.GetComponent<CinemachineInputProvider>().enabled = true;
     }
 }
