@@ -511,11 +511,15 @@ public class PlayerController : MonoBehaviour
                 GameObject newSoundWave = ObjectPool.instance.GetGameObject(screamEffect, transform.position, Quaternion.identity, ObjectPool.instance.poolRoot);
                 ObjectPool.instance.SetGameObject(newSoundWave, 1f);
 
-                animator.SetBool("Scream", false);
+                if (!animator.GetBool("Scream"))
+                {
+                    
+                }
+                AIDirector.Instance.playerScreamOnce = true;
+
                 animator.SetBool("Scream", true);
                 StartCoroutine(ResetScreamAnim());
 
-                AIDirector.Instance.playerScreamOnce = true;
 
                 if (!AIDirector.Instance.monsterGuideFinished)
                 {
@@ -555,11 +559,16 @@ public class PlayerController : MonoBehaviour
                 playerScreenEffects.DealWithRingDisplay();
                 GameObject newSoundWave= ObjectPool.instance.GetGameObject(screamEffect, transform.position, Quaternion.identity, ObjectPool.instance.poolRoot);
                 ObjectPool.instance.SetGameObject(newSoundWave, 1f);
-                animator.SetBool("Scream", false);
+
+                if (!animator.GetBool("Scream"))
+                {
+                    
+                }
+                AIDirector.Instance.playerScreamOnce = true;
                 animator.SetBool("Scream", true);
                 StartCoroutine(ResetScreamAnim());
 
-                AIDirector.Instance.playerScreamOnce = true;
+
             }
 
         }
