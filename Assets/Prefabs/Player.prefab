@@ -6154,15 +6154,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761442661}
-  m_LocalRotation: {x: -0.0000000037252903, y: -0.98430216, z: 0.1764919, w: -0.00000014901161}
-  m_LocalPosition: {x: 0.052, y: 2.06, z: 1.257}
+  m_LocalRotation: {x: -0.000000022351742, y: -0.9981349, z: 0.061048206, w: -0.00000017881393}
+  m_LocalPosition: {x: 0.052, y: 1.9, z: 1.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1602952404}
   m_Father: {fileID: 5757089391599193244}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 20.331, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 7, y: -180, z: 0}
 --- !u!114 &1761442663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6184,7 +6184,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 669190207400693036}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 55
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -7764,7 +7764,7 @@ Transform:
   m_GameObject: {fileID: 5757089391599193240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1004607661}
@@ -7805,13 +7805,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetAngle: 0
-  TPSCamera: {fileID: 0}
   moveSpeed: 8
   maxRotateSpeed: 2000
   gravity: 10
   initialJumpSpeed: 10
-  minMonsterSpeedDecreaseRate: 0.8
-  maxMonsterSpeedDecreaseRate: 0.9
+  minMonsterSpeedDecreaseRate: 0.9
+  maxMonsterSpeedDecreaseRate: 0.95
   screamEffect: {fileID: 3710019163638138243}
   playerInput: {fileID: 5757089391599193245}
 --- !u!114 &5757089391599193247
@@ -7899,12 +7898,10 @@ MonoBehaviour:
   ringScaleValue: 1
   monster: {fileID: 0}
   isGetingClose: 0
-  shieldModel: {fileID: 3990704062219032907}
   originalShieldSize: 2
   minShieldSize: 0.05
   shieldColor1: {r: 0, g: 1, b: 1, a: 0.1764706}
   shieldColor2: {r: 1, g: 0.5958981, b: 0, a: 1}
-  shieldMaterial: {fileID: 2100000, guid: 16dcb61846b97184ea53f7b45c8e17d9, type: 2}
   attackModel: {fileID: 1107891753}
   originalAttackSize: 4.3
   ringLocked: 0
@@ -7919,9 +7916,9 @@ SphereCollider:
   m_GameObject: {fileID: 5757089391599193240}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 0.5
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1114930107
 MonoBehaviour:
@@ -8116,6 +8113,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5757089391599193244}
     m_Modifications:
+    - target: {fileID: -6853972627523386690, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
+      propertyPath: xRandom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1444865496548280, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
       propertyPath: m_Name
       value: ScreamEffect
@@ -8130,7 +8131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4395089335984242, guid: d41aff4fea7f54e49b35ec9668360d70, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8253,11 +8254,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
---- !u!1 &3990704062219032907 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
-  m_PrefabInstance: {fileID: 4296642825359664154}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4335282676185842673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd27c29ba1a850d43a0208e49be536ca, type: 3}
@@ -8499,6 +8495,58 @@ PrefabInstance:
     - target: {fileID: 6064719639825181986, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
       propertyPath: m_Name
       value: Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587351598593126, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587351639180620, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587352176803824, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587352182556513, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587352204389890, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587352233929095, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587352502610791, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587353101834701, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587353117814859, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587353191788100, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587353233162079, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587353303471052, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420587353624493083, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
+      propertyPath: completKeyNum
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8668989100471989732, guid: 430ec3e7bf62f7e43b357856ea752587, type: 3}
       propertyPath: m_RootOrder

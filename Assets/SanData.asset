@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f02ce0e1609704895678cbebdd6b7d, type: 3}
   m_Name: SanData
   m_EditorClassIdentifier: 
-  numberOfPrefabsToCreate: 6
+  numberOfPrefabsToCreate: 10
   recoverCounts:
   - 0
   - 0
@@ -20,5 +20,9 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  canInteracts: 010101010101
-  isItemActives: 010101010101
+  - 0
+  - 0
+  - 0
+  - 0
+  canInteracts: 01010101010101010101
+  isItemActives: 01010101010101010101

@@ -28,6 +28,8 @@ public class Parameter
     [Header("Effect Settings")]
     public GameObject raidFlashEffect;
     public GameObject dizzyObj;
+    public GameObject slowDownEffect;
+    public GameObject[] slowDownEffectPoints;
 
     [Header("Mesh Settings")]
     public GameObject bodyMesh;
@@ -90,6 +92,8 @@ public class AIMonsterController : MonoBehaviour
         previousPatrolRoute = routes[0];
 
         PlayerController.MonsterSlowDownEvent += SlowDownOnAttacked;
+
+        ObjectPool.instance.PreLoadGameObject(param.slowDownEffect, 10);
     }
 
     private void Start()
@@ -347,6 +351,9 @@ public class AIMonsterController : MonoBehaviour
             StopCoroutine(currentSlowDownCoroutine);
 
         currentSlowDownCoroutine = StartCoroutine(SlowDown(slowDownRate));
+
+        GameObject newSlowDownEffect = ObjectPool.instance.GetGameObject(param.slowDownEffect,param.slowDownEffectPoints[UnityEngine.Random.Range(0,param.slowDownEffectPoints.Length)].transform.position,Quaternion.identity,ObjectPool.instance.poolRoot);
+        ObjectPool.instance.SetGameObject(newSlowDownEffect, 2);
     }
 
     IEnumerator SlowDown(float slowDownRate)

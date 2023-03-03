@@ -513,9 +513,9 @@ public class PlayerController : MonoBehaviour
 
                 if (!animator.GetBool("Scream"))
                 {
-                    
+                    AIDirector.Instance.playerScreamOnce = true;
                 }
-                AIDirector.Instance.playerScreamOnce = true;
+
 
                 animator.SetBool("Scream", true);
                 StartCoroutine(ResetScreamAnim());
@@ -562,9 +562,9 @@ public class PlayerController : MonoBehaviour
 
                 if (!animator.GetBool("Scream"))
                 {
-                    
+                    AIDirector.Instance.playerScreamOnce = true;
                 }
-                AIDirector.Instance.playerScreamOnce = true;
+
                 animator.SetBool("Scream", true);
                 StartCoroutine(ResetScreamAnim());
 

@@ -11,6 +11,7 @@ public class MainStoryTrigger : Interactibes
     public CinemachineVirtualCamera showCamera;
     public CinemachineFreeLook freeLookCamera;
     public PlayerController player;
+    public GameObject lightProb;
 
     [Header("Data Settings")]
     public MainFragmentSpawner mainFragmentSpawner;
@@ -36,6 +37,7 @@ public class MainStoryTrigger : Interactibes
         renderer = destroyAfterCollected.GetComponent<MeshRenderer>();
         renderer.enabled = mainFragmentSpawner.GetCanInteract(dataIndex);
         particle.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
+        lightProb.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
     }
 
     public override void Interact()
@@ -61,6 +63,7 @@ public class MainStoryTrigger : Interactibes
 
     public override void HideObject()
     {
+        lightProb.SetActive(false);
         StartCoroutine(HideSelf());
     }
     IEnumerator PlayMainStoryTriggerSound()
@@ -117,8 +120,8 @@ public class MainStoryTrigger : Interactibes
         StartCoroutine(WaitKey());
         yield return new WaitUntil(() => getKeyToHideGuideUI == true);
         getKeyToHideGuideUI = false;
-        GuideUIController.instance.HideGuideUI(autoWritingGuideUI);
-        //autoWritingGuideUI.gameObject.SetActive(false);
+        //GuideUIController.instance.HideGuideUI(autoWritingGuideUI);
+        autoWritingGuideUI.gameObject.SetActive(false);
     }
 
     IEnumerator WaitKey()

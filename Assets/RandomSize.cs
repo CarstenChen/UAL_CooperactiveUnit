@@ -8,7 +8,7 @@ public class RandomSize : MonoBehaviour
     public float maxSize;
     private void OnEnable()
     {
-        float random = Random.Range(maxSize, maxSize);
+        float random = Random.Range(minSize, maxSize);
         transform.localScale = new Vector3(random, 1, random);
     }
 }

@@ -90,7 +90,7 @@ public class SoundManager : MonoBehaviour
 
             SoundPlayer.PlaySound(playerAudioSource, screamClip[Random.Range(0, screamClip.Length)], 0, true);
             //AudioSource.PlayClipAtPoint(screamClip[Random.Range(0, screamClip.Length)].clip, player.transform.position);
-            //AIDirector.Instance.playerScreamOnce = false;
+            //AIDirector.Instance.playerScreamOnce = false; 
             //for (int i = 0; i < playerAudioSources.Length; i++)
             //{
             //    if (!playerAudioSources[i].isPlaying)
