@@ -196,10 +196,12 @@ public class AIMonsterController : MonoBehaviour
         //ground rotation
         UpdateBodyYAxis();
 
+        Debug.Log(CanBeSeenByPlayer());
         bool raidWhenHearPlayer = false;
         if (currentState.GetType() == typeof(MonsterPatrolState))
         {
-            raidWhenHearPlayer = UnityEngine.Random.Range(0, 2) != 0 ? true : false;
+
+            raidWhenHearPlayer = /*UnityEngine.Random.Range(0, 2) != 0*/!CanBeSeenByPlayer() ? true : false;
         }
 
         //if is in main story
@@ -393,5 +395,35 @@ public class AIMonsterController : MonoBehaviour
         param.animatorCache.currentStateInfo = param.animator.GetCurrentAnimatorStateInfo(0);
         param.animatorCache.isAnimatorTransitioning = param.animator.IsInTransition(0);
         param.animatorCache.nextStateInfo = param.animator.GetNextAnimatorStateInfo(0);
+    }
+
+    private bool IsInScreen(Transform targetTransform)
+    {
+        Transform camTransform = Camera.main.transform;
+        Vector2 viewPos = Camera.main.WorldToViewportPoint(targetTransform.position);
+        Vector3 dir = (targetTransform.position - camTransform.position).normalized;
+        float dot = Vector3.Dot(camTransform.forward, dir);//判断物体是否在相机前面
+
+        if (dot > 0 && viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1)
+            return true;
+        else
+            return false;
+    }
+
+    private bool CanBeSeenByPlayer()
+    {
+        if (IsInScreen(this.transform)) return true;
+
+            Ray ray = new Ray(transform.position + new Vector3(0, 1f, 0),
+                param.chaseTarget.transform.position - (transform.position + new Vector3(0, 1f, 0)));
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Vector3.Distance(transform.position + new Vector3(0, 1f, 0), param.chaseTarget.transform.position)))
+            {
+                if (hit.transform.tag != "Monster" && hit.transform.tag != "Player")
+                {
+                return false;
+                }
+            }
+        return true;
     }
 }

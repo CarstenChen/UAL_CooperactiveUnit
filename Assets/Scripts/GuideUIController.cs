@@ -17,6 +17,7 @@ public class GuideUIController : MonoBehaviour
 
     public void ShowGuideUI(CanvasGroup uiCanvasGroup)
     {
+        
         StartCoroutine(UIFadeIn(uiCanvasGroup));
         
     }

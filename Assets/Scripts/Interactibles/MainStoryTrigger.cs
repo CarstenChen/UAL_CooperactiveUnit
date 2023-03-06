@@ -82,6 +82,7 @@ public class MainStoryTrigger : Interactibes
     {
         if (AIDirector.Instance.currentMainStoryIndex != 0)
         {
+            autoWritingGuideUI.gameObject.SetActive(true);
             GuideUIController.instance.ShowGuideUI(autoWritingGuideUI);
             StartCoroutine(WaitAutoWritingGuide());
             PlayerController.ChangeToFaceCamera();
@@ -130,6 +131,7 @@ public class MainStoryTrigger : Interactibes
         yield return new WaitUntil(() => getKeyToHideGuideUI == true);
         getKeyToHideGuideUI = false;
         //GuideUIController.instance.HideGuideUI(autoWritingGuideUI);
+        autoWritingGuideUI.alpha = 0;
         autoWritingGuideUI.gameObject.SetActive(false);
     }
 

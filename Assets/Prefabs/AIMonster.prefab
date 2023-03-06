@@ -1940,14 +1940,14 @@ MonoBehaviour:
     raidAngleBehindPlayer: 45
     fastDeccelaration: 50
     normalAcceleration: 100
-    normalChaseSpeed: 10
-    fastChaseSpeed: 11
+    normalChaseSpeed: 11.5
+    fastChaseSpeed: 12.5
     minSpeed: 2
     coolDown:
-    - 15
-    - 10
-    - 5
-    dizzyHitTimes: 25
+    - 60
+    - 45
+    - 30
+    dizzyHitTimes: 30
     catchDistance: 3
     animator: {fileID: 7073430668112378446}
     raidFlashEffect: {fileID: 7074555842976046927}

@@ -65,8 +65,10 @@ public class AIDirector : MonoBehaviour
     [System.NonSerialized] public float playerSuccessToScream;
     [System.NonSerialized] public float playerFailToScream;
     [System.NonSerialized] public bool playerScreamOnce;
+    /*[System.NonSerialized]*/ public float timeAfterChase;
+    protected bool previousOnScreamRange;
+    protected bool canCountTimeAfterChase;
     public float currentDifficulty;
-
     protected Coroutine currentGuideCoroutine;
     protected bool getKeyToHideGuideUI;
 
@@ -134,6 +136,17 @@ public class AIDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (previousOnScreamRange && previousOnScreamRange != onScreamRange)
+        {
+            canCountTimeAfterChase = true;
+            timeAfterChase = 0;
+        }
+
+        if (canCountTimeAfterChase)
+        {
+            timeAfterChase += Time.deltaTime;
+        }
+
         if (Keyboard.current.pauseKey.isPressed)
         {
             Destroy(GameObject.Find("Spawner(Clone)"));
@@ -171,6 +184,8 @@ public class AIDirector : MonoBehaviour
             Guide();
             return;
         }
+
+        previousOnScreamRange = onScreamRange;
     }
 
     public void ReadMainStory()
@@ -211,8 +226,11 @@ public class AIDirector : MonoBehaviour
     //create tensive moment after player finding something important
     IEnumerator StartTensiveTime()
     {
-        yield return new WaitForSeconds(Random.Range(10f, 15f));
+        //yield return new WaitForSeconds(Random.Range(10f, 15f));
+        yield return new WaitUntil(() => timeAfterChase >= 60 && currentMainStoryIndex<3);
         tensiveTime = true;
+        canCountTimeAfterChase = false;
+        Debug.Log("tensiveTime");
     }
 
     //calculate which is the route that is the most possible player destination for monster petrol
