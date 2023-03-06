@@ -495,16 +495,20 @@ public class PlayerController : MonoBehaviour
     }
     private void NewScream()
     {
-        if (playerInput.ScreamInput && !playerInput.hasDealAttack&&!playerScreenEffects.ringLocked)
+        if (playerInput.ScreamInput && !playerInput.hasDealAttack&&!playerScreenEffects.ringLocked && AIDirector.Instance.onScreamRange && AIDirector.Instance.onCatchingState)
         {
             if (!AIDirector.Instance.monsterGuideFinished)
             {
                 MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
-                monster.hitTimes++;
 
                 playerInput.hasDealAttack = true;
 
+                monster.hitTimes++;
                 AIDirector.Instance.guideScreamCount++;
+                if (AIDirector.Instance.guideScreamCount >= 6)
+                {
+                    monster.hitTimes += 100;
+                }
 
                 playerScreenEffects.DealWithRingDisplay();
 
@@ -528,12 +532,12 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                int random = UnityEngine.Random.Range(0, 500);
-                if(random == 500)
+                int random = UnityEngine.Random.Range(0, 100);
+                if(random == 99)
                 {
                     monster.hitTimes+=1000;
                 }
-                else if (random < 100)
+                else if (random < 80)
                 {
                     MonsterSlowDownEvent(minMonsterSpeedDecreaseRate);
                     monster.hitTimes++;

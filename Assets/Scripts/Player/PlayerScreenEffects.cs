@@ -115,12 +115,22 @@ public class PlayerScreenEffects : MonoBehaviour
                 firstTimeToScream = true;
             }
 
-            AIDirector.Instance.onCatchingState = true;
+            AIDirector.Instance.onScreamRange = true;
 
             EnableEffect();
 
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize*effectScaleValue;
             vignette.intensity.value = 1 - effectScaleValue;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Monster")
+        {
+            if (this.enabled == false) return;
+
+            AIDirector.Instance.onScreamRange = false;
         }
     }
 
@@ -149,7 +159,7 @@ public class PlayerScreenEffects : MonoBehaviour
         
         DisableEffect();
 
-        AIDirector.Instance.onCatchingState = false;
+        AIDirector.Instance.onScreamRange = false;
     }
 
 

@@ -39,20 +39,20 @@ public class SoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bgmChanged = AIDirector.Instance.onCatchingState == previousOnCatchingState ? false : transform;
+        bgmChanged = AIDirector.Instance.onScreamRange == previousOnCatchingState ? false : transform;
 
         PlayBgm(bgmAudioSource);
         
         PlayPlayerSound();
 
 
-        previousOnCatchingState = AIDirector.Instance.onCatchingState;
+        previousOnCatchingState = AIDirector.Instance.onScreamRange;
     }
 
     void PlayBgm(AudioSource audio)
     {
         if (!bgmChanged) return;
-        if (AIDirector.Instance.onCatchingState)
+        if (AIDirector.Instance.onScreamRange)
         {
             previousbgmTime = bgmAudioSource.time;
             SoundPlayer.PlaySound(audio, horrorClip, true);

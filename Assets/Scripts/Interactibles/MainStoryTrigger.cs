@@ -81,13 +81,16 @@ public class MainStoryTrigger : Interactibes
 
     IEnumerator PlayerBodyChangeEffect(float delay)
     {
+        AIDirector.Instance.isInBodyChange = true;
         PlayerController.ChangeToFaceCamera();
         PlayerChangeBody.playerCompleteAutomaticWriting = false;
         //yield return new WaitForSeconds(delay);
         player.GetComponent<PlayerChangeBody>().UpdatePlayerBodyMesh();
         yield return new WaitUntil(()=> PlayerChangeBody.playerCompleteAutomaticWriting ==true);
+        AIDirector.Instance.isInBodyChange = false;
         PlayerController.ChangeToFPSCamera();
         DealWithMainStoryMovie();
+
     }
 
     void DealWithMainStoryMovie()

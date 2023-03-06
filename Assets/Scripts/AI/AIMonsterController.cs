@@ -93,7 +93,7 @@ public class AIMonsterController : MonoBehaviour
 
         PlayerController.MonsterSlowDownEvent += SlowDownOnAttacked;
 
-        ObjectPool.instance.PreLoadGameObject(param.slowDownEffect, 10);
+
     }
 
     private void Start()
@@ -110,6 +110,8 @@ public class AIMonsterController : MonoBehaviour
 
 
         if (!AIDirector.Instance.hasFinishedGuide) blockAI = true;
+
+        ObjectPool.instance.PreLoadGameObject(param.slowDownEffect, 10);
     }
 
 
@@ -161,7 +163,7 @@ public class AIMonsterController : MonoBehaviour
     {
         appearanceTimeline.SetActive(true);
         PlayerInput.inputBlock = true;
-        yield return new WaitForSeconds ((float)appearanceTimeline.GetComponent<PlayableDirector>().duration);
+        yield return new WaitForSeconds((float)appearanceTimeline.GetComponent<PlayableDirector>().duration);
         appearanceTimeline.SetActive(false);
         AIDirector.Instance.monsterAppearTimelineFinished = true;
         PlayerInput.inputBlock = false;
@@ -169,7 +171,7 @@ public class AIMonsterController : MonoBehaviour
 
     IEnumerator PlayDizzyTimeline()
     {
-        yield return new WaitUntil(() => hitTimes == 2 && currentState.GetType() == typeof(MonsterDizzyState));
+        yield return new WaitUntil(() => currentState.GetType() == typeof(MonsterDizzyState));
         firstDizzyTimeline.SetActive(true);
         PlayerInput.inputBlock = true;
         yield return new WaitForSeconds((float)firstDizzyTimeline.GetComponent<PlayableDirector>().duration);
@@ -201,7 +203,7 @@ public class AIMonsterController : MonoBehaviour
         }
 
         //if is in main story
-        if ((AIDirector.Instance.isInFinalSceneTimeLine || AIDirector.Instance.isInMainStoryTimeLine) && currentState.GetType() != typeof(MonsterIdleState) && currentState.GetType() != typeof(MonsterDizzyState))
+        if ((AIDirector.Instance.isInFinalSceneTimeLine || AIDirector.Instance.isInMainStoryTimeLine || AIDirector.Instance.isInBodyChange) && currentState.GetType() != typeof(MonsterIdleState) && currentState.GetType() != typeof(MonsterDizzyState))
         {
             SwitchToState(StateType.Idle);
         }
@@ -219,7 +221,7 @@ public class AIMonsterController : MonoBehaviour
 
 
         //patrol if nothing to do
-        if (!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && (!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
+        if (!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && !AIDirector.Instance.isInBodyChange && (!playerInSphereTrigger && currentState.GetType() == typeof(MonsterIdleState)) ||
             (routeChanged && currentState.GetType() == typeof(MonsterPatrolState)))
         {
             SwitchToState(StateType.Patrol);
@@ -227,7 +229,7 @@ public class AIMonsterController : MonoBehaviour
 
 
         //raid when in idle/patrol state and main story is triggered or player is found during patrol 
-        if ((!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && AIDirector.Instance.tensiveTime 
+        if ((!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && !AIDirector.Instance.isInBodyChange && AIDirector.Instance.tensiveTime
             && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))
             || (playerHeard && raidWhenHearPlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
@@ -352,7 +354,7 @@ public class AIMonsterController : MonoBehaviour
 
         currentSlowDownCoroutine = StartCoroutine(SlowDown(slowDownRate));
 
-        GameObject newSlowDownEffect = ObjectPool.instance.GetGameObject(param.slowDownEffect,param.slowDownEffectPoints[UnityEngine.Random.Range(0,param.slowDownEffectPoints.Length)].transform.position,Quaternion.identity,ObjectPool.instance.poolRoot);
+        GameObject newSlowDownEffect = ObjectPool.instance.GetGameObject(param.slowDownEffect, param.slowDownEffectPoints[UnityEngine.Random.Range(0, param.slowDownEffectPoints.Length)].transform.position, Quaternion.identity, ObjectPool.instance.poolRoot);
         ObjectPool.instance.SetGameObject(newSlowDownEffect, 2);
     }
 

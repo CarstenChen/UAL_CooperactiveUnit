@@ -43,12 +43,14 @@ public class AIDirector : MonoBehaviour
 
     [System.NonSerialized] public bool onBeingCatched;
     [System.NonSerialized] public bool onCatchingState;
+    [System.NonSerialized] public bool onScreamRange;
     [System.NonSerialized] public static bool isGameOver = false;
     [System.NonSerialized] public static float playerSan;
     /*[System.NonSerialized]*/ public int currentMainStoryIndex = 0;
     [System.NonSerialized] public bool tensiveTime;
     [System.NonSerialized] public bool isInMainStoryTimeLine;
     [System.NonSerialized] public bool isInFinalSceneTimeLine;
+    [System.NonSerialized] public bool isInBodyChange;
     [System.NonSerialized] public Coroutine currentTensiveTimeCoroutine;
     [System.NonSerialized] public bool hasRespawn;
     [System.NonSerialized] public bool isInAGuide;
@@ -76,25 +78,29 @@ public class AIDirector : MonoBehaviour
         Time.timeScale = 1;
         playerSan = startPlayerSan;
 
-        hasFinishedGuide = gameDataSpawner.GetHasFinishedGuide();
-
-        if (!GameObject.Find("Spawner(Clone)") || !hasFinishedGuide)
+        if (gameDataSpawner != null)
         {
-            gameDataSpawner.ResetData();
-            Initrializer i = Instantiate(initializer).GetComponent<Initrializer>();
-            i.sanAppleSpawner.RecordOriginalData();
-            i.storySpawner.RecordOriginalData();
-            i.mainFragmentSpawner.RecordOriginalData();
-            i.sanAppleSpawner.ResetData();
-            i.storySpawner.ResetData();
-            i.mainFragmentSpawner.ResetData();
-            i.bodyMeshSpawner.ResetData();
-            i.pictureStateSpawner.ResetData();
+            hasFinishedGuide = gameDataSpawner.GetHasFinishedGuide();
+
+            if (!GameObject.Find("Spawner(Clone)") || !hasFinishedGuide)
+            {
+                gameDataSpawner.ResetData();
+                Initrializer i = Instantiate(initializer).GetComponent<Initrializer>();
+                i.sanAppleSpawner.RecordOriginalData();
+                i.storySpawner.RecordOriginalData();
+                i.mainFragmentSpawner.RecordOriginalData();
+                i.sanAppleSpawner.ResetData();
+                i.storySpawner.ResetData();
+                i.mainFragmentSpawner.ResetData();
+                i.bodyMeshSpawner.ResetData();
+                i.pictureStateSpawner.ResetData();
+            }
+
+            hasFinishedGuide = gameDataSpawner.GetHasFinishedGuide();
+            currentMainStoryIndex = gameDataSpawner.GetCurrentMainStoryIndex();
+            playerSan = gameDataSpawner.GetPlayerSan();
         }
 
-        hasFinishedGuide = gameDataSpawner.GetHasFinishedGuide();
-        currentMainStoryIndex = gameDataSpawner.GetCurrentMainStoryIndex();
-        playerSan = gameDataSpawner.GetPlayerSan();
 
         DealWithFinalSceneGateTimeline();
 
@@ -106,8 +112,10 @@ public class AIDirector : MonoBehaviour
         hasRespawn = false;
         onBeingCatched = false;
         onCatchingState = false;
+        onScreamRange = false;
         isInMainStoryTimeLine = false;
         isInFinalSceneTimeLine = false;
+        isInBodyChange = false;
 
 
 
@@ -178,15 +186,9 @@ public class AIDirector : MonoBehaviour
             StopCoroutine(currentTensiveTimeCoroutine);
 
         currentTensiveTimeCoroutine = StartCoroutine(StartTensiveTime());
-
     }
 
-    //create tensive moment after player finding something important
-    IEnumerator StartTensiveTime()
-    {
-        yield return new WaitForSeconds(Random.Range(10f, 15f));
-        tensiveTime = true;
-    }
+    
 
     //give player a hidden chance to overcome chase 
     public void RandomDecreaseHitTimes()
@@ -202,7 +204,15 @@ public class AIDirector : MonoBehaviour
 
     public void CalculateDifficulty()
     {
-        currentDifficulty = difficultyCurve.Evaluate(Mathf.Clamp(playerFailToScream / (playerFailToScream + playerSuccessToScream), 0, 1f));
+        currentDifficulty = difficultyCurve.Evaluate(Mathf.Clamp(
+            playerFailToScream / (playerFailToScream + playerSuccessToScream), 0, 1f));
+    }
+
+    //create tensive moment after player finding something important
+    IEnumerator StartTensiveTime()
+    {
+        yield return new WaitForSeconds(Random.Range(10f, 15f));
+        tensiveTime = true;
     }
 
     //calculate which is the route that is the most possible player destination for monster petrol
@@ -263,17 +273,18 @@ public class AIDirector : MonoBehaviour
                 runUI.SetActive(false);
                 Time.timeScale = 0.3f;
             }
-
             else
             {
-                screamGuideUI.gameObject.SetActive(false);
-                runUI.SetActive(true);
+                screamGuideUI.gameObject.SetActive(true);
+                runUI.SetActive(false);
                 Time.timeScale = 1f;
-
+                //screamGuideUI.gameObject.SetActive(false);
+                //runUI.SetActive(true);
+                //Time.timeScale = 1f;
             }
         }
 
-        if (guideScreamCount == 2)
+        if (guideScreamCount == 6)
         {
             monsterGuideFinished = true;
             screamGuideUI.gameObject.SetActive(false);

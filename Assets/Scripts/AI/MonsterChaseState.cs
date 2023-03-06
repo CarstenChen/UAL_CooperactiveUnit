@@ -36,6 +36,9 @@ public class MonsterChaseState : State
         Debug.Log("Chase");
 
         SoundManager.Instance.PlayMonsterSound();
+
+        AIDirector.Instance.onCatchingState = true;
+
     }
     public void OnStateStay()
     {
@@ -51,6 +54,8 @@ public class MonsterChaseState : State
         agent.speed = param.normalChaseSpeed;
         agent.autoBraking = true;
         PlayerScreenEffects.Instance.enabled = false;
+
+        AIDirector.Instance.onCatchingState = false;
     }
 
 }
