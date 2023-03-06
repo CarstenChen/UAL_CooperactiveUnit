@@ -25,8 +25,21 @@ public class MeshDissolve : MonoBehaviour
         dissolveMtl = GetComponent<MeshRenderer>().material;
         currentYOffset = minYOffset;
 
+        if (AIDirector.Instance != null)
+        {
+            if(AIDirector.Instance.isInBodyChange)
+                StartCoroutine(DealWithMeshDissolveOnAutomaticWriting());
+            else
+            {
+                StartCoroutine(DealWithMeshDissolve());
 
-        StartCoroutine(DealWithMeshDissolveOnAutomaticWriting());
+            }
+        }
+        else
+        {
+            StartCoroutine(DealWithMeshDissolve());
+        }
+
     }
 
     private void Update()

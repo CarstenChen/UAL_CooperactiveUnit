@@ -26,7 +26,21 @@ public class SkinMeshDissolve : MonoBehaviour
         dissolveMtl = GetComponent<SkinnedMeshRenderer>().material;
 
         currentYOffset = minYOffset;
-        StartCoroutine(DealWithMeshDissolveOnAutomaticWriting());
+
+        if (AIDirector.Instance != null)
+        {
+            if (AIDirector.Instance.isInBodyChange)
+                StartCoroutine(DealWithMeshDissolveOnAutomaticWriting());
+            else
+            {
+                StartCoroutine(DealWithMeshDissolve());
+            }
+        }
+        else
+        {
+            StartCoroutine(DealWithMeshDissolve());
+        }
+
     }
 
     private void Update()
