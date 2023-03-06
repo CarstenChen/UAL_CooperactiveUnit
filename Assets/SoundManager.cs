@@ -83,7 +83,7 @@ public class SoundManager : MonoBehaviour
     }
     void PlayPlayerSound()
     {
-        Debug.Log(AIDirector.Instance.playerScreamOnce);
+        //Debug.Log(AIDirector.Instance.playerScreamOnce);
         if (AIDirector.Instance.playerScreamOnce)
         {
             AIDirector.Instance.playerScreamOnce = false;

@@ -5092,7 +5092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4395089335984242
 Transform:
   m_ObjectHideFlags: 0
@@ -5138,7 +5138,7 @@ MonoBehaviour:
   xRandom: 1
   yRandom: 0
   zRandom: 1
-  range: 15
+  range: 25
 --- !u!1 &1480859621233736
 GameObject:
   m_ObjectHideFlags: 0
