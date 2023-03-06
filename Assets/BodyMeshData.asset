@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfPrefabsToCreate: 6
   bodyIndex: 0
-  meshgroup1Actives: 000000
+  meshgroup1Actives: 00000000
   meshgroup2Actives: 00000000

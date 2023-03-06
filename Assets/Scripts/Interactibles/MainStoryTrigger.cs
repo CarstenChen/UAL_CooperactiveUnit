@@ -38,6 +38,7 @@ public class MainStoryTrigger : Interactibes
         renderer.enabled = mainFragmentSpawner.GetCanInteract(dataIndex);
         particle.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
         lightProb.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
+        canInteract = mainFragmentSpawner.GetCanInteract(dataIndex);
     }
 
     public override void Interact()
@@ -46,9 +47,7 @@ public class MainStoryTrigger : Interactibes
 
         if (!LinesManager.isPlayingLines)
         {
-            AIDirector.Instance.ReadMainStory();
-            GuideUIController.instance.ShowGuideUI(autoWritingGuideUI);
-            StartCoroutine(WaitAutoWritingGuide());
+
             //LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
             //AIDirector.Instance.ReadMainStory();
             //PortalAnimStateChange.Instance.animCount++;
@@ -81,8 +80,14 @@ public class MainStoryTrigger : Interactibes
 
     IEnumerator PlayerBodyChangeEffect(float delay)
     {
+        if (AIDirector.Instance.currentMainStoryIndex != 0)
+        {
+            GuideUIController.instance.ShowGuideUI(autoWritingGuideUI);
+            StartCoroutine(WaitAutoWritingGuide());
+            PlayerController.ChangeToFaceCamera();
+        }
+
         AIDirector.Instance.isInBodyChange = true;
-        PlayerController.ChangeToFaceCamera();
         PlayerChangeBody.playerCompleteAutomaticWriting = false;
         //yield return new WaitForSeconds(delay);
         player.GetComponent<PlayerChangeBody>().UpdatePlayerBodyMesh();
@@ -96,7 +101,8 @@ public class MainStoryTrigger : Interactibes
     void DealWithMainStoryMovie()
     {
         StartCoroutine(PlayMainStoryTriggerSound());
-        LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex + 1, 0);
+        LinesManager.Instance.DisplayLine(AIDirector.Instance.currentMainStoryIndex, 0);
+        AIDirector.Instance.ReadMainStory();
         PortalAnimStateChange.Instance.animCount++;
         PortalAnimStateChange.Instance.isPlay = true;
         StartCoroutine(AIDirector.Instance.MainStoryStateCount(timeline));

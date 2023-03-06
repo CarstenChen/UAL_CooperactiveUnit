@@ -10,6 +10,12 @@ public class MeshCollection : MonoBehaviour
 
     public void EnableMesh()
     {
+        if (meshLists.Length == 0)
+        {
+            PlayerChangeBody.playerCompleteAutomaticWriting = true;
+            return;
+        }
+
         for(int i = 0; i < meshLists.Length; i++)
         {
             if (isActive)

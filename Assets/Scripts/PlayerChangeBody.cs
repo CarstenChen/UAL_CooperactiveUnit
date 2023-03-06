@@ -51,9 +51,9 @@ public class PlayerChangeBody : MonoBehaviour
     public void UpdatePlayerBodyMesh()
     {
         SoundManager.Instance.PlayBodyChangeSound();
-        if (AIDirector.Instance.currentMainStoryIndex > 3) return;
+        if (AIDirector.Instance.currentMainStoryIndex > 4) return;
 
-        if (AIDirector.Instance.currentMainStoryIndex == 3)
+        if (AIDirector.Instance.currentMainStoryIndex == 4)
         {
             Destroy(bodies[0]);
             currentBodyIndex = 1;
@@ -69,8 +69,8 @@ public class PlayerChangeBody : MonoBehaviour
         else
         {
             currentBodyIndex = 0;
-            meshListGroups1[AIDirector.Instance.currentMainStoryIndex - 1].isActive = true;
-            meshListGroups1[AIDirector.Instance.currentMainStoryIndex - 1].EnableMesh();
+            meshListGroups1[AIDirector.Instance.currentMainStoryIndex].isActive = true;
+            meshListGroups1[AIDirector.Instance.currentMainStoryIndex].EnableMesh();
         }
 
 

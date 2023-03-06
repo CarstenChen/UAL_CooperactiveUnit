@@ -96,6 +96,7 @@ public class PlayerScreenEffects : MonoBehaviour
                 attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
             tooths[0].localPosition = new Vector3(0,0,0);
             tooths[1].localPosition = new Vector3(0, 0, 0);
+            vignette.intensity.value = 0;
         }
     }
 
@@ -171,6 +172,7 @@ public class PlayerScreenEffects : MonoBehaviour
             tooths[0].localPosition = new Vector3(0, 0, 0);
             tooths[1].localPosition = new Vector3(0, 0, 0);
             spickes.SetActive(false);
+            vignette.active = false;
         }
     }
 
