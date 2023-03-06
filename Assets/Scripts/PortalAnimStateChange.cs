@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class PortalAnimStateChange : MonoBehaviour
 {
+    public GameObject[] pictures;
     public static PortalAnimStateChange Instance;
     public int animCount;
     public bool isPlay;
     Animator anim;
+    public PictureStateSpawner pictureStateSpawner;
     private void Awake()
     {
 
         Instance = this;
 
         anim = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        for (int i = 0; i < pictures.Length; i++)
+        {
+            if (pictureStateSpawner.GetIsActive(i))
+            {
+                animCount++;
+            }
+        }
     }
 
     void Update()
