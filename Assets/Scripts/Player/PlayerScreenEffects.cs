@@ -45,6 +45,8 @@ public class PlayerScreenEffects : MonoBehaviour
     //public Material shieldMaterial;
     public GameObject attackModel;
     public float originalAttackSize;
+    public GameObject spickes;
+    public RectTransform[] tooths;
 
 
     protected RectTransform imageTransform;
@@ -64,7 +66,9 @@ public class PlayerScreenEffects : MonoBehaviour
     {
         ringLocked = false;
 
+        if(attackModel!=null)
         attackModel.SetActive(false);
+        spickes.SetActive(false);
     }
 
     private void Awake()
@@ -88,7 +92,10 @@ public class PlayerScreenEffects : MonoBehaviour
 
             EnableEffect();
 
-            attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
+            if (attackModel != null)
+                attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
+            tooths[0].localPosition = new Vector3(0,0,0);
+            tooths[1].localPosition = new Vector3(0, 0, 0);
         }
     }
 
@@ -119,8 +126,12 @@ public class PlayerScreenEffects : MonoBehaviour
 
             EnableEffect();
 
-            attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize*effectScaleValue;
+            if (attackModel != null)
+                attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize*effectScaleValue;
             vignette.intensity.value = 1 - effectScaleValue;
+
+            tooths[0].localPosition = new Vector3(-960 * effectScaleValue, 0, 0);
+            tooths[1].localPosition = new Vector3(960* effectScaleValue, 0, 0);
         }
     }
 
@@ -136,7 +147,9 @@ public class PlayerScreenEffects : MonoBehaviour
 
     protected void EnableEffect()
     {
-        attackModel.SetActive(true);
+        if (attackModel != null)
+            attackModel.SetActive(true);
+        spickes.SetActive(true);
         vignette.active = true;
 
     }
@@ -151,6 +164,13 @@ public class PlayerScreenEffects : MonoBehaviour
             attackModel.transform.localScale = new Vector3(1, 1, 1) * originalAttackSize;
             attackModel.SetActive(false);
             vignette.active = false;
+        }
+
+        if (spickes != null)
+        {
+            tooths[0].localPosition = new Vector3(0, 0, 0);
+            tooths[1].localPosition = new Vector3(0, 0, 0);
+            spickes.SetActive(false);
         }
     }
 
