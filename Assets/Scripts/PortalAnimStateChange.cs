@@ -43,12 +43,15 @@ public class PortalAnimStateChange : MonoBehaviour
         switch (animCount)
         {
             case 1:
-                anim.Play("Portal_Transfer0-1");
+                anim.Play("Portal_PictureAppear");
                 break;
             case 2:
-                anim.Play("Portal_Transfer1-2");
+                anim.Play("Portal_Transfer0-1");
                 break;
             case 3:
+                anim.Play("Portal_Transfer1-2");
+                break;
+            case 4:
                 anim.Play("Portal_Transfer2-3");
                 break;
             default:

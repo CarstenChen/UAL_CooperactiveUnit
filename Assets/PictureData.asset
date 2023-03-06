@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7fa4f90d0b79fb4e9e1c83e2253f9b2, type: 3}
   m_Name: PictureData
   m_EditorClassIdentifier: 
-  numberOfPrefabsToCreate: 3
-  isActives: 000000
+  numberOfPrefabsToCreate: 4
+  isActives: 01000000
