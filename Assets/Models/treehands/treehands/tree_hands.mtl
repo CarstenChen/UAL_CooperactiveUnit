@@ -1,0 +1,20 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.202510665)
+
+newmtl handsdirection2uv_default
+kd 0.5 0.5 0.5
+ka 0 0 0
+ks 1 1 1
+ke 0 0 0
+d 1
+illum 1
+
+newmtl wire_204204204
+kd 0.8 0.8 0.8
+ka 0.8 0.8 0.8
+ks 0.35 0.35 0.35
+ke 0 0 0
+d 1
+Ns 128
+illum 2
+
