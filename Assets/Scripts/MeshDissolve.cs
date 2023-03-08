@@ -7,15 +7,15 @@ public class MeshDissolve : MonoBehaviour
     public float minYOffset;
     public float maxYOffset;
     protected Material dissolveMtl;
-    public float currentYOffset;
+    protected float currentYOffset;
     public int completKeyNum;
 
     protected bool canPress;
     protected float completeRate;
     public float currentKeyNum;
     protected float tick;
-    [SerializeField] protected float currentCoolDown;
-    [SerializeField] protected float coolDown = 0.5f;
+    protected float currentCoolDown;
+    protected float coolDown = 0.5f;
 
     protected bool finished;
     // Start is called before the first frame update

@@ -54,13 +54,19 @@ public class MonsterRaidState : State
 
     private Vector3 GetPointBehindPlayer()
     {
-        float angleBehindPlayer = Random.Range(/*180*/ - param.raidAngleBehindPlayer, /*180*/ + param.raidAngleBehindPlayer) + param.chaseTarget.GetComponent<PlayerController>().targetAngle;
+        float angleBehindPlayer = 
+            Random.Range(/*180*/ - param.raidAngleBehindPlayer, /*180*/ + param.raidAngleBehindPlayer) 
+            + param.chaseTarget.GetComponent<PlayerController>().targetAngle;
 
-        float offsetX = param.raidDistanceBehindPlayer * Mathf.Sin(angleBehindPlayer * Mathf.PI / 180);
-        float offsetZ = param.raidDistanceBehindPlayer * Mathf.Cos(angleBehindPlayer * Mathf.PI / 180);
+        float offsetX = 
+            param.raidDistanceBehindPlayer * Mathf.Sin(angleBehindPlayer * Mathf.PI / 180);
+        float offsetZ = 
+            param.raidDistanceBehindPlayer * Mathf.Cos(angleBehindPlayer * Mathf.PI / 180);
 
-        Vector3 position = new Vector3(param.chaseTarget.transform.position.x + offsetX, 0, param.chaseTarget.transform.position.z + offsetZ);
-        position = NavMesh.SamplePosition(position, out NavMeshHit hit, 100f, 1) ? hit.position : monster.transform.position;
+        Vector3 position = new Vector3(param.chaseTarget.transform.position.x 
+            + offsetX, 0, param.chaseTarget.transform.position.z + offsetZ);
+        position = NavMesh.SamplePosition(position, out NavMeshHit hit, 100f, 1) ? 
+            hit.position : monster.transform.position;
         
         return position;
     }

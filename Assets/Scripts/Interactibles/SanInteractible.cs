@@ -14,7 +14,6 @@ public class SanInteractible : Interactibes
     [Header("DataSetting")]
     public SanAppleSpawner sanAppleSpawner;
     public int dataIndex;
-
     
     protected bool hidden = false;
 

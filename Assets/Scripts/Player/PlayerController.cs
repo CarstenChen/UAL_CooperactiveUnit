@@ -497,7 +497,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput.ScreamInput && !playerInput.hasDealAttack&&!playerScreenEffects.ringLocked && AIDirector.Instance.onScreamRange && AIDirector.Instance.onCatchingState)
         {
-            if (!AIDirector.Instance.monsterGuideFinished)
+            if (!AIDirector.Instance.hasFinishedGuide)
             {
                 MonsterSlowDownEvent(maxMonsterSpeedDecreaseRate);
 
@@ -544,9 +544,6 @@ public class PlayerController : MonoBehaviour
 
                     Debug.Log("Perffect, Monster Slow Down");
                     playerInput.hasDealAttack = true;
-
-                    //AIDirector.Instance.playerSuccessToScream++;
-                    //AIDirector.Instance.CalculateDifficulty();
                 }
                 else
                 {
@@ -555,13 +552,11 @@ public class PlayerController : MonoBehaviour
 
                     Debug.Log("Good, Monster Slow Down");
                     playerInput.hasDealAttack = true;
-
-                    //AIDirector.Instance.playerSuccessToScream++;
-                    //AIDirector.Instance.CalculateDifficulty();
                 }
 
                 playerScreenEffects.DealWithRingDisplay();
-                GameObject newSoundWave= ObjectPool.instance.GetGameObject(screamEffect, transform.position, Quaternion.identity, ObjectPool.instance.poolRoot);
+                GameObject newSoundWave= ObjectPool.instance.GetGameObject(screamEffect, 
+                    transform.position, Quaternion.identity, ObjectPool.instance.poolRoot);
                 ObjectPool.instance.SetGameObject(newSoundWave, 1f);
 
                 if (!animator.GetBool("Scream"))
@@ -571,8 +566,6 @@ public class PlayerController : MonoBehaviour
 
                 animator.SetBool("Scream", true);
                 StartCoroutine(ResetScreamAnim());
-
-
             }
 
         }

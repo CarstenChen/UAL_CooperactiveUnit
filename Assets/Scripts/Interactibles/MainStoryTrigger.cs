@@ -24,6 +24,13 @@ public class MainStoryTrigger : Interactibes
     [Header("UI Settings")]
     public CanvasGroup autoWritingGuideUI;
     protected bool getKeyToHideGuideUI;
+
+    public GameObject hideGameObject;
+    public float startDelay;
+    public float duration;
+
+    protected bool hidden = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -39,6 +46,14 @@ public class MainStoryTrigger : Interactibes
         particle.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
         lightProb.SetActive(mainFragmentSpawner.GetCanInteract(dataIndex));
         canInteract = mainFragmentSpawner.GetCanInteract(dataIndex);
+
+        if (AIDirector.Instance.hasFinishedGuide && AIDirector.Instance.currentMainStoryIndex>=1)
+        {
+            if (hideGameObject != null)
+            {
+                hideGameObject.SetActive(false);
+            }
+        }
     }
 
     public override void Interact()
@@ -56,7 +71,12 @@ public class MainStoryTrigger : Interactibes
             //StartCoroutine(PlayMainStoryTriggerSound());
             //StartCoroutine(AIDirector.Instance.MainStoryStateCount(timeline));
             StartCoroutine(PlayerBodyChangeEffect(9f));
-           
+
+            if (hideGameObject != null && hideGameObject.activeSelf)
+            {
+                //StartCoroutine(StartHideGameObject());
+                hideGameObject.SetActive(false);
+            }
         }
     }
 
@@ -82,21 +102,26 @@ public class MainStoryTrigger : Interactibes
     {
         if (AIDirector.Instance.currentMainStoryIndex != 0)
         {
+            //open guide UI
             autoWritingGuideUI.gameObject.SetActive(true);
             GuideUIController.instance.ShowGuideUI(autoWritingGuideUI);
             StartCoroutine(WaitAutoWritingGuide());
+            //move camera
             PlayerController.ChangeToFaceCamera();
         }
 
         AIDirector.Instance.isInBodyChange = true;
         PlayerChangeBody.playerCompleteAutomaticWriting = false;
-        //yield return new WaitForSeconds(delay);
+
+        //wait automatic writing and dissolve
         player.GetComponent<PlayerChangeBody>().UpdatePlayerBodyMesh();
         yield return new WaitUntil(()=> PlayerChangeBody.playerCompleteAutomaticWriting ==true);
+
         AIDirector.Instance.isInBodyChange = false;
         PlayerController.ChangeToFPSCamera();
-        DealWithMainStoryMovie();
 
+        //play story timeline
+        DealWithMainStoryMovie();
     }
 
     void DealWithMainStoryMovie()
@@ -150,6 +175,35 @@ public class MainStoryTrigger : Interactibes
         {
             StartCoroutine(WaitKey());
         }
+
+    }
+
+    IEnumerator StartHideGameObject()
+    {
+        yield return new WaitForSeconds(startDelay);
+        StartCoroutine(HideGameObject());
+        StartCoroutine(CountTime());
+    }
+    IEnumerator HideGameObject()
+    {
+        yield return null;
+        if (!hidden)
+        {
+            hideGameObject.transform.Translate(new Vector3(0, -0.04f, 0));
+            StartCoroutine(HideGameObject());
+        }
+        else
+        {
+            StopAllCoroutines();
+        }
+
+    }
+
+    IEnumerator CountTime()
+    {
+        yield return new WaitForSeconds(duration);
+        hidden = true;
+        hideGameObject.SetActive(false);
 
     }
 }

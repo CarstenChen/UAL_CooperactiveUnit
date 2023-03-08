@@ -136,6 +136,7 @@ public class AIDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(hasFinishedGuide);
         if (previousOnScreamRange && previousOnScreamRange != onScreamRange)
         {
             canCountTimeAfterChase = true;
@@ -302,7 +303,7 @@ public class AIDirector : MonoBehaviour
             }
         }
 
-        if (guideScreamCount == 6)
+        if (guideScreamCount >= 6)
         {
             monsterGuideFinished = true;
             screamGuideUI.gameObject.SetActive(false);
