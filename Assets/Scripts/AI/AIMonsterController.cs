@@ -16,6 +16,7 @@ public class Parameter
     public float normalAcceleration = 10f;
     public float normalChaseSpeed = 10f;
     public float fastChaseSpeed = 15f;
+    public float speedUpRate =0.2f;
     public float minSpeed;
     public float[] coolDown;
     public int dizzyHitTimes = 3;
@@ -92,7 +93,7 @@ public class AIMonsterController : MonoBehaviour
         previousPatrolRoute = routes[0];
 
         PlayerController.MonsterSlowDownEvent += SlowDownOnAttacked;
-
+        AIDirector.MonsterSpeedUpEvent += SwitchChaseSpeed;
 
     }
 
@@ -197,6 +198,7 @@ public class AIMonsterController : MonoBehaviour
         UpdateBodyYAxis();
 
         Debug.Log(CanBeSeenByPlayer());
+
         bool raidWhenHearPlayer = false;
         if (currentState.GetType() == typeof(MonsterPatrolState))
         {
@@ -231,7 +233,8 @@ public class AIMonsterController : MonoBehaviour
 
 
         //raid when in idle/patrol state and main story is triggered or player is found during patrol 
-        if ((!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine && !AIDirector.Instance.isInBodyChange && AIDirector.Instance.tensiveTime
+        if ((!AIDirector.Instance.isInFinalSceneTimeLine && !AIDirector.Instance.isInMainStoryTimeLine
+            && !AIDirector.Instance.isInBodyChange && AIDirector.Instance.tensiveTime
             && (currentState.GetType() == typeof(MonsterIdleState) || currentState.GetType() == typeof(MonsterPatrolState)))
             || (playerHeard && raidWhenHearPlayer && currentState.GetType() == typeof(MonsterPatrolState)))
         {
@@ -414,16 +417,23 @@ public class AIMonsterController : MonoBehaviour
     {
         if (IsInScreen(this.transform)) return true;
 
-            Ray ray = new Ray(transform.position + new Vector3(0, 1f, 0),
-                param.chaseTarget.transform.position - (transform.position + new Vector3(0, 1f, 0)));
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Vector3.Distance(transform.position + new Vector3(0, 1f, 0), param.chaseTarget.transform.position)))
+        Ray ray = new Ray(transform.position + new Vector3(0, 1f, 0),
+            param.chaseTarget.transform.position - (transform.position + new Vector3(0, 1f, 0)));
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit,
+            Vector3.Distance(transform.position + new Vector3(0, 1f, 0), param.chaseTarget.transform.position)))
+        {
+            if (hit.transform.tag != "Monster" && hit.transform.tag != "Player")
             {
-                if (hit.transform.tag != "Monster" && hit.transform.tag != "Player")
-                {
                 return false;
-                }
             }
+        }
         return true;
+    }
+    public void SwitchChaseSpeed(int speedUpIndex)
+    {
+        param.normalChaseSpeed = param.normalChaseSpeed + param.speedUpRate * speedUpIndex;
+        param.fastChaseSpeed = param.fastChaseSpeed + param.speedUpRate * speedUpIndex;
     }
 }

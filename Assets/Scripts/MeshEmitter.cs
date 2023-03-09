@@ -23,8 +23,11 @@ public class MeshEmitter : MonoBehaviour
 
     public void EmitMesh()
     {
-        Quaternion dir = Quaternion.Euler(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)));    
-        GameObject obj = ObjectPool.instance.GetGameObject(currentMesh, transform.position, dir, root.transform);
+        Quaternion dir = 
+            Quaternion.Euler(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)));    
+
+        GameObject obj = 
+            ObjectPool.instance.GetGameObject(currentMesh, transform.position, dir, root.transform);
 
         EmittedObject eo = obj.GetComponent<EmittedObject>();
         if (eo != null)

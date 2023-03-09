@@ -72,6 +72,9 @@ public class AIDirector : MonoBehaviour
     protected Coroutine currentGuideCoroutine;
     protected bool getKeyToHideGuideUI;
 
+    public delegate void MonsterEvent(int currentMainStoryIndex);
+    public static event MonsterEvent MonsterSpeedUpEvent;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -101,6 +104,7 @@ public class AIDirector : MonoBehaviour
             hasFinishedGuide = gameDataSpawner.GetHasFinishedGuide();
             currentMainStoryIndex = gameDataSpawner.GetCurrentMainStoryIndex();
             playerSan = gameDataSpawner.GetPlayerSan();
+            MonsterSpeedUpEvent(currentMainStoryIndex);
         }
 
 
@@ -118,10 +122,10 @@ public class AIDirector : MonoBehaviour
         isInMainStoryTimeLine = false;
         isInFinalSceneTimeLine = false;
         isInBodyChange = false;
-
-
-
     }
+
+
+
     private void Start()
     {
 
@@ -202,6 +206,8 @@ public class AIDirector : MonoBehaviour
             StopCoroutine(currentTensiveTimeCoroutine);
 
         currentTensiveTimeCoroutine = StartCoroutine(StartTensiveTime());
+
+        MonsterSpeedUpEvent(currentMainStoryIndex);
     }
 
     
