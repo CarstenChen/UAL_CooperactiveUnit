@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 984df40f572bed44aa98026cd393efe8, type: 2}
 --- !u!1 &13101997
 GameObject:
   m_ObjectHideFlags: 0
@@ -21049,8 +21049,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   player: {fileID: 1442355380}
   playerPosCheck: {fileID: 1316432010}
-  startPlayerSan: 360
-  totalPlayerSan: 420
+  startPlayerSan: 420
+  totalPlayerSan: 480
   mainStoryNum: 4
   finalSceneGate: {fileID: 1042842749}
   finalSceneTimeline: {fileID: 489263708}
@@ -29032,7 +29032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953558958575, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1.9667086e-15
+      value: -1.9666928e-15
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953558958575, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
@@ -29040,7 +29040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953558958575, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 5.825665e-16
+      value: 5.825618e-16
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953769657057, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_Lens.FieldOfView
@@ -33466,6 +33466,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5251559664830241404, guid: b5fea04b6544e794da5824dc16459657, type: 3}
+      propertyPath: waitTime
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5251559664830241405, guid: b5fea04b6544e794da5824dc16459657, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7073430668112378432, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -33519,10 +33527,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1442355382}
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
-      propertyPath: param.speedUpRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: appearanceTimeline
       value: 
       objectReference: {fileID: 307585685}
@@ -33542,10 +33546,6 @@ PrefabInstance:
       propertyPath: routes.Array.data[2]
       value: 
       objectReference: {fileID: 1938691245}
-    - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
-      propertyPath: param.raidAngleBehindPlayer
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5fea04b6544e794da5824dc16459657, type: 3}
 --- !u!4 &7187100144403790985

@@ -37,7 +37,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - Color_55E2519C: {r: 0, g: 0.9411765, b: 1, a: 1}
+    - Color_55E2519C: {r: 1, g: 0.16626741, b: 0, a: 1}
     - Color_DCA90D3D: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &765070874076053733

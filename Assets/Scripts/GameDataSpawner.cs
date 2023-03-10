@@ -10,13 +10,13 @@ public class GameDataSpawner : SpawnManagerScriptableObject
     public bool hasFinishedGuide;
 
     protected int defaultMainStoryIndex = 0;
-    protected float defaltPlayerSan = 260;
+    protected float defaltPlayerSan = 420f;
     protected bool defaultHasFinishedGuide = false;
 
     public void ResetData()
     {
         currentMainStoryIndex = defaultMainStoryIndex;
-        playerSan = defaltPlayerSan;
+        playerSan = 420;
         hasFinishedGuide = defaultHasFinishedGuide;
     }
 

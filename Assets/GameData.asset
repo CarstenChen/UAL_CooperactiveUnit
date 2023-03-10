@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfPrefabsToCreate: 1
   currentMainStoryIndex: 0
-  playerSan: 260
+  playerSan: 420
   hasFinishedGuide: 0
