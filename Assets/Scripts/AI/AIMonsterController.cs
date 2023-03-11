@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 using UnityEngine.Playables;
+using UnityEngine.InputSystem;
 
 [Serializable]
 public class Parameter
@@ -205,6 +206,14 @@ public class AIMonsterController : MonoBehaviour
 
             raidWhenHearPlayer = /*UnityEngine.Random.Range(0, 2) != 0*/!CanBeSeenByPlayer() ? true : false;
         }
+
+        //if (Keyboard.current.f10Key.isPressed)
+        //{
+        //    playerFirstFound = true;//so it chase player ingnoring eyesight
+        //    Debug.Log(playerFirstFound);
+        //    SwitchToState(StateType.Raid);
+        //    StartCoroutine(OnSpawnBehindPlayer(0.2f));
+        //}
 
         //if is in main story
         if ((AIDirector.Instance.isInFinalSceneTimeLine || AIDirector.Instance.isInMainStoryTimeLine || AIDirector.Instance.isInBodyChange) && currentState.GetType() != typeof(MonsterIdleState) && currentState.GetType() != typeof(MonsterDizzyState))

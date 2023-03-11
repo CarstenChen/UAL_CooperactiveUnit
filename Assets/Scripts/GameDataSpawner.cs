@@ -16,7 +16,7 @@ public class GameDataSpawner : SpawnManagerScriptableObject
     public void ResetData()
     {
         currentMainStoryIndex = defaultMainStoryIndex;
-        playerSan = 420;
+        playerSan = 360;
         hasFinishedGuide = defaultHasFinishedGuide;
     }
 
