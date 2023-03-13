@@ -50,7 +50,10 @@ public class PlayerChangeBody : MonoBehaviour
     }
     public void UpdatePlayerBodyMesh()
     {
-        SoundManager.Instance.PlayBodyChangeSound();
+        if (AIDirector.Instance.currentMainStoryIndex != 0)
+        {
+            SoundManager.Instance.PlayBodyChangeSound();
+        }
         if (AIDirector.Instance.currentMainStoryIndex > 3) return;
 
         if (AIDirector.Instance.currentMainStoryIndex == 3)

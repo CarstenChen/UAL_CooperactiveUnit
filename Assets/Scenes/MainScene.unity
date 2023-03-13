@@ -1718,11 +1718,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecover
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
@@ -2341,7 +2341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecover
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
@@ -3585,11 +3585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecover
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
@@ -3928,11 +3928,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecover
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
@@ -10723,11 +10723,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecover
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
@@ -11086,11 +11086,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecover
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
@@ -11190,11 +11190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecover
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
@@ -16590,6 +16590,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1282780871, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: maxYOffset
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1282780871, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: minYOffset
+      value: -0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611789475, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: maxYOffset
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611789475, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: minYOffset
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611789475, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: completKeyNum
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649881894, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: maxYOffset
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649881894, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: minYOffset
+      value: -0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649881894, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: completKeyNum
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1761442662, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.00000035762787
@@ -16605,6 +16637,18 @@ PrefabInstance:
     - target: {fileID: 1761442662, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.061048202
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856429504, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: maxYOffset
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856429504, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: minYOffset
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1917546950, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: completKeyNum
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1767493555074866365, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: volume
@@ -16629,6 +16673,10 @@ PrefabInstance:
     - target: {fileID: 2016343229602296257, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: m_Intensity
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952988794612983740, guid: 195b7f579d7116c458498fde69073473, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4804135141234376524, guid: 195b7f579d7116c458498fde69073473, type: 3}
       propertyPath: m_Intensity
@@ -17199,11 +17247,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecover
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
@@ -17311,7 +17359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
-      value: 60
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
@@ -17591,11 +17639,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecover
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: recoverTime
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6162420755824931784, guid: 754a591ec178daa42b89d7f35ad252ac, type: 3}
       propertyPath: sanRecoverParticle
@@ -28942,7 +28990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953558958575, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 2.2365841e-15
+      value: -1.966693e-15
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953558958575, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
@@ -28950,7 +28998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953558958575, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.625073e-16
+      value: 5.8256184e-16
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953769657057, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_Lens.FieldOfView
@@ -28974,7 +29022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953769657070, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1.966693e-15
+      value: 1.9666928e-15
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953769657070, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
@@ -28982,7 +29030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953769657070, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 5.8256184e-16
+      value: -5.825618e-16
       objectReference: {fileID: 0}
     - target: {fileID: 4287523953975929984, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_Follow
@@ -29094,7 +29142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523954089884117, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1.9693838e-15
+      value: 1.9693838e-15
       objectReference: {fileID: 0}
     - target: {fileID: 4287523954089884117, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.y
@@ -29102,7 +29150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287523954089884117, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 5.8335895e-16
+      value: -5.8335895e-16
       objectReference: {fileID: 0}
     - target: {fileID: 4287523954089884117, guid: 5ece607876d28144b92e0d5659e8ffa4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -33437,6 +33485,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1442355382}
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
+      propertyPath: param.speedUpRate
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
       propertyPath: appearanceTimeline
       value: 
       objectReference: {fileID: 307585685}
@@ -33457,8 +33509,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1938691245}
     - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
-      propertyPath: param.raidDistanceBehindPlayer
+      propertyPath: param.raidAngleBehindPlayer
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073430668112378445, guid: b5fea04b6544e794da5824dc16459657, type: 3}
+      propertyPath: param.raidDistanceBehindPlayer
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5fea04b6544e794da5824dc16459657, type: 3}

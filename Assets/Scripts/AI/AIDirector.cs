@@ -75,6 +75,8 @@ public class AIDirector : MonoBehaviour
     public delegate void MonsterEvent(int currentMainStoryIndex);
     public static event MonsterEvent MonsterSpeedUpEvent;
 
+    protected bool backToStart;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -122,6 +124,7 @@ public class AIDirector : MonoBehaviour
         isInMainStoryTimeLine = false;
         isInFinalSceneTimeLine = false;
         isInBodyChange = false;
+        backToStart = false;
     }
 
 
@@ -156,7 +159,11 @@ public class AIDirector : MonoBehaviour
         {
             Destroy(GameObject.Find("Spawner(Clone)"));
             hasFinishedGuide = false;
-            StartCoroutine(SceneLoader.instance.LoadScene("StartScene", Color.black));
+            if (!backToStart)
+            {
+                StartCoroutine(SceneLoader.instance.LoadScene("StartScene", Color.black));
+                backToStart = true;
+            }
         }
         if (playerSan > 0f)
         {
@@ -170,7 +177,13 @@ public class AIDirector : MonoBehaviour
         {
             Destroy(GameObject.Find("Spawner(Clone)"));
             hasFinishedGuide = false;
-            StartCoroutine(SceneLoader.instance.LoadScene("StartScene", Color.black));
+
+            if (!backToStart)
+            {
+                StartCoroutine(SceneLoader.instance.LoadScene("StartScene", Color.black));
+                backToStart = true;
+            }
+
         }
         if (isGameOver)
         {

@@ -74,7 +74,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBodyChangeSound()
     {
-        SoundPlayer.PlaySound(playerAudioSource, bodyChangeClip, true);
+        SoundPlayer.PlaySound(collectibleAudioSource, bodyChangeClip, true);
     }
 
     public void PlayMainGateSound()
